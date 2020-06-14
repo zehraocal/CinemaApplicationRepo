@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CinemaApplication.DAL\CinemaApplication.DAL.csproj" />
+    <ProjectReference Include="..\CinemaApplication.Entity\CinemaApplication.Entity.csproj" />
+    <ProjectReference Include="..\CinemaApplication.Service\CinemaApplication.Service.csproj" />
+  </ItemGroup>
+
+</Project>

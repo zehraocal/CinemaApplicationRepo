@@ -1,0 +1,14 @@
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Service\bin\Debug\netcoreapp3.1\CinemaApplication.Service.deps.json
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Service\bin\Debug\netcoreapp3.1\CinemaApplication.Service.dll
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Service\obj\Debug\netcoreapp3.1\CinemaApplication.Service.csprojAssemblyReference.cache
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Service\obj\Debug\netcoreapp3.1\CinemaApplication.Service.AssemblyInfoInputs.cache
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Service\obj\Debug\netcoreapp3.1\CinemaApplication.Service.AssemblyInfo.cs
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Service\bin\Debug\netcoreapp3.1\CinemaApplication.DAL.dll
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Service\bin\Debug\netcoreapp3.1\CinemaApplication.Entity.dll
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Service\obj\Debug\netcoreapp3.1\CinemaApplication.Service.csproj.CoreCompileInputs.cache
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Service\bin\Debug\netcoreapp3.1\CinemaApplication.Service.pdb
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Service\bin\Debug\netcoreapp3.1\CinemaApplication.DAL.pdb
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Service\bin\Debug\netcoreapp3.1\CinemaApplication.Entity.pdb
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Service\obj\Debug\netcoreapp3.1\CinemaApplication.Service.csproj.CopyComplete
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Service\obj\Debug\netcoreapp3.1\CinemaApplication.Service.dll
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Service\obj\Debug\netcoreapp3.1\CinemaApplication.Service.pdb

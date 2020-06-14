@@ -1,0 +1,9 @@
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Entity\bin\Debug\netcoreapp3.1\CinemaApplication.Entity.deps.json
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Entity\bin\Debug\netcoreapp3.1\CinemaApplication.Entity.dll
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Entity\bin\Debug\netcoreapp3.1\CinemaApplication.Entity.pdb
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Entity\obj\Debug\netcoreapp3.1\CinemaApplication.Entity.csproj.CoreCompileInputs.cache
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Entity\obj\Debug\netcoreapp3.1\CinemaApplication.Entity.AssemblyInfoInputs.cache
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Entity\obj\Debug\netcoreapp3.1\CinemaApplication.Entity.AssemblyInfo.cs
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Entity\obj\Debug\netcoreapp3.1\CinemaApplication.Entity.dll
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Entity\obj\Debug\netcoreapp3.1\CinemaApplication.Entity.pdb
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Entity\obj\Debug\netcoreapp3.1\CinemaApplication.Entity.csprojAssemblyReference.cache

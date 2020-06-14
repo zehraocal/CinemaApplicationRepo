@@ -1,0 +1,15 @@
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\bin\Debug\netcoreapp3.1\CinemaApplication.DAL.deps.json
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\bin\Debug\netcoreapp3.1\CinemaApplication.DAL.dll
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\obj\Debug\netcoreapp3.1\CinemaApplication.DAL.csprojAssemblyReference.cache
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\obj\Debug\netcoreapp3.1\CinemaApplication.DAL.AssemblyInfoInputs.cache
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\obj\Debug\netcoreapp3.1\CinemaApplication.DAL.AssemblyInfo.cs
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\bin\Debug\netcoreapp3.1\CinemaApplication.Entity.dll
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\obj\Debug\netcoreapp3.1\CinemaApplication.DAL.csproj.CoreCompileInputs.cache
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\bin\Debug\netcoreapp3.1\CinemaApplication.DAL.runtimeconfig.json
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\bin\Debug\netcoreapp3.1\CinemaApplication.DAL.runtimeconfig.dev.json
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\bin\Debug\netcoreapp3.1\CinemaApplication.DAL.pdb
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\bin\Debug\netcoreapp3.1\CinemaApplication.Entity.pdb
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\obj\Debug\netcoreapp3.1\CinemaApplication.DAL.csproj.CopyComplete
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\obj\Debug\netcoreapp3.1\CinemaApplication.DAL.dll
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\obj\Debug\netcoreapp3.1\CinemaApplication.DAL.pdb
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.DAL\obj\Debug\netcoreapp3.1\CinemaApplication.DAL.genruntimeconfig.cache
