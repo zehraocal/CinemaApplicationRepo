@@ -12,6 +12,7 @@ namespace CinemaApplication.Controllers
     {
         IBlMovieHouseRepository _blMovieHouseRepository;
 
+
         public MovieHouseController(IBlMovieHouseRepository movieHouseRepository)
         {
             _blMovieHouseRepository = movieHouseRepository;
