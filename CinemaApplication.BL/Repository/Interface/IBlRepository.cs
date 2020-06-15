@@ -10,13 +10,19 @@ namespace CinemaApplication.BL.Repository.Interface
     public interface IBlRepository <T> where T : BaseEntity
     {
         DbSet<T> GetTable();
+        DbSet<A> GetTable<A>() where A : BaseEntity;
         DbSet<T> Table { get; }
         List<T> GetAll();
+        List<A> GetAll<A>() where A : BaseEntity;
         List<T> GetWhere(Func<T, bool> metot);
+        List<A> GetWhere<A>(Func<A, bool> metot) where A : BaseEntity;
         T GetSingle(Func<T, bool> metot);
-        bool Add(T model);
+        A GetSingle<A>(Func<A, bool> metot) where A : BaseEntity;
+        bool Add<A>(A model) where A : class;
         bool Remove(T model);
+        bool Remove<A>(A model) where A : BaseEntity;
         bool Update(T model);
+        bool Update<A>(A model) where A : BaseEntity;
         bool Save();
     }
 }

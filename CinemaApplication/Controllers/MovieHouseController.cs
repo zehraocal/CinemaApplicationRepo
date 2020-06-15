@@ -1,7 +1,10 @@
 ﻿using CinemaApplication.BL.Repository;
 using CinemaApplication.BL.Repository.Interface;
 using CinemaApplication.Entity.Entities;
+using CinemaApplication.Entity.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
+using System;
 
 namespace CinemaApplication.Controllers
 {
@@ -24,8 +27,16 @@ namespace CinemaApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddMovieHouse(MovieHouse model)
-        {         
+        public IActionResult AddMovieHouse(MovieHouseAddVM model)
+        {
+            //_blMovieHouseRepository.Add<Movie>(new Movie());
+
+
+            //_blMovieHouseRepository.Add(new MovieHouse
+            //{
+            //    Capacity = model.Capacity,
+            //    Name = model.Name
+            //});
             _blMovieHouseRepository.Add(model);
             return Ok(true);
         }
@@ -51,4 +62,60 @@ namespace CinemaApplication.Controllers
         }
 
     }
+
+
+    #region Implicit & Explicit
+    class Canli
+    {
+        public string Adi { get; set; }
+        public string Yasi { get; set; }
+        public bool Cinsiyet { get; set; }
+
+        public static implicit operator Canli(Insan i)
+        {
+            return new Canli()
+            {
+                Adi = i.Isim,
+                Cinsiyet = i.Cinsiyet == 1 ? true : false,
+                Yasi = (DateTime.Now.Year - i.DogumYili).ToString()
+            };
+        }
+    }
+    class Insan
+    {
+        public string Isim { get; set; }
+        public int DogumYili { get; set; }
+        public int Cinsiyet { get; set; }
+
+        public static explicit operator Insan(Canli c)
+        {
+            return new Insan
+            {
+                Isim = c.Adi,
+                Cinsiyet = Convert.ToInt32(c.Cinsiyet),
+                DogumYili = DateTime.Now.Year - int.Parse(c.Yasi)
+            };
+        }
+    }
+
+    class MyClass
+    {
+        public MyClass()
+        {
+            Canli c = new Insan()
+            {
+                DogumYili = 2000,
+                Cinsiyet = 1,
+                Isim = "Hilmi"
+
+            };
+
+
+            Insan i = (Insan)new Canli();
+        }
+    }
+    #endregion
+
+
+
 }

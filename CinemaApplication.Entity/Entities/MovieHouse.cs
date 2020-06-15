@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CinemaApplication.Entity.ViewModels;
+using System.Collections.Generic;
 
 namespace CinemaApplication.Entity.Entities
 {
@@ -8,5 +9,14 @@ namespace CinemaApplication.Entity.Entities
         public string Name { get; set; }
         public int Capacity { get; set; }
         public ICollection<VisionMovie> VisionMovies { get; set; }
+
+        //public static implicit operator MovieHouse(MovieHouseAddVM movieHouseAddVM)
+        //{
+        //    return new MovieHouse
+        //    {
+        //        Capacity = movieHouseAddVM.Capacity,
+        //        Name = movieHouseAddVM.Name
+        //    };
+        //}
     }
 }
