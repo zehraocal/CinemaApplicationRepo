@@ -52,10 +52,13 @@ namespace CinemaApplication.BL.Repository.Concreate
             return Save();
         }
 
-        public virtual bool Remove<TDeleteVM>(TDeleteVM model)
+        public virtual bool Remove(long id)
         {
-            //var asd = Table.Find(5);
-            //Remove(asd);
+            return Remove(Table.Find(id));
+        }
+
+        protected bool Remove<TDeleteVM>(TDeleteVM model)
+        {
             Table.Remove(_mappingProfile.Map<T>(model));
             return Save();
         }       
