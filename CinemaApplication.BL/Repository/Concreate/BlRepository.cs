@@ -11,7 +11,7 @@ using System.Text;
 
 namespace CinemaApplication.BL.Repository.Concreate
 {
-    public class BlRepository<T> : IBlRepository<T> where T : BaseEntity, new()
+    public class BlRepository<T> : IBlRepository<T> where T : BaseEntity
     {
         CinemaApplicationContext _context;
         protected IMapper _mappingProfile;
@@ -22,95 +22,60 @@ namespace CinemaApplication.BL.Repository.Concreate
             _mappingProfile = mappingProfile;
         }
 
-        public DbSet<T> Table
-        {
-            get
-            {
-                return GetTable();
-            }
-        }
+        public DbSet<T> Table { get { return GetTable(); } }
 
         public DbSet<T> GetTable()
         {
-            //return _context.Set<T>();
-            return GetTable<T>();
+            return _context.Set<T>();
         }
 
         public List<T> GetAll()
         {
-            //return Table.ToList();
-            return GetAll<T>();
+            return Table.ToList();
         }
 
-        public T GetSingle(Func<T, bool> metot)
+        public T GetSingle(Func<T, bool> method)
         {
-            //return Table.FirstOrDefault(metot);
-            return GetSingle<T>(metot);
+            return Table.FirstOrDefault(method);
         }
 
-        public List<T> GetWhere(Func<T, bool> metot)
+        public List<T> GetWhere(Func<T, bool> method)
         {
-            //return Table.Where(metot).ToList();
-            return GetWhere<T>(metot);
+            return Table.Where(method).ToList();
         }
 
-        public bool Remove(T model)
+        public virtual bool Add<TAddVM>(TAddVM model) where TAddVM : class
         {
-            //Table.Remove(model);
-            //return Save();
-            return Remove<T>(model);
+            _context.Set<T>().Add(_mappingProfile.Map<T>(model));
+            return Save();
         }
+
+        public virtual bool Update<TUpdateVM>(TUpdateVM model) where TUpdateVM : BaseEntity
+        {
+            _context.Entry<T>(_mappingProfile.Map<T>(model)).State = EntityState.Modified;
+            return Save();
+        }
+
+        public virtual bool Remove(long id)
+        {
+            var asd = _mappingProfile.Map<T>(_context.Set<T>());
+
+            return Remove(asd));
+        }
+
+        public bool Remove<TDeleteVM>(TDeleteVM model) where TDeleteVM : BaseEntity
+        {
+            _context.Set<T>().Remove(_mappingProfile.Map<T>(model));
+            return Save();
+        }       
 
         public bool Save()
         {
             return _context.SaveChanges() > 0;
         }
 
-        public bool Update(T model)
-        {
-            //_context.Entry<T>(model).State = EntityState.Modified;
-            //return Save();
-            return Update<T>(model);
-        }
-
-        public DbSet<A> GetTable<A>() where A : BaseEntity
-        {
-            return _context.Set<A>();
-        }
-
-        public List<A> GetAll<A>() where A : BaseEntity
-        {
-            return GetTable<A>().ToList();
-        }
-
-        public List<A> GetWhere<A>(Func<A, bool> metot) where A : BaseEntity
-        {
-            return GetTable<A>().Where(metot).ToList();
-        }
-
-        public A GetSingle<A>(Func<A, bool> metot) where A : BaseEntity
-        {
-            return GetTable<A>().FirstOrDefault(metot);
-        }
-
-        public virtual bool Add<TAddVM>(TAddVM model) where TAddVM : class
-        {
-                  
-            T t = _mappingProfile.Map<T>(model);
-            _context.Set<T>().Add(t);
-            return Save();
-        }
-
-        public bool Remove<A>(A model) where A : BaseEntity
-        {
-            _context.Set<A>().Remove(model);
-            return Save();
-        }
-
-        public bool Update<A>(A model) where A : BaseEntity
-        {
-            _context.Entry<A>(model).State = EntityState.Modified;
-            return Save();
-        }
     }
+
+
 }
+

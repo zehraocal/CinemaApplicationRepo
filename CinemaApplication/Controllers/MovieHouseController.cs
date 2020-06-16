@@ -36,7 +36,7 @@ namespace CinemaApplication.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteMovieHouse(int id)
         {
-            MovieHouse DeleteMovieHouse = _blMovieHouseRepository.GetSingle(a => a.Id == id);
+            //MovieHouse DeleteMovieHouse = _blMovieHouseRepository.GetSingle(a => a.Id == id);
             _blMovieHouseRepository.Remove(DeleteMovieHouse);
             return Ok(true);
         }
