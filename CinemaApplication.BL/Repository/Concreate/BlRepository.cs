@@ -4,6 +4,7 @@ using CinemaApplication.DAL.Contexts;
 using CinemaApplication.Entity.Entities;
 using CinemaApplication.Service;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.CompilerServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +23,7 @@ namespace CinemaApplication.BL.Repository.Concreate
             _mappingProfile = mappingProfile;
         }
 
-        public DbSet<T> Table { get { return GetTable(); } }
-
-        public DbSet<T> GetTable()
-        {
-            return _context.Set<T>();
-        }
+        public DbSet<T> Table { get { return _context.Set<T>(); } }
 
         public List<T> GetAll()
         {
@@ -46,7 +42,7 @@ namespace CinemaApplication.BL.Repository.Concreate
 
         public virtual bool Add<TAddVM>(TAddVM model) where TAddVM : class
         {
-            _context.Set<T>().Add(_mappingProfile.Map<T>(model));
+            Table.Add(_mappingProfile.Map<T>(model));
             return Save();
         }
 
@@ -56,16 +52,11 @@ namespace CinemaApplication.BL.Repository.Concreate
             return Save();
         }
 
-        public virtual bool Remove(long id)
+        public virtual bool Remove<TDeleteVM>(TDeleteVM model)
         {
-            var asd = _mappingProfile.Map<T>(_context.Set<T>());
-
-            return Remove(asd));
-        }
-
-        public bool Remove<TDeleteVM>(TDeleteVM model) where TDeleteVM : BaseEntity
-        {
-            _context.Set<T>().Remove(_mappingProfile.Map<T>(model));
+            //var asd = Table.Find(5);
+            //Remove(asd);
+            Table.Remove(_mappingProfile.Map<T>(model));
             return Save();
         }       
 

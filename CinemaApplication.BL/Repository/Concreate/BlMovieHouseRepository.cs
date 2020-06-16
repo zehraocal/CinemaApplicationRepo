@@ -5,15 +5,14 @@ using CinemaApplication.Entity.Entities;
 using CinemaApplication.Entity.ViewModels;
 using CinemaApplication.Service;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace CinemaApplication.BL.Repository.Concreate
 {
     public class BlMovieHouseRepository : BlRepository<MovieHouse>, IBlMovieHouseRepository
-    {
-        IBlMovieHouseRepository _blMovieHouseRepository;
-        public BlMovieHouseRepository(IMapper mappingProfile, IBlMovieHouseRepository blMovieHouseRepository) : base(mappingProfile)
+    {     
+        public BlMovieHouseRepository(IMapper mappingProfile) : base(mappingProfile)
         {
-            _blMovieHouseRepository = blMovieHouseRepository;
         }
         public override bool Add<TAddVM>(TAddVM model)
         {
@@ -21,12 +20,19 @@ namespace CinemaApplication.BL.Repository.Concreate
 
             return base.Add(movieHouse);
         }
-        public override bool Remove(long id)
+
+        public override bool Remove<TDeleteVM>(TDeleteVM model)
         {
-            MovieHouse deleteMovieHouse = _blMovieHouseRepository.GetSingle(a => a.Id == id);
+            var deleteMovieHouse = GetSingle(a => a.Id == Convert.ToInt64(model));
             return base.Remove(deleteMovieHouse);
         }
-        
+
+        //public override bool Remove(long id)
+        //{
+        //    MovieHouse deleteMovieHouse = _blMovieHouseRepository.GetSingle(a => a.Id == id);
+        //    return base.Remove(deleteMovieHouse);
+        //}
+
 
 
     }
