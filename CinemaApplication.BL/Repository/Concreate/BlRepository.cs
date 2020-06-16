@@ -1,4 +1,5 @@
-﻿using CinemaApplication.BL.Repository.Interface;
+﻿using AutoMapper;
+using CinemaApplication.BL.Repository.Interface;
 using CinemaApplication.DAL.Contexts;
 using CinemaApplication.Entity.Entities;
 using CinemaApplication.Service;
@@ -13,10 +14,12 @@ namespace CinemaApplication.BL.Repository.Concreate
     public class BlRepository<T> : IBlRepository<T> where T : BaseEntity, new()
     {
         CinemaApplicationContext _context;
+        protected IMapper _mappingProfile;
 
-        public BlRepository()
+        public BlRepository(IMapper mappingProfile)
         {
             _context = DbContextService.GetDbContext();
+            _mappingProfile = mappingProfile;
         }
 
         public DbSet<T> Table
@@ -92,9 +95,9 @@ namespace CinemaApplication.BL.Repository.Concreate
 
         public virtual bool Add<TAddVM>(TAddVM model) where TAddVM : class
         {
-            //TODO: Map islemi burda yapıalcak gelen paramatere entity destination olacak şekilde maplenenecek ve entity Add'e parametre olarak verilecek.
-            var asd = new T();
-            _context.Set<T>().Add(asd);
+                  
+            T t = _mappingProfile.Map<T>(model);
+            _context.Set<T>().Add(t);
             return Save();
         }
 

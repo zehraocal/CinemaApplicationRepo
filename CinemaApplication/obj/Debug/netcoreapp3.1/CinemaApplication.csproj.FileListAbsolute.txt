@@ -131,8 +131,10 @@ D:\Depo\zehra\BitirmeProjesi\CinemaApplication\bin\Debug\netcoreapp3.1\CinemaApp
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication\bin\Debug\netcoreapp3.1\CinemaApplication.Entity.pdb
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication\bin\Debug\netcoreapp3.1\CinemaApplication.DAL.pdb
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication\bin\Debug\netcoreapp3.1\CinemaApplication.Service.pdb
-D:\Depo\zehra\BitirmeProjesi\CinemaApplication\obj\Debug\netcoreapp3.1\CinemaApplication.csproj.CoreCompileInputs.cache
-D:\Depo\zehra\BitirmeProjesi\CinemaApplication\obj\Debug\netcoreapp3.1\CinemaApplication.MvcApplicationPartsAssemblyInfo.cache
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication\bin\Debug\netcoreapp3.1\AutoMapper.dll
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication\obj\Debug\netcoreapp3.1\CinemaApplication.csproj.CoreCompileInputs.cache
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication\obj\Debug\netcoreapp3.1\CinemaApplication.MvcApplicationPartsAssemblyInfo.cache

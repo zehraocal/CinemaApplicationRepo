@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using CinemaApplication.BL.Mapper;
 using CinemaApplication.Extensions;
 using CinemaApplication.Service;
 using Microsoft.AspNetCore.Builder;
@@ -27,6 +29,14 @@ namespace CinemaApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options => options.AddPolicy("AllowCorsEverywhere", builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+
+            });
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.AddDbContextService();
             services.AddRepository();
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

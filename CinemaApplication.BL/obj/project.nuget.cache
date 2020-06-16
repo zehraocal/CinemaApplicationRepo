@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "jlUy4oRxHxIq1/BYuEyj8PhkHqV9tsMOEotKSSpRLzddQ6EUeSNj/Jdwfe21nV2zmJ58FERIwrFvLObAqQReYA==",
+  "dgSpecHash": "66g3LQTeoJwX5yR6Dbrf8zMfsS852kmvQnx4uoHRkrRABHDDBypGMFIVtSkJYybI2hRgQn9k2BgJA1GW8SwreA==",
   "success": true,
   "projectFilePath": "D:\\Depo\\zehra\\BitirmeProjesi\\CinemaApplication.BL\\CinemaApplication.BL.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Huseyin\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
+    "C:\\Users\\Huseyin\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\Huseyin\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Huseyin\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

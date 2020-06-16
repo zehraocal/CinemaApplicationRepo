@@ -1,7 +1,6 @@
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication.BL\bin\Debug\netcoreapp3.1\CinemaApplication.BL.deps.json
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication.BL\bin\Debug\netcoreapp3.1\CinemaApplication.BL.dll
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication.BL\bin\Debug\netcoreapp3.1\CinemaApplication.BL.pdb
-D:\Depo\zehra\BitirmeProjesi\CinemaApplication.BL\obj\Debug\netcoreapp3.1\CinemaApplication.BL.csproj.CoreCompileInputs.cache
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication.BL\obj\Debug\netcoreapp3.1\CinemaApplication.BL.AssemblyInfoInputs.cache
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication.BL\obj\Debug\netcoreapp3.1\CinemaApplication.BL.AssemblyInfo.cs
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication.BL\obj\Debug\netcoreapp3.1\CinemaApplication.BL.dll
@@ -14,3 +13,4 @@ D:\Depo\zehra\BitirmeProjesi\CinemaApplication.BL\bin\Debug\netcoreapp3.1\Cinema
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication.BL\bin\Debug\netcoreapp3.1\CinemaApplication.Entity.pdb
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication.BL\bin\Debug\netcoreapp3.1\CinemaApplication.Service.pdb
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication.BL\obj\Debug\netcoreapp3.1\CinemaApplication.BL.csproj.CopyComplete
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.BL\obj\Debug\netcoreapp3.1\CinemaApplication.BL.csproj.CoreCompileInputs.cache

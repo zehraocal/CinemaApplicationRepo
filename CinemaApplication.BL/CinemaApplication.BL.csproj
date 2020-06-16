@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CinemaApplication.DAL\CinemaApplication.DAL.csproj" />
     <ProjectReference Include="..\CinemaApplication.Entity\CinemaApplication.Entity.csproj" />
     <ProjectReference Include="..\CinemaApplication.Service\CinemaApplication.Service.csproj" />
