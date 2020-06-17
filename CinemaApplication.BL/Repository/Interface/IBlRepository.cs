@@ -1,4 +1,5 @@
 ﻿using CinemaApplication.Entity.Entities;
+using CinemaApplication.Entity.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace CinemaApplication.BL.Repository.Interface
         List<T> GetWhere(Func<T, bool> method);
         bool Add<TAddVM>(TAddVM model) where TAddVM : class;
         bool Remove(long id);
-        bool Update<TUpdateVM>(TUpdateVM model) where TUpdateVM : BaseEntity;
+        bool Update<TUpdateVM>(TUpdateVM model) where TUpdateVM : UpdateVMBase;
         bool Save();
 
     }

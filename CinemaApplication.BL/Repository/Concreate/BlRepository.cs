@@ -2,6 +2,7 @@
 using CinemaApplication.BL.Repository.Interface;
 using CinemaApplication.DAL.Contexts;
 using CinemaApplication.Entity.Entities;
+using CinemaApplication.Entity.ViewModels;
 using CinemaApplication.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic.CompilerServices;
@@ -44,11 +45,13 @@ namespace CinemaApplication.BL.Repository.Concreate
         {
             Table.Add(_mappingProfile.Map<T>(model));
             return Save();
-        }
+        }     
 
-        public virtual bool Update<TUpdateVM>(TUpdateVM model) where TUpdateVM : BaseEntity
+        public virtual bool Update<TUpdateVM>(TUpdateVM model) where TUpdateVM : UpdateVMBase
         {
-            _context.Entry<T>(_mappingProfile.Map<T>(model)).State = EntityState.Modified;
+            var entity = Table.Find(model.Id);
+            _mappingProfile.Map(model, entity);
+            _context.Entry<T>(entity).State = EntityState.Modified;
             return Save();
         }
 
@@ -57,7 +60,7 @@ namespace CinemaApplication.BL.Repository.Concreate
             return Remove(Table.Find(id));
         }
 
-        protected bool Remove<TDeleteVM>(TDeleteVM model)
+        protected bool Remove<TDeleteVM>(TDeleteVM model) 
         {
             Table.Remove(_mappingProfile.Map<T>(model));
             return Save();
@@ -66,10 +69,8 @@ namespace CinemaApplication.BL.Repository.Concreate
         public bool Save()
         {
             return _context.SaveChanges() > 0;
-        }
-
+        }       
     }
-
 
 }
 

@@ -15,7 +15,7 @@ namespace CinemaApplication.BL.Repository.Concreate
         {
         }
 
-        
+   
     }
 
 }

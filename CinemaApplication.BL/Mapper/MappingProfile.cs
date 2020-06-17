@@ -11,9 +11,9 @@ namespace CinemaApplication.BL.Mapper
     {
         public MappingProfile()
         {
-            // ** Org MovieHouse Mappings **
-            CreateMap<MovieHouse, MovieHouseAddVM>();
+            // ** MovieHouse Mappings **
             CreateMap<MovieHouseAddVM, MovieHouse>();
+            CreateMap<MovieHouseUpdateVM, MovieHouse>();
         }
     }
 }

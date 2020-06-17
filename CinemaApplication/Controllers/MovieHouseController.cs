@@ -40,16 +40,10 @@ namespace CinemaApplication.Controllers
             return Ok(true);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateMovieHouse(int id, MovieHouse model)
+        [HttpPut]
+        public IActionResult UpdateMovieHouse(MovieHouseUpdateVM param)
         {
-            MovieHouse UpdateMovieHouse = _blMovieHouseRepository.GetSingle(a => a.Id == id);
-            UpdateMovieHouse.Name = model.Name;
-            UpdateMovieHouse.Capacity = model.Capacity;
-
-            _blMovieHouseRepository.Update(UpdateMovieHouse);
-
-            return Ok(UpdateMovieHouse);
+            return Ok(_blMovieHouseRepository.Update(param));
         }
 
     }
