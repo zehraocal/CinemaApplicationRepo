@@ -1,0 +1,19 @@
+<p>moviehouse works!</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Adı</th>
+      <th scope="col">Kapasitesi</th>
+      <th scope="col">Filmler</th>
+      <th></th>
+    </tr>
+  </thead> 
+  <tbody>
+    <tr *ngFor="let moviehouse of MovieHouses">
+      <td>{{ moviehouse.name }}</td>
+      <td>{{ moviehouse.capacity }}</td>
+      <td>{{ moviehouse.visionMovie}}</td>
+      <td><button type="button" class="btn btn-success">Salon Bilgileri</button></td>
+    </tr>
+  </tbody>
+</table>

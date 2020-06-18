@@ -20,7 +20,7 @@ namespace CinemaApplication.Controllers
         {
             _blMovieHouseRepository = movieHouseRepository;
         }
-
+        [HttpGet]
         public IActionResult GetMovieHouse()
         {
             return Ok(_blMovieHouseRepository.GetAll());

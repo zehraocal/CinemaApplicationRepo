@@ -28,7 +28,9 @@ namespace CinemaApplication
        
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options => options.AddPolicy("AllowCorsEverywhere", builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+            //services.AddCors(options => options.AddPolicy("AllowCorsEverywhere", builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+            services.AddCors(options => options.AddDefaultPolicy(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
