@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
@@ -17,7 +17,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent
+        NavbarComponent        
     ],
     imports: [
         BrowserAnimationsModule,
@@ -27,7 +27,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
         AppRoutingModule,
         ComponentsModule,
         ExamplesModule,
-        HttpClientModule
+        HttpClientModule,
+        ReactiveFormsModule
     ],
     providers: [HttpService, { provide: "url", useValue: "https://localhost:5001/api" }],
     bootstrap: [AppComponent]

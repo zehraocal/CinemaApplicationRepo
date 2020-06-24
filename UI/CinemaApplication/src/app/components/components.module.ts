@@ -15,6 +15,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { NgbdModalBasic } from './modal/modal.component';
 import { MoviehouseComponent } from './moviehouse/moviehouse.component';
 
+
 @NgModule({
     imports: [
         CommonModule,
@@ -32,7 +33,8 @@ import { MoviehouseComponent } from './moviehouse/moviehouse.component';
         NucleoiconsComponent,
         NotificationComponent,
         NgbdModalBasic,
-        MoviehouseComponent
+        MoviehouseComponent,
+        
     ],
     exports:[ ComponentsComponent ]
 })

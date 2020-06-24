@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent" color-on-scroll="500">
+<nav class="navbar navbar-expand-lg bg-primary fixed-top " color-on-scroll="500">
     <div class="container">
       <div class="dropdown button-dropdown">
         <div ngbDropdown>
@@ -9,9 +9,8 @@
           </a>
            <div ngbDropdownMenu>
              <a class="dropdown-header">Dropdown header</a>
-             <a class="dropdown-item" href="#">Action</a>
-             <a class="dropdown-item" href="#">Another action</a>
-             <a class="dropdown-item" href="#">Something else here</a>
+             <a class="dropdown-item" routerLink="moviehouse"> Sinema Salonu <span class="sr-only" >(current)</span></a>
+             <a class="dropdown-item" href="#">Filmler</a>
              <div class="dropdown-divider"></div>
              <a class="dropdown-item" href="#">Separated link</a>
              <div class="dropdown-divider"></div>
@@ -21,16 +20,17 @@
       </div>
         <div class="navbar-translate">
             <a class="navbar-brand" [routerLink]="['/index']" placement="bottom" ngbTooltip="Designed by Invision. Coded by Creative Tim">
-                Now Ui Kit
+                NECİNEMA
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
+                <span class="navbar-toggler-bar bar1"> </span>
+                <span class="navbar-toggler-bar bar2"> </span>
+                <span class="navbar-toggler-bar bar3"> </span>
             </button>
         </div>
         <div class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
             <ul class="navbar-nav ml-auto">
+
               <li class="nav-item">
                   <a class="nav-link" href="https://www.creative-tim.com/product/now-ui-kit-angular" target="_blank">
                       <i class="now-ui-icons arrows-1_cloud-download-93"></i>

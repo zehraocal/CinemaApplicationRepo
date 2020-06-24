@@ -1,19 +1,72 @@
-<p>moviehouse works!</p>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Adı</th>
-      <th scope="col">Kapasitesi</th>
-      <th scope="col">Filmler</th>
-      <th></th>
-    </tr>
-  </thead> 
-  <tbody>
-    <tr *ngFor="let moviehouse of MovieHouses">
-      <td>{{ moviehouse.name }}</td>
-      <td>{{ moviehouse.capacity }}</td>
-      <td>{{ moviehouse.visionMovie}}</td>
-      <td><button type="button" class="btn btn-success">Salon Bilgileri</button></td>
-    </tr>
-  </tbody>
-</table>
+<div class="col-md-6">
+  <div class="form-group">
+    <span class="badge badge-primary">Adı</span>
+    <input type="text" class="form-control" placeholder="Salon Adı" #txtName>
+  </div>
+  <div class="form-group">
+    <span class="badge badge-primary">Kapasitesi</span>
+    <input type="text" class="form-control" placeholder="Kapasite" #txtCapacity>
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click)="getMovieHouse( )">Sorgula
+  </button>
+
+  <button type="submit" class="btn btn-primary" (click)="addMovieHouse( txtName,txtCapacity)"> Ekle
+  </button>
+
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Adı</th>
+            <th scope="col">Kapasitesi</th>
+            <th scope="col">Filmler</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let moviehouse of MovieHouses">
+            <td>{{ moviehouse.name }}</td>
+            <td>{{ moviehouse.capacity }}</td>
+            <td>{{ moviehouse.visionMovie}}</td>
+            <td><button type="button" class="btn btn-danger" (click)="deleteMovieHouse( moviehouse.id)">Sil</button>
+            </td>
+            <td><button class="btn btn-primary" (click)="open(classic)"> Güncelle </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<ng-template #classic let-c="close" let-d="dismiss">
+  <div class="modal-header justify-content-center">
+    <button type="button" class="close" (click)="d('Cross click')">
+      <i class="now-ui-icons ui-1_simple-remove"></i>
+    </button>
+    <h4 class="title title-up">Salon Bilgileri</h4>
+  </div>
+  <div class="modal-body">
+    <div class="input-group form-group-no-border input-lg col-lg-12">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="now-ui-icons users_circle-08"></i></span>
+      </div>
+      <span class="badge badge-primary">Salon Adı</span>
+      <input type="text" class="form-control" placeholder="Salon Adı" [(ngModel)]='record.name'>
+      <span class="badge badge-primary">Kapasite</span>
+      <input type="text" class="form-control" placeholder="Kapasite" [(ngModel)]='record.capacity'>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="updateMovieHouse( )">Kaydet</button>
+    <button type="button" class="btn btn-danger" (click)="c('Close click')">İptal</button>
+  </div>
+</ng-template>
