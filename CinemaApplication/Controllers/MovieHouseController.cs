@@ -5,6 +5,7 @@ using CinemaApplication.Entity.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using System;
+using System.Linq;
 
 namespace CinemaApplication.Controllers
 {
@@ -27,6 +28,13 @@ namespace CinemaApplication.Controllers
         }
 
         [HttpPost]
+        public IActionResult GetWhereMovieHouse([FromBody]string name)
+        {
+            var movieHouses = _blMovieHouseRepository.GetWhere(y => y.Name.Contains(name)).ToList();
+            return Ok(movieHouses);
+        }
+
+        [HttpPost]
         public IActionResult AddMovieHouse(MovieHouseAddVM model)
         {
             _blMovieHouseRepository.Add(model);
@@ -45,6 +53,8 @@ namespace CinemaApplication.Controllers
         {
             return Ok(_blMovieHouseRepository.Update(param));
         }
+
+
 
     }
 

@@ -39,6 +39,7 @@ namespace CinemaApplication.Controllers
             _blMovieRepository.Remove(id);
             return Ok(true);
         }
+
         [HttpPut]
         public IActionResult UpdateMovie(MovieUpdateVM param)
         {
