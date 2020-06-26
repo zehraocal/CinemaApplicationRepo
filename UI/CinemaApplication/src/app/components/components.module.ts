@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { NouisliderModule } from 'ng2-nouislider';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { RouterModule } from '@angular/router';
-
 import { BasicelementsComponent } from './basicelements/basicelements.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { TypographyComponent } from './typography/typography.component';
@@ -14,7 +13,11 @@ import { ComponentsComponent } from './components.component';
 import { NotificationComponent } from './notification/notification.component';
 import { NgbdModalBasic } from './modal/modal.component';
 import { MoviehouseComponent } from './moviehouse/moviehouse.component';
-
+import { PanelModule } from 'primeng/panel';
+import { InputTextModule } from 'primeng/inputtext';
+import { DialogModule } from 'primeng/dialog';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
     imports: [
@@ -23,8 +26,13 @@ import { MoviehouseComponent } from './moviehouse/moviehouse.component';
         NgbModule,
         NouisliderModule,
         RouterModule,
-        JwBootstrapSwitchNg2Module
-      ],
+        JwBootstrapSwitchNg2Module,
+        PanelModule,
+        InputTextModule,
+        DialogModule,
+        TableModule,
+        ButtonModule
+    ],
     declarations: [
         ComponentsComponent,
         BasicelementsComponent,
@@ -33,9 +41,8 @@ import { MoviehouseComponent } from './moviehouse/moviehouse.component';
         NucleoiconsComponent,
         NotificationComponent,
         NgbdModalBasic,
-        MoviehouseComponent,
-        
+        MoviehouseComponent
     ],
-    exports:[ ComponentsComponent ]
+    exports: [ComponentsComponent]
 })
 export class ComponentsModule { }

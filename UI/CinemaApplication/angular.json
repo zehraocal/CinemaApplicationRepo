@@ -21,6 +21,9 @@
               "src/favicon.ico"
             ],
             "styles": [
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "src/styles.scss",
               "src/assets/sass/now-ui-kit.scss",
               "src/assets/css/demo.css"
@@ -78,10 +81,10 @@
             "scripts": [
               "node_modules/rellax/rellax.min.js"
             ],
-            "styles": [
+            "styles": [             
               "src/styles.scss",
               "src/assets/sass/now-ui-kit.scss",
-              "src/assets/css/demo.css"
+              "src/assets/css/demo.css"                        
             ],
             "assets": [
               "src/assets",

@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace CinemaApplication.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
 
     public class MovieHouseController : ControllerBase
@@ -21,16 +21,13 @@ namespace CinemaApplication.Controllers
         {
             _blMovieHouseRepository = movieHouseRepository;
         }
-        [HttpGet]
-        public IActionResult GetMovieHouse()
-        {
-            return Ok(_blMovieHouseRepository.GetAll());
-        }
-
+       
         [HttpPost]
-        public IActionResult GetWhereMovieHouse([FromBody]string name)
+        public IActionResult GetWhereMovieHouse(MovieHouseGetVM model)
         {
-            var movieHouses = _blMovieHouseRepository.GetWhere(y => y.Name.Contains(name)).ToList();
+            var movieHouses = _blMovieHouseRepository.GetAll();
+            if (!string.IsNullOrEmpty(model.Name))
+                movieHouses = _blMovieHouseRepository.GetWhere(y => y.Name.Contains(model.Name)).ToList();
             return Ok(movieHouses);
         }
 

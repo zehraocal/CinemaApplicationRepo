@@ -7,6 +7,7 @@ import { MovieHouseUpdateVM } from 'app/entities/movie-house-update-vm';
 
 import { FormGroup, FormControl } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { MovieHouseGetVM } from 'app/entities/movie-house-get-vm';
 
 
 @Component({
@@ -16,66 +17,85 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class MoviehouseComponent implements OnInit {
   closeResult: string;
   MovieHouses: MovieHouse[];
-  record: any= {};
+  record: any = {};
+  criteria: any = {};
+  sorgulandi = false;
+  cols: any[];
 
   constructor(private httpService: HttpService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-  
+    this.cols= [
+      { field: 'name', header: 'Salon Adı' },
+      { field: 'capacity', header: 'Kapasitesi' }
+    
+  ];
   }
 
-  getMovieHouse() {
-    this.httpService.get<MovieHouse[]>("moviehouse").subscribe(data => {
+  getWhereMovieHouse() {
+    let movieHouseParam: MovieHouseGetVM = new MovieHouseGetVM();
+    movieHouseParam.name = this.criteria.name;
+
+    this.httpService.post<MovieHouseGetVM, any>("MovieHouse", movieHouseParam, "GetWhereMovieHouse").subscribe(data => {
       this.MovieHouses = data;
-    })
+      this.sorgulandi = true;
+    });
   }
 
-  addMovieHouse(name: HTMLInputElement, capacity: HTMLInputElement) {
-
+  addMovieHouse() {
     let movieHouse: MovieHouseAddVM = new MovieHouseAddVM();
-    movieHouse.name = name.value;
-    movieHouse.capacity = parseInt(capacity.value);
-
+    movieHouse.name = this.record.addName;
+    movieHouse.capacity = this.record.addCapacity;
 
     this.httpService.post<MovieHouseAddVM, any>("moviehouse", movieHouse).subscribe(data => {
       if (data)
         alert("Sinema salonu başarıyla kayıt olmuştur....")
-
+      this.getWhereMovieHouse();
     })
   }
 
-  updateMovieHouse(id) {
+  updateMovieHouse(id: number) {
     debugger
     let updateMovieHouse: MovieHouseUpdateVM = new MovieHouseUpdateVM();
-    
+    updateMovieHouse.id = id
     updateMovieHouse.name = this.record.name;
     updateMovieHouse.capacity = this.record.capacity;
 
-    this.httpService.put<MovieHouseUpdateVM, any>("moviehouse", updateMovieHouse).subscribe(Updatedata => {
-      this.updateMovieHouse = Updatedata;
+    this.httpService.put<MovieHouseUpdateVM, any>("MovieHouse", updateMovieHouse, "UpdateMovieHouse").subscribe(updatedata => {
+      this.updateMovieHouse = updatedata;
+      alert("Sinema salonu başarıyla güncellenmiştir....")
+      this.getWhereMovieHouse();
     })
 
   }
   deleteMovieHouse(id: number) {
-
-    this.httpService.delete<any>("moviehouse", id).subscribe(data => {
+debugger
+    this.httpService.delete<any>("MovieHouse", id, "DeleteMovieHouse").subscribe(data => {
       if (data)
         alert("Sinema salonu başarıyla silinmiştir....")
-
     })
-
-
   }
 
+  cleanSelectedMovieHouse() {
+    this.criteria.name = "";
+  }
 
-  
-  open(content) {
-      this.modalService.open(content).result.then((result) => {
-        this.closeResult = `Closed with: ${result}`;
-      }, (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });
+  openUpdateDialog(content, selectedMovieHouse) {
+    this.record.name = selectedMovieHouse.name;
+    this.record.capacity = selectedMovieHouse.capacity;
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
 
+  openAddDialog(content) {
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
   }
 
   private getDismissReason(reason: any): string {
@@ -87,6 +107,7 @@ export class MoviehouseComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+  
 
 
 }
