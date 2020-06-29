@@ -1,47 +1,48 @@
-<br/>
-<br/>
-<br/>
-<br/>
 
 <div class="row">
   <div class="col-lg-3">
     <p-panel header="Sorgulama Kriteri" [toggleable]="true" [style]="{'margin-bottom':'20px', 'margin-left':'20px'}  ">
         <div class="form-group">
-          <span>
-            <input type="text" size="30" pInputText [(ngModel)]='criteria.name' placeholder="Salon Adı">
+          <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+            <input type="text" size="30" pInputText [(ngModel)]='criteria.name' >
+            <label for="float-input">Salon Adı</label>
           </span>
         </div>
         <div class="row" style="margin-left: 1px;">
-          <button type="submit" class="btn btn-primary" (click)="getWhereMovieHouse( )"> Sorgula
+          <button type="submit" class=" btn btn-info btn-round" (click)="getMovieHouse()"> Sorgula
           </button>
-          <button type="button" class="btn btn-primary" (click)="cleanSelectedMovieHouse()"> Temizle
+          <button type="button" class="btn btn-warning btn-round" (click)="cleanSelectedMovieHouse()"> Temizle
           </button>
-          <button class="btn btn-primary" (click)="openAddDialog(classic1)"> Ekle </button>          
+          <button class="btn btn-primary btn-round" (click)="openAddDialog(classic1)" > Ekle </button>          
         </div>
-        <ng-template #classic1 let-c="close" let-d="dismiss">
-          <div class="modal-header justify-content-center">
+        <ng-template #classic1 let-c="close" let-d="dismiss" >
+          <div class="modal-header justify-content-center" >
             <button type="button" class="close" (click)="d('Cross click')">
               <i class="now-ui-icons ui-1_simple-remove"></i>
             </button>
-            <h4 class="title title-up">Salon Bilgileri Gir</h4>
+            <h4 class="title title-up">Salon Ekle</h4>
           </div>
           <div class="modal-body">
             <div class="input-group form-group-no-border input-lg col-lg-12">
               <div class="input-group-prepend">
               </div>
               <div>
-                <input id="float-input" type="text" size="30" placeholder="Salon Adı" pInputText
-                  [(ngModel)]="record.addName">
+                <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                <input id="float-input" type="text" size="30"  pInputText [(ngModel)]="record.addName">
+                  <label for="float-input">Salon Adı</label>
+                </span>
               </div>
               <div>
-                <input id="float-input" type="text" size="30" placeholder="Kapasite" pInputText
-                  [(ngModel)]="record.addCapacity">
+                <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                <input id="float-input" type="text" size="30"  pInputText   [(ngModel)]="record.addCapacity">
+                  <label for="float-input">Kapasite</label>
+                </span>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" (click)="addMovieHouse()">Kaydet</button>
-            <button type="button" class="btn btn-danger" (click)="c('Close click')">İptal</button>
+            <button type="button" class="btn btn-primary btn-round" (click)="addMovieHouse()"  >Kaydet</button>
+            <button type="button" class="btn btn-danger btn-round" (click)="c('Close click')">İptal</button>
           </div>
         </ng-template>
     </p-panel>
@@ -55,8 +56,8 @@
               {{col.header}}
               <p-sortIcon [field]="col.field"></p-sortIcon>
             </th>
-            <th></th>
-            <th></th>
+            <th>Güncelle</th>
+            <th>Sil</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -65,12 +66,7 @@
               {{rowData[col.field]}}
             </td>
             <td>
-              <button type="button" class="btn btn-primary btn-icon btn-round btn-sm" (click)="deleteMovieHouse(rowData.id)">
-                <i class="now-ui-icons ui-1_simple-remove"></i>
-              </button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-icon btn-round btn-sm" (click)="openUpdateDialog(classic, rowData)">
+              <button class="btn btn-warning btn-icon btn-round btn-sm" (click)="openUpdateDialog(classic, rowData)">
                 <i class="now-ui-icons shopping_tag-content"></i>
               </button>
               <ng-template #classic let-c="close" let-d="dismiss">
@@ -85,21 +81,38 @@
                     <div class="input-group-prepend">
                     </div>
                     <div>
-                      <input id="float-input" type="text" size="30" placeholder="Salon Adı" pInputText
+                      <input id="float-input" type="text" size="30" [style]="{'margin-top':'20px'}" placeholder="Salon Adı" pInputText
                         [(ngModel)]='record.name'>
                     </div>
                     <div>
-                      <input id="float-input" type="text" size="30" placeholder="Kapasite" pInputText
+                      <input id="float-input" type="text" size="30" [style]="{'margin-top':'20px'}"  placeholder="Kapasite" pInputText
                         [(ngModel)]='record.capacity'>
                     </div>
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" (click)="updateMovieHouse(rowData.id)">Kaydet</button>
-                  <button type="button" class="btn btn-danger" (click)="c('Close click')">İptal</button>
+                  <button type="button" class="btn btn-primary btn-round" (click)="updateMovieHouse(rowData.id)">Kaydet</button>
+                  <button type="button" class="btn btn-danger btn-round" (click)="c('Close click')">İptal</button>
                 </div>
               </ng-template>
             </td>
+            <td>
+              <button class="btn btn-danger btn-icon btn-round btn-sm" (click)="openDeleteDialog(modal_mini, 'sm')">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+             </button>
+             <ng-template #modal_mini let-c="close" let-d="dismiss">
+               <div class="modal-header justify-content-center">
+               </div>
+               <div class="modal-body">
+                   <p>Silmek istediğinize emin misiniz?</p>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-primary btn-round" (click)="deleteMovieHouse(rowData.id)">Evet</button>
+                   <button type="button" class="btn btn-danger btn-round" (click)="c('Close click')">Hayır</button>
+               </div>
+             </ng-template>
+            </td>
+           
           </tr>
         </ng-template>
       </p-table>

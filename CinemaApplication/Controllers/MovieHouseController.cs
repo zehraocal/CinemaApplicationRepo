@@ -16,18 +16,19 @@ namespace CinemaApplication.Controllers
     {
         IBlMovieHouseRepository _blMovieHouseRepository;
 
-
         public MovieHouseController(IBlMovieHouseRepository movieHouseRepository)
         {
             _blMovieHouseRepository = movieHouseRepository;
         }
-       
+
         [HttpPost]
         public IActionResult GetWhereMovieHouse(MovieHouseGetVM model)
         {
             var movieHouses = _blMovieHouseRepository.GetAll();
             if (!string.IsNullOrEmpty(model.Name))
-                movieHouses = _blMovieHouseRepository.GetWhere(y => y.Name.Contains(model.Name)).ToList();
+            {
+                movieHouses = _blMovieHouseRepository.GetWhere(y => y.Name.ToUpper().Contains(model.Name.ToUpper())).ToList();
+            }       
             return Ok(movieHouses);
         }
 
@@ -40,7 +41,7 @@ namespace CinemaApplication.Controllers
 
         [HttpDelete("{id}")]
         public IActionResult DeleteMovieHouse(long id)
-        {          
+        {
             _blMovieHouseRepository.Remove(id);
             return Ok(true);
         }
@@ -50,12 +51,5 @@ namespace CinemaApplication.Controllers
         {
             return Ok(_blMovieHouseRepository.Update(param));
         }
-
-
-
     }
-
-
-
-
 }

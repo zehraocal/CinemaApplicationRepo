@@ -25,14 +25,14 @@ export class MoviehouseComponent implements OnInit {
   constructor(private httpService: HttpService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.cols= [
+    this.cols = [
       { field: 'name', header: 'Salon Adı' },
       { field: 'capacity', header: 'Kapasitesi' }
-    
-  ];
+
+    ];
   }
 
-  getWhereMovieHouse() {
+  getMovieHouse() {
     let movieHouseParam: MovieHouseGetVM = new MovieHouseGetVM();
     movieHouseParam.name = this.criteria.name;
 
@@ -47,15 +47,14 @@ export class MoviehouseComponent implements OnInit {
     movieHouse.name = this.record.addName;
     movieHouse.capacity = this.record.addCapacity;
 
-    this.httpService.post<MovieHouseAddVM, any>("moviehouse", movieHouse).subscribe(data => {
+    this.httpService.post<MovieHouseAddVM, any>("moviehouse", movieHouse, "AddMovieHouse").subscribe(data => {
       if (data)
-        alert("Sinema salonu başarıyla kayıt olmuştur....")
-      this.getWhereMovieHouse();
-    })
+        this.getMovieHouse();
+      this.modalService.dismissAll();
+    });
   }
 
   updateMovieHouse(id: number) {
-    debugger
     let updateMovieHouse: MovieHouseUpdateVM = new MovieHouseUpdateVM();
     updateMovieHouse.id = id
     updateMovieHouse.name = this.record.name;
@@ -63,16 +62,15 @@ export class MoviehouseComponent implements OnInit {
 
     this.httpService.put<MovieHouseUpdateVM, any>("MovieHouse", updateMovieHouse, "UpdateMovieHouse").subscribe(updatedata => {
       this.updateMovieHouse = updatedata;
-      alert("Sinema salonu başarıyla güncellenmiştir....")
-      this.getWhereMovieHouse();
+      this.getMovieHouse();
+      this.modalService.dismissAll();
     })
 
   }
   deleteMovieHouse(id: number) {
-debugger
     this.httpService.delete<any>("MovieHouse", id, "DeleteMovieHouse").subscribe(data => {
-      if (data)
-        alert("Sinema salonu başarıyla silinmiştir....")
+      this.getMovieHouse();
+      this.modalService.dismissAll();
     })
   }
 
@@ -98,6 +96,17 @@ debugger
     });
   }
 
+  openDeleteDialog(content, modalDimension) {
+    if (modalDimension === 'sm') {
+      this.modalService.open(content, { size: 'sm' }).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }
+  }
+
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -107,7 +116,7 @@ debugger
       return `with: ${reason}`;
     }
   }
-  
+
 
 
 }
