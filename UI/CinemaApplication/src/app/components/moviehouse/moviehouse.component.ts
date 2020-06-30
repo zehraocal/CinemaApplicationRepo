@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MovieHouse } from 'app/entities/movie-house';
 import { HttpService } from 'app/services/http.service';
 import { MovieHouseAddVM } from 'app/entities/movie-house-add-vm';
@@ -8,6 +8,8 @@ import { MovieHouseUpdateVM } from 'app/entities/movie-house-update-vm';
 import { FormGroup, FormControl } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MovieHouseGetVM } from 'app/entities/movie-house-get-vm';
+import { CnmConfirmDialogComponent } from '../cinema-components/cnm-confirm-dialog/cnm-confirm-dialog.component';
+import { CnmModalComponent } from '../cinema-components/cnm-modal/cnm-modal.component';
 
 
 @Component({
@@ -15,6 +17,13 @@ import { MovieHouseGetVM } from 'app/entities/movie-house-get-vm';
   templateUrl: './moviehouse.component.html'
 })
 export class MoviehouseComponent implements OnInit {
+
+  @ViewChild(CnmConfirmDialogComponent, { static: false }) dialogComponentRef: CnmConfirmDialogComponent;
+  @ViewChild('UpdateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
+  @ViewChild('addViewComponent', { static: false }) AddViewComponentComponentRef: CnmModalComponent;
+
+  deleteId: number;
+  updateId: number;
   closeResult: string;
   MovieHouses: MovieHouse[];
   record: any = {};
@@ -54,9 +63,10 @@ export class MoviehouseComponent implements OnInit {
     });
   }
 
-  updateMovieHouse(id: number) {
+  updateMovieHouse() {
+    debugger
     let updateMovieHouse: MovieHouseUpdateVM = new MovieHouseUpdateVM();
-    updateMovieHouse.id = id
+    updateMovieHouse.id = this.updateId;
     updateMovieHouse.name = this.record.name;
     updateMovieHouse.capacity = this.record.capacity;
 
@@ -65,47 +75,30 @@ export class MoviehouseComponent implements OnInit {
       this.getMovieHouse();
       this.modalService.dismissAll();
     })
-
   }
-  deleteMovieHouse(id: number) {
-    this.httpService.delete<any>("MovieHouse", id, "DeleteMovieHouse").subscribe(data => {
+
+  openUpdateDialog( selectedMovieHouse, id: number) {
+    this.updateId = id;
+    this.record.name = selectedMovieHouse.name;
+    this.record.capacity = selectedMovieHouse.capacity;
+    this.UpdateViewComponentRef.openDialog();
+  }
+
+  openAddDialog() {
+   this.AddViewComponentComponentRef.openDialog();
+  }
+
+  openDeleteDialog(id: number) {
+    this.deleteId = id;
+    this.dialogComponentRef.openDeleteDialog('sm');
+  }
+
+  deleteMovieHouse() {
+    this.httpService.delete<any>("MovieHouse", this.deleteId, "DeleteMovieHouse").subscribe(data => {
       this.getMovieHouse();
       this.modalService.dismissAll();
     })
   }
-
-  cleanSelectedMovieHouse() {
-    this.criteria.name = "";
-  }
-
-  openUpdateDialog(content, selectedMovieHouse) {
-    this.record.name = selectedMovieHouse.name;
-    this.record.capacity = selectedMovieHouse.capacity;
-    this.modalService.open(content).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  openAddDialog(content) {
-    this.modalService.open(content).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  openDeleteDialog(content, modalDimension) {
-    if (modalDimension === 'sm') {
-      this.modalService.open(content, { size: 'sm' }).result.then((result) => {
-        this.closeResult = `Closed with: ${result}`;
-      }, (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });
-    }
-  }
-
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -115,6 +108,9 @@ export class MoviehouseComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+  cleanSelectedMovieHouse() {
+    this.criteria.name = "";
   }
 
 

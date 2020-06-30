@@ -18,6 +18,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { CnmConfirmDialogComponent } from './cinema-components/cnm-confirm-dialog/cnm-confirm-dialog.component';
+import { CnmModalComponent } from './cinema-components/cnm-modal/cnm-modal.component';
 
 @NgModule({
     imports: [
@@ -41,7 +43,9 @@ import { ButtonModule } from 'primeng/button';
         NucleoiconsComponent,
         NotificationComponent,
         NgbdModalBasic,
-        MoviehouseComponent
+        MoviehouseComponent,
+        CnmConfirmDialogComponent,
+        CnmModalComponent
     ],
     exports: [ComponentsComponent]
 })

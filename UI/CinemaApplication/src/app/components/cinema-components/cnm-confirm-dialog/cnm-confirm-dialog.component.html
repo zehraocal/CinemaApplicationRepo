@@ -1,0 +1,12 @@
+<ng-template #modal_mini let-c="close" let-d="dismiss">
+    <div class="modal-header justify-content-center">
+        <p>Onay</p>
+    </div>
+    <div class="modal-body">
+        <p>Silmek istediğinize emin misiniz?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-round" (click)="confirm()">Evet</button>
+        <button type="button" class="btn btn-danger btn-round" (click)="c('Close click')">Hayır</button>
+    </div>
+</ng-template>
