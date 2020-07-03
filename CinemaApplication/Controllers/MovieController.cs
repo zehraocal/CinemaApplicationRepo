@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaApplication.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
 
     public class MovieController : ControllerBase
@@ -23,6 +23,19 @@ namespace CinemaApplication.Controllers
         public IActionResult GetMovie()
         {
             return Ok(_blMovieRepository.GetAll());
+        }
+
+
+        [HttpPost]
+        public IActionResult GetWhereMovie(MovieGetVM model)
+        {
+            var movie = _blMovieRepository.GetAll();
+
+            if (!string.IsNullOrEmpty(model.Name))
+            {
+                movie = _blMovieRepository.GetWhere(y => y.Name.ToUpper().Contains(model.Name.ToUpper())).ToList();
+            }
+            return Ok(movie);
         }
 
         [HttpPost]

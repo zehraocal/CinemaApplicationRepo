@@ -6,3 +6,4 @@ D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Entity\obj\Debug\netcoreapp3.1\Ci
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Entity\obj\Debug\netcoreapp3.1\CinemaApplication.Entity.AssemblyInfo.cs
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Entity\obj\Debug\netcoreapp3.1\CinemaApplication.Entity.dll
 D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Entity\obj\Debug\netcoreapp3.1\CinemaApplication.Entity.pdb
+D:\Depo\zehra\BitirmeProjesi\CinemaApplication.Entity\obj\Debug\netcoreapp3.1\CinemaApplication.Entity.csprojAssemblyReference.cache

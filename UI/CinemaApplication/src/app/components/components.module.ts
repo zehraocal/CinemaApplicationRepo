@@ -18,8 +18,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import {CalendarModule} from 'primeng/calendar';
 import { CnmConfirmDialogComponent } from './cinema-components/cnm-confirm-dialog/cnm-confirm-dialog.component';
 import { CnmModalComponent } from './cinema-components/cnm-modal/cnm-modal.component';
+import { MovieComponent } from './movie/movie.component';
 
 @NgModule({
     imports: [
@@ -33,7 +35,8 @@ import { CnmModalComponent } from './cinema-components/cnm-modal/cnm-modal.compo
         InputTextModule,
         DialogModule,
         TableModule,
-        ButtonModule
+        ButtonModule,
+        CalendarModule
     ],
     declarations: [
         ComponentsComponent,
@@ -45,7 +48,8 @@ import { CnmModalComponent } from './cinema-components/cnm-modal/cnm-modal.compo
         NgbdModalBasic,
         MoviehouseComponent,
         CnmConfirmDialogComponent,
-        CnmModalComponent
+        CnmModalComponent,
+        MovieComponent
     ],
     exports: [ComponentsComponent]
 })

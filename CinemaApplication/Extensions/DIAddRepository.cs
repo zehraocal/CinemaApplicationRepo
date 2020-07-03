@@ -9,6 +9,7 @@ namespace CinemaApplication.Extensions
         public static IServiceCollection AddRepository(this IServiceCollection services)
         {
             services.AddSingleton<IBlMovieHouseRepository, BlMovieHouseRepository>();
+            services.AddSingleton<IBIMovieRepository, BlMovieRepository>();
             return services;
         }
     }

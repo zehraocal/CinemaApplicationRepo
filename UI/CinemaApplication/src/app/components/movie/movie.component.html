@@ -1,0 +1,120 @@
+<div class="row">
+    <div class="col-lg-3">
+      <p-panel header="Sorgulama Kriteri" [toggleable]="true" [style]="{'margin-bottom':'20px', 'margin-left':'20px'}  ">
+        <div class="form-group">
+          <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+            <input type="text" size="30" pInputText [(ngModel)]='criteria.name'>
+            <label for="float-input">Film Adı</label>
+          </span>
+        </div>
+        <div class="row" style="margin-left: 1px;">
+          <button type="submit" class=" btn btn-info btn-round" (click)="getMovie()"> Sorgula
+          </button> 
+          <button type="button" class="btn btn-warning btn-round" (click)="cleanSelectedMovie()"> Temizle
+          </button>
+          <button class="btn btn-primary btn-round" (click)="openAddDialog( )"> Ekle </button>
+          <app-cnm-modal #addViewComponent (onConfirm)="addMovie()">
+            <ng-template #header > Film Ekle</ng-template>
+            <ng-template #saveTemplate >
+              <div class="input-group form-group-no-border input-lg col-lg-12">
+                <div class="input-group-prepend"> </div>
+                <div>
+                  <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                    <input id="float-input" type="text" size="30" pInputText [(ngModel)]="record.addName">
+                    <label for="float-input">Film Adı</label>
+                  </span>
+                </div>
+                <div>
+                  <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                    <input id="float-input" type="text" size="30" pInputText [(ngModel)]="record.addGenre">
+                    <label for="float-input">Tür</label>
+                  </span>
+                </div>
+                <div>
+                    <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                      <input id="float-input" type="text" size="30" pInputText [(ngModel)]="record.addDuration">
+                      <label for="float-input">Süresi-dk</label>
+                    </span>
+                </div>
+                <div>
+                    <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                      <input id="float-input" type="text" size="30" pInputText [(ngModel)]="record.addDescription">
+                      <label for="float-input">Açıklama</label>
+                    </span>
+                </div>   
+                <div>
+                 
+                     <p-calendar [(ngModel)]="value" dateFormat="dd.mm.yy" [style]="{'margin-top':'20px'}" placeholder="Vizyon Tarihi (dd/mm/yy)"></p-calendar>
+                 
+                </div>  
+              </div>
+            </ng-template>
+          </app-cnm-modal> 
+        </div>
+      </p-panel>
+    </div>
+    <div class="col-lg-9">
+      <p-panel header="Sorgulama Sonucu" [toggleable]="true" *ngIf='sorgulandi'
+        [style]="{'margin-bottom':'20px', 'margin-right':'20px'}">
+        <p-table [columns]="cols" [value]="Movie" [autoLayout]="true" [paginator]="true" [rows]="10">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+              </th>
+              <th>Güncelle</th>
+              <th>Sil</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+              <td *ngFor="let col of columns">
+                {{rowData[col.field]}} 
+              </td>
+              <td>
+                <button class="btn btn-warning btn-icon btn-round btn-sm" (click)="openUpdateDialog(rowData, rowData.id)">
+                  <i class="now-ui-icons shopping_tag-content"></i>
+                </button>
+                <app-cnm-modal #UpdateViewComponent (onConfirm)="updateMovie()">
+                  <ng-template #header > Salon Bilgileri</ng-template>
+                  <ng-template #saveTemplate >
+                    <div class="input-group form-group-no-border input-lg col-lg-12">
+                      <div class="input-group-prepend">
+                      </div>
+                      <div>
+                        <div><span class="badge badge-neutral">Film Adı</span> </div> 
+                        <input type="text" size="30" pInputText [(ngModel)]='record.name'>
+                      </div>
+                      <div>
+                        <div><span class="badge badge-neutral">Tür</span> </div> 
+                        <input type="text" size="30"  pInputText [(ngModel)]='record.genre'>
+                      </div>
+                      <div>
+                        <div><span class="badge badge-neutral">Süre</span> </div> 
+                        <input type="text" size="30"  pInputText [(ngModel)]='record.duration'>
+                      </div>
+                      <div>
+                        <div><span class="badge badge-neutral">Açıklama</span> </div> 
+                        <input type="text" size="30"  pInputText [(ngModel)]='record.description'>
+                      </div>
+                      <div>
+                        <div><span class="badge badge-neutral">Vizyon Tarihi</span> </div>
+                        <p-calendar [(ngModel)]="record.value" dateFormat="dd.mm.yy" [style]="{'margin-top':'20px'}" ></p-calendar>
+                      </div>
+                    </div>
+                  </ng-template>
+                </app-cnm-modal> 
+              </td>
+              <td>
+                <button class="btn btn-danger btn-icon btn-round btn-sm" (click)="openDeleteDialog(rowData.id)">
+                  <i class="now-ui-icons ui-1_simple-remove"></i>
+                </button>
+                <app-cnm-confirm-dialog (onConfirm)="deleteMovie()"></app-cnm-confirm-dialog> 
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-panel>
+    </div>
+  </div>

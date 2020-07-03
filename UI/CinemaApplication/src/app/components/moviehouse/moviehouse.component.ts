@@ -20,7 +20,7 @@ export class MoviehouseComponent implements OnInit {
 
   @ViewChild(CnmConfirmDialogComponent, { static: false }) dialogComponentRef: CnmConfirmDialogComponent;
   @ViewChild('UpdateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
-  @ViewChild('addViewComponent', { static: false }) AddViewComponentComponentRef: CnmModalComponent;
+  @ViewChild('addViewComponent', { static: false }) AddViewComponentRef: CnmModalComponent;
 
   deleteId: number;
   updateId: number;
@@ -42,6 +42,7 @@ export class MoviehouseComponent implements OnInit {
   }
 
   getMovieHouse() {
+    debugger
     let movieHouseParam: MovieHouseGetVM = new MovieHouseGetVM();
     movieHouseParam.name = this.criteria.name;
 
@@ -62,6 +63,10 @@ export class MoviehouseComponent implements OnInit {
       this.modalService.dismissAll();
     });
   }
+  
+  openAddDialog() {
+    this.AddViewComponentRef.openDialog();
+   }
 
   updateMovieHouse() {
     debugger
@@ -82,10 +87,6 @@ export class MoviehouseComponent implements OnInit {
     this.record.name = selectedMovieHouse.name;
     this.record.capacity = selectedMovieHouse.capacity;
     this.UpdateViewComponentRef.openDialog();
-  }
-
-  openAddDialog() {
-   this.AddViewComponentComponentRef.openDialog();
   }
 
   openDeleteDialog(id: number) {

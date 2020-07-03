@@ -9,12 +9,14 @@ import { LoginComponent } from './examples/login/login.component';
 import { ProfileComponent } from './examples/profile/profile.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 import { MoviehouseComponent } from './components/moviehouse/moviehouse.component';
+import { MovieComponent } from './components/movie/movie.component';
 
 
 const routes: Routes =[
     { path: '', redirectTo: 'index', pathMatch: 'full' },
     { path: 'index',                component: ComponentsComponent },
     { path: 'moviehouse',           component: MoviehouseComponent },
+    { path: 'movie',                component: MovieComponent },
     { path: 'nucleoicons',          component: NucleoiconsComponent },
     { path: 'examples/landing',     component: LandingComponent },
     { path: 'examples/login',       component: LoginComponent },

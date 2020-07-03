@@ -89,12 +89,12 @@
                     <div class="input-group-prepend">
                     </div>
                     <div>
-                      <input id="float-input" type="text" size="30" [style]="{'margin-top':'20px'}"
-                        placeholder="Salon Adı" pInputText [(ngModel)]='record.name'>
+                      <div><span class="badge badge-neutral">Salon Adı</span> </div> 
+                      <input type="text" size="30" pInputText [(ngModel)]='record.name'>
                     </div>
                     <div>
-                      <input id="float-input" type="text" size="30" [style]="{'margin-top':'20px'}"
-                        placeholder="Kapasite" pInputText [(ngModel)]='record.capacity'>
+                      <div><span class="badge badge-neutral">Kapasite</span> </div> 
+                      <input type="text" size="30"  pInputText [(ngModel)]='record.capacity'>
                     </div>
                   </div>
                 </ng-template>

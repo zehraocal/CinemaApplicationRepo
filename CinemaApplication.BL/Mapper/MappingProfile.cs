@@ -14,6 +14,8 @@ namespace CinemaApplication.BL.Mapper
             // ** MovieHouse Mappings **
             CreateMap<MovieHouseAddVM, MovieHouse>();
             CreateMap<MovieHouseUpdateVM, MovieHouse>();
+            CreateMap<MovieAddVM, Movie>();
+            CreateMap<MovieUpdateVM, Movie>();
         }
     }
 }
