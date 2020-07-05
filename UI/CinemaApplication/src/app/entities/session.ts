@@ -1,7 +1,7 @@
 import { VisionMovie } from './vision-movie';
 
 export class Session {
-    Id : number;
+    id : number;
     StartTime : string;   
     EndTime : string;
 
