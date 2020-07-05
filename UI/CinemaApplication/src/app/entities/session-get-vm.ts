@@ -1,3 +1,3 @@
 export class SessionGetVM {
-    StartTime : string;  
+    startTime : string;  
 }

@@ -24,33 +24,33 @@
               <div class="input-group-prepend"> </div>
               <div>
                 <span class="ui-float-label" [style]="{'margin-top':'20px'}">
-                  <input id="float-input" type="text" size="30" pInputText [(ngModel)]="record.addName">
+                  <input type="text" size="30" pInputText [(ngModel)]="record.addName">
                   <label for="float-input">Film Adı</label>
                 </span>
               </div>
               <div>
                 <span class="ui-float-label" [style]="{'margin-top':'20px'}">
-                  <input id="float-input" type="text" size="30" pInputText [(ngModel)]="record.addGenre">
+                  <input type="text" size="30" pInputText [(ngModel)]="record.addGenre">
                   <label for="float-input">Tür</label>
                 </span>
               </div>
               <div>
                 <span class="ui-float-label" [style]="{'margin-top':'20px'}">
-                  <input id="float-input" type="text" size="30" pInputText [(ngModel)]="record.addDuration">
+                  <input type="text" size="30" pInputText [(ngModel)]="record.addDuration">
                   <label for="float-input">Süresi-dk</label>
                 </span>
               </div>
               <div>
                 <span class="ui-float-label" [style]="{'margin-top':'20px'}">
-                  <input id="float-input" type="text" size="30" pInputText [(ngModel)]="record.addDescription">
+                  <input type="text" size="30" pInputText [(ngModel)]="record.addDescription">
                   <label for="float-input">Açıklama</label>
                 </span>
               </div>
               <div>
-
-                <p-calendar [(ngModel)]="value" dateFormat="dd.mm.yy" [style]="{'margin-top':'20px'}"
-                  placeholder="Vizyon Tarihi (dd/mm/yy)"></p-calendar>
-
+                <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                  <p-calendar [(ngModel)]="value" dateFormat="dd.mm.yy"></p-calendar>
+                  <label for="float-input">Vizyon Tarihi</label>
+                </span>
               </div>
             </div>
           </ng-template>

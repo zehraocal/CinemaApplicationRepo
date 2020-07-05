@@ -39,7 +39,7 @@ export class SessionComponent implements OnInit {
   getSession(){
     debugger
     let sessionParam: SessionGetVM = new SessionGetVM();
-    sessionParam.StartTime = this.criteria.time;
+    sessionParam.startTime = this.criteria.time;
 
     this.httpService.post<SessionGetVM , any>("Session", sessionParam, "GetSession").subscribe(data => {
       this.Sessions = data;
@@ -50,8 +50,8 @@ export class SessionComponent implements OnInit {
   addSession(){
     debugger
    let session: SessionAddVM=new SessionAddVM();
-   session.EndTime=this.record.addEndTime;
-   session.StartTime=this.record.addStartTime;
+   session.endTime=this.record.addEndTime;
+   session.startTime=this.record.addStartTime;
 
    this.httpService.post<SessionAddVM, any>("Session",session,"AddSession").subscribe(data => {
     if (data)
@@ -67,8 +67,8 @@ export class SessionComponent implements OnInit {
   updateSession(){
     let updateSession: SessionUpdateVM=new SessionUpdateVM();
     updateSession.id=this.updateId;
-    updateSession.StartTime=this.record.StartTime;
-    updateSession.EndTime=this.record.EndTime;
+    updateSession.startTime=this.record.startTime;
+    updateSession.endTime=this.record.endTime;
 
     this.httpService.put<SessionUpdateVM, any>("Session", updateSession, "UpdateSession").subscribe(updatedata => {
       this.updateSession = updatedata;
@@ -80,8 +80,8 @@ export class SessionComponent implements OnInit {
   openUpdateDialog( selectedSession, id: number) {
     debugger
     this.updateId = id;
-    this.record.StartTime = selectedSession.StartTime;
-    this.record.EndTime = selectedSession.EndTime;
+    this.record.startTime= selectedSession.startTime;
+    this.record.endTime = selectedSession.endTime;
     
     this.UpdateViewComponentRef.openDialog();
   }

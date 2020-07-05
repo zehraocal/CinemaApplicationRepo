@@ -125,5 +125,6 @@ export class MovieComponent implements OnInit {
 
   cleanSelectedMovie() {
     this.criteria.name = "";
+    this.criteria.genre = "";
   }
 }

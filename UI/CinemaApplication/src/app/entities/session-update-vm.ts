@@ -1,5 +1,5 @@
 export class SessionUpdateVM {
     id : number;
-    StartTime : string;   
-    EndTime : string;
+    startTime : string;   
+    endTime : string;
 }
