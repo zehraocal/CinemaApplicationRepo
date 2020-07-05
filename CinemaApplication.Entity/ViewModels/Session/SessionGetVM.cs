@@ -4,9 +4,8 @@ using System.Text;
 
 namespace CinemaApplication.Entity.ViewModels
 {
-   public class MovieGetVM
+    public class SessionGetVM
     {
-        public string Name { get; set; }
-        public string Genre { get; set; }
+        public string StartTime { get; set; }
     }
 }

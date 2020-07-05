@@ -37,7 +37,7 @@ export class MovieComponent implements OnInit {
       { field: 'genre', header: 'Tür' },
       { field: 'duration', header: 'Süre' },
       { field: 'description', header: 'Açıklama' },
-      { field: 'releaseDate', header: 'Vizyon Tarihi' }
+      { field: 'releaseDate', header: 'Vizyon Tarihi', type: 'date' }
     ];
   }
 
@@ -45,6 +45,7 @@ export class MovieComponent implements OnInit {
     debugger
     let movieParam: MovieGetVM = new MovieGetVM();
     movieParam.name  = this.criteria.name;
+    movieParam.genre=this.criteria.genre;
 
     this.httpService.post<MovieGetVM, any>("Movie", movieParam, "GetWhereMovie").subscribe(data => {
       this.Movie = data;

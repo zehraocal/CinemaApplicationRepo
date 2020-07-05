@@ -11,33 +11,29 @@ namespace CinemaApplication.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class SessionController : ControllerBase
+    public class VisionMovieController : ControllerBase
     {
-        IBISessionRepository _bISessionRepository;
-        public SessionController(IBISessionRepository bISessionRepository)
+        IBlVisionMovieRepository _blVisionMovieRepository;
+        public VisionMovieController(IBlVisionMovieRepository blVisionMovieRepository)
         {
-            _bISessionRepository = bISessionRepository;
+            _blVisionMovieRepository = blVisionMovieRepository;
         }
 
-        //public IActionResult GetSession()
-        //{
-        //    return Ok(_bISessionRepository.GetAll());
-        //}
 
         [HttpPost]
-        public IActionResult GetSession(SessionGetVM model)
+        public IActionResult GetVisionMovie(VisionMovieGetVM model)
         {
-            var sessions = _bISessionRepository.GetAll();
-            if (!string.IsNullOrEmpty(model.StartTime))
+            var movies = _blVisionMovieRepository.GetAll();
+            if (!string.IsNullOrEmpty((model.Movie.Name)))
             {
-                sessions = _bISessionRepository.GetWhere(y => y.StartTime.Contains(model.StartTime)).ToList();
+                movies = _blVisionMovieRepository.GetWhere(y=> y.Movie.Name.Contains(model.Movie.Name)).ToList();
             }
-            return Ok(sessions);
+            return Ok(movies);
         }
         [HttpPost]
         public IActionResult AddSession(SessionAddVM model)
         {
-            _bISessionRepository.Add(model);
+            _blVisionMovieRepository.Add(model);
             return Ok(true);
         }
 
@@ -45,14 +41,16 @@ namespace CinemaApplication.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteSession(long id)
         {
-            _bISessionRepository.Remove(id);
+            _blVisionMovieRepository.Remove(id);
             return Ok(true);
         }
 
         [HttpPut]
         public IActionResult UpdateSession(SessionUpdateVM param)
         {
-            return Ok(_bISessionRepository.Update(param));
+            return Ok(_blVisionMovieRepository.Update(param));
         }
+
+
     }
 }

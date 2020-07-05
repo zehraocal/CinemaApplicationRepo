@@ -16,6 +16,10 @@ namespace CinemaApplication.BL.Mapper
             CreateMap<MovieHouseUpdateVM, MovieHouse>();
             CreateMap<MovieAddVM, Movie>();
             CreateMap<MovieUpdateVM, Movie>();
+            CreateMap<SessionAddVM, Session>();
+            CreateMap<SessionUpdateVM, Session>();
+            CreateMap<VisionMovieAddVM, VisionMovie>();
+            CreateMap<VisionMovieUpdateVM, VisionMovie>();
         }
     }
 }

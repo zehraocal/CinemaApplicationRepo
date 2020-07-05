@@ -34,29 +34,6 @@
             </div>
           </ng-template>
         </app-cnm-modal>
-
-        <!-- <div class="modal-body">
-          <div class="input-group form-group-no-border input-lg col-lg-12">
-            <div class="input-group-prepend">
-            </div>
-            <div>
-              <span class="ui-float-label" [style]="{'margin-top':'20px'}">
-                <input id="float-input" type="text" size="30" pInputText [(ngModel)]="record.addName">
-                <label for="float-input">Salon Adı</label>
-              </span>
-            </div>
-            <div>
-              <span class="ui-float-label" [style]="{'margin-top':'20px'}">
-                <input id="float-input" type="text" size="30" pInputText [(ngModel)]="record.addCapacity">
-                <label for="float-input">Kapasite</label>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-round" (click)="addMovieHouse()">Kaydet</button>
-          <button type="button" class="btn btn-danger btn-round" (click)="c('Close click')">İptal</button>
-        </div> -->
     </p-panel>
   </div>
   <div class="col-lg-9">
@@ -81,30 +58,12 @@
             <td>
               <button class="btn btn-warning btn-icon btn-round btn-sm" (click)="openUpdateDialog(rowData, rowData.id)">
                 <i class="now-ui-icons shopping_tag-content"></i>
-              </button>
-              <app-cnm-modal #UpdateViewComponent (onConfirm)="updateMovieHouse()">
-                <ng-template #header > Salon Bilgileri</ng-template>
-                <ng-template #saveTemplate >
-                  <div class="input-group form-group-no-border input-lg col-lg-12">
-                    <div class="input-group-prepend">
-                    </div>
-                    <div>
-                      <div><span class="badge badge-neutral">Salon Adı</span> </div> 
-                      <input type="text" size="30" pInputText [(ngModel)]='record.name'>
-                    </div>
-                    <div>
-                      <div><span class="badge badge-neutral">Kapasite</span> </div> 
-                      <input type="text" size="30"  pInputText [(ngModel)]='record.capacity'>
-                    </div>
-                  </div>
-                </ng-template>
-              </app-cnm-modal>
+              </button>             
             </td>
             <td>
               <button class="btn btn-danger btn-icon btn-round btn-sm" (click)="openDeleteDialog(rowData.id)">
                 <i class="now-ui-icons ui-1_simple-remove"></i>
-              </button>
-              <app-cnm-confirm-dialog (onConfirm)="deleteMovieHouse()"></app-cnm-confirm-dialog>
+              </button>              
             </td>
           </tr>
         </ng-template>
@@ -112,3 +71,23 @@
     </p-panel>
   </div>
 </div>
+
+<app-cnm-modal #updateViewComponent (onConfirm)="updateMovieHouse()">
+  <ng-template #header > Salon Bilgileri</ng-template>
+  <ng-template #saveTemplate >
+    <div class="input-group form-group-no-border input-lg col-lg-12">
+      <div class="input-group-prepend">
+      </div>
+      <div>
+        <div><span class="badge badge-neutral">Salon Adı</span> </div> 
+        <input type="text" size="30" pInputText [(ngModel)]='record.name'>
+      </div>
+      <div>
+        <div><span class="badge badge-neutral">Kapasite</span> </div> 
+        <input type="text" size="30"  pInputText [(ngModel)]='record.capacity'>
+      </div>
+    </div>
+  </ng-template>
+</app-cnm-modal>
+
+<app-cnm-confirm-dialog (onConfirm)="deleteMovieHouse()"></app-cnm-confirm-dialog>

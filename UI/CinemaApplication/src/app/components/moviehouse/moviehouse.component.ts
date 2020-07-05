@@ -19,7 +19,7 @@ import { CnmModalComponent } from '../cinema-components/cnm-modal/cnm-modal.comp
 export class MoviehouseComponent implements OnInit {
 
   @ViewChild(CnmConfirmDialogComponent, { static: false }) dialogComponentRef: CnmConfirmDialogComponent;
-  @ViewChild('UpdateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
+  @ViewChild('updateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
   @ViewChild('addViewComponent', { static: false }) AddViewComponentRef: CnmModalComponent;
 
   deleteId: number;
@@ -82,7 +82,7 @@ export class MoviehouseComponent implements OnInit {
     })
   }
 
-  openUpdateDialog( selectedMovieHouse, id: number) {
+  openUpdateDialog(selectedMovieHouse, id: number) {
     this.updateId = id;
     this.record.name = selectedMovieHouse.name;
     this.record.capacity = selectedMovieHouse.capacity;

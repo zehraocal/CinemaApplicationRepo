@@ -6,12 +6,11 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './cnm-modal.component.html'
 })
 export class CnmModalComponent implements OnInit {
-
+  
   @Output() onConfirm = new EventEmitter();
 
   @ContentChild('saveTemplate', { static: false }) saveTemplate: TemplateRef<any>;
   @ContentChild('header', { static: false }) header: TemplateRef<any>;
-  @ViewChild('classic', { static: false }) modalClassicRef: TemplateRef<any>;
   @ViewChild('dialog', { static: false }) modalDialogRef: TemplateRef<any>;
   
   constructor(private modalService: NgbModal) { }
@@ -24,13 +23,7 @@ export class CnmModalComponent implements OnInit {
     this.onConfirm.emit();
   }
 
-  openDialog( ) {
+  openDialog() {
     this.modalService.open(this.modalDialogRef);
   }
- 
-
-
-
- 
-  
 }

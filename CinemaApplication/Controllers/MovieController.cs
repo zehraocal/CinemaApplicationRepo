@@ -35,6 +35,10 @@ namespace CinemaApplication.Controllers
             {
                 movie = _blMovieRepository.GetWhere(y => y.Name.ToUpper().Contains(model.Name.ToUpper())).ToList();
             }
+            if(!string.IsNullOrEmpty(model.Genre))
+            {
+                movie = _blMovieRepository.GetWhere(y => y.Genre.ToUpper().Contains(model.Genre.ToUpper())).ToList();
+            }
             return Ok(movie);
         }
 

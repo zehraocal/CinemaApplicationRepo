@@ -19,9 +19,12 @@ import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import {CalendarModule} from 'primeng/calendar';
+import {DropdownModule} from 'primeng/dropdown';
 import { CnmConfirmDialogComponent } from './cinema-components/cnm-confirm-dialog/cnm-confirm-dialog.component';
 import { CnmModalComponent } from './cinema-components/cnm-modal/cnm-modal.component';
 import { MovieComponent } from './movie/movie.component';
+import { SessionComponent } from './session/session.component';
+import { VisionMovieComponent } from './vision-movie/vision-movie.component';
 
 @NgModule({
     imports: [
@@ -36,7 +39,8 @@ import { MovieComponent } from './movie/movie.component';
         DialogModule,
         TableModule,
         ButtonModule,
-        CalendarModule
+        CalendarModule,
+        DropdownModule
     ],
     declarations: [
         ComponentsComponent,
@@ -49,7 +53,9 @@ import { MovieComponent } from './movie/movie.component';
         MoviehouseComponent,
         CnmConfirmDialogComponent,
         CnmModalComponent,
-        MovieComponent
+        MovieComponent,
+        SessionComponent,
+        VisionMovieComponent
     ],
     exports: [ComponentsComponent]
 })
