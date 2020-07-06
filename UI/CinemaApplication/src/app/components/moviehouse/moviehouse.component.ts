@@ -82,7 +82,7 @@ export class MoviehouseComponent implements OnInit {
     })
   }
 
-  openUpdateDialog(selectedMovieHouse, id: number) {
+  openUpdateDialog(selectedMovieHouse, id: number) {      
     this.updateId = id;
     this.record.name = selectedMovieHouse.name;
     this.record.capacity = selectedMovieHouse.capacity;

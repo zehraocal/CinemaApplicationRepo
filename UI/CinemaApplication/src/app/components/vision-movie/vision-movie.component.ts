@@ -9,6 +9,8 @@ import { Movie } from 'app/entities/movie';
 import { MovieHouse } from 'app/entities/movie-house';
 import { Session } from 'app/entities/session';
 import { VisionMovieGetVM } from 'app/entities/vision-movie-get-vm';
+import { DropDownListVM } from 'app/entities/drop-down-list-vm';
+import { VisionMovieListVM } from 'app/entities/vision-movie-list-vm';
 
 @Component({
   selector: 'app-vision-movie',
@@ -23,70 +25,83 @@ export class VisionMovieComponent implements OnInit {
   cols: any[];
 
 
-  VisionMovies: VisionMovie[];
-  Movies: Movie[];
-  SelectedMovie: Movie;
-  MovieHouses: MovieHouse[];
-  SelectedMovieHouse: MovieHouse;
-  Sessions: Session[];
-  SelectedSession: Session;
-  options:string;
+  visionMovies: {};
+  visionMoviesList: VisionMovieListVM[];
+  movies: {};
+  selectedMovie: number;
+  movieHouses: {};
+  selectedMovieHouse: number;
+  sessions: {};
+  selectedSession: number;
+  options: string;
+  value: Date;
 
   @ViewChild(CnmConfirmDialogComponent, { static: false }) dialogComponentRef: CnmConfirmDialogComponent;
-  @ViewChild('UpdateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
+  @ViewChild('updateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
   @ViewChild('addViewComponent', { static: false }) AddViewComponentRef: CnmModalComponent;
-
-
 
   constructor(private httpService: HttpService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.cols = [
-      { field: 'movie', header: 'Film Adı' },
-      { field: 'moviehouse', header: 'Salon Adı' },
-      { field: 'displaydate', header: 'Gösterim Tarihi' },
-      { field: 'price', header: 'Ücret' },
-      { field: 'session', header: 'Süre' } 
-    ];
-    
-    //this.options =this.Movies.indexOf(name)
-
-  }
-  
-
-  getVisionMovie() {
     debugger
-    let visionMovieParam: VisionMovieGetVM = new VisionMovieGetVM();
-    visionMovieParam.movie.name = this.criteria.name;
+    this.cols = [
+      { field: 'movieId', header: 'Film Adı' },
+      { field: 'movieHouseId', header: 'Salon Adı' },
+      { field: 'sessionId', header: 'Süre' },
+      { field: 'displayDate', header: 'Gösterim Tarihi' , type: 'date' },
+      { field: 'price', header: 'Ücret' }
+      
+    ];
+    this.httpService.get<DropDownListVM>("Movie", "GetDropDownList").subscribe(data => {
+      this.movies = data;
+    })
+    this.httpService.get<DropDownListVM>("MovieHouse", "GetDropDownList").subscribe(data => {
+      this.movieHouses = data;
+    })
+    this.httpService.get<DropDownListVM>("Session", "GetDropDownList").subscribe(data => {
+      this.sessions = data;
+    })
+   
+  }
 
-    this.httpService.post<VisionMovieGetVM, any>("VisionMovie", visionMovieParam, "GetVisionMovie").subscribe(data => {
-      this.VisionMovies = data;
+
+  getVisionMovie() { 
+  debugger
+    //  let visionMovieParam: VisionMovieGetVM = new VisionMovieGetVM();
+    //  visionMovieParam.movie= this.criteria.name;
+    // this.httpService.post<VisionMovieGetVM, any>("VisionMovie", visionMovieParam, "GetVisionMovie").subscribe(data => {
+    //   this.visionMovies = data;
+    //  this.sorgulandi = true;
+    // });
+    this.httpService.get<VisionMovieListVM>("VisionMovie", "GetDropDownList").subscribe(data => {
+      this.visionMovies = data;
       this.sorgulandi = true;
     });
   }
 
   addVisionMovie() {
-      let visionMovie: VisionMovieAddVM = new VisionMovieAddVM();
-      visionMovie.movieId=this.SelectedMovie.id;
-      visionMovie.movieHouseId=this.SelectedMovieHouse.id;
-      visionMovie.sessionId=this.SelectedSession.id;
-      visionMovie.price=this.record.price;
-      visionMovie.displayDate=new Date(this.record.Date);
+    debugger
+    let visionMovie: VisionMovieAddVM = new VisionMovieAddVM();
+    visionMovie.movieId = this.selectedMovie;
+    visionMovie.movieHouseId = this.selectedMovieHouse;
+    visionMovie.sessionId = this.selectedSession;
+    visionMovie.price = this.record.price;
+    visionMovie.displayDate = new Date(this.value);
 
-      this.httpService.post<VisionMovieAddVM, any>("VisionMovie", visionMovie, "AddVisionMovie").subscribe(data => {
-        if (data)
-          this.getVisionMovie();
-          this.modalService.dismissAll();
-      });
-    }
-  
+    this.httpService.post<VisionMovieAddVM, any>("VisionMovie", visionMovie, "AddVisionMovie").subscribe(data => {
+      if (data)
+        this.getVisionMovie();
+      this.modalService.dismissAll();
+    });
+  }
+
   openAddDialog() {
-      
-      this.AddViewComponentRef.openDialog();
-    }
+
+    this.AddViewComponentRef.openDialog();
+  }
 
   private getDismissReason(reason: any): string {
-      if(reason === ModalDismissReasons.ESC) {
+    if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';

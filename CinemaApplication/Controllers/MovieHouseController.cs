@@ -24,7 +24,7 @@ namespace CinemaApplication.Controllers
         [HttpPost]
         public IActionResult GetWhereMovieHouse(MovieHouseGetVM model)
         {
-            var movieHouses = _blMovieHouseRepository.GetAll();
+            var movieHouses = _blMovieHouseRepository.GetAll().OrderBy(x => x.Name).ToList();
             if (!string.IsNullOrEmpty(model.Name))
             {
                 movieHouses = _blMovieHouseRepository.GetWhere(y => y.Name.ToUpper().Contains(model.Name.ToUpper())).ToList();
@@ -50,6 +50,12 @@ namespace CinemaApplication.Controllers
         public IActionResult UpdateMovieHouse(MovieHouseUpdateVM param)
         {
             return Ok(_blMovieHouseRepository.Update(param));
+        }
+
+        [HttpGet]
+        public IActionResult GetDropDownList()
+        {
+            return Ok(_blMovieHouseRepository.GetAllWithType<DropDownListVM>());
         }
     }
 }

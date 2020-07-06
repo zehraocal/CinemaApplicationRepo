@@ -18,44 +18,43 @@
             <app-cnm-modal #addViewComponent (onConfirm)="addVisionMovie()">
                 <ng-template #header> Vizyondaki Filmleri Ekle</ng-template>
                 <ng-template #saveTemplate>
-                    <div class="input-group form-group-no-border input-lg col-lg-12">
-                        <div class="input-group-prepend"> </div>
-                        <div>
-                            <div><span class="badge badge-neutral">Film</span></div>
-                            <p-dropdown [options]="Movies " [(ngModel)]="SelectedMovie" placeholder="Film Seç"
-                                [style]="{'margin-top':'20px'}" optionLabel="options " [showClear]="true"></p-dropdown>
-                        </div>
-                        <div>
-                            <div><span class="badge badge-neutral">Sinema Salonu</span></div>
-                            <p-dropdown [options]="MovieHouses " [(ngModel)]="SelectedMovieHouse"
-                                placeholder="Sinema Salonu Seç" [style]="{'margin-top':'20px'}" [showClear]="true">
-                            </p-dropdown>
-                        </div>
-                        <div>
-                            <div><span class="badge badge-neutral">Seans</span></div>
-                            <p-dropdown [options]="Sessions " [(ngModel)]="SelectedSession" placeholder="Seans Seç"
-                                [style]="{'margin-top':'20px'}" [showClear]="true"></p-dropdown>
-                        </div>
-                        <div>
-                           <div> <span class="badge badge-neutral">Tarih</span></div>
-                            <p-calendar [(ngModel)]="record.Date" dateFormat="dd.mm.yy" [style]="{'margin-top':'20px'}">
-                            </p-calendar>
-                        </div>
-                        <div>
-                            <span class="ui-float-label" [style]="{'margin-top':'20px'}">
-                                <input id="float-input" type="text" size="30" pInputText [(ngModel)]="record.price">
-                                <label for="float-input">Fiyat</label>
-                            </span>
-                        </div>
+                    <span class="ui-float-label"  [style]="{'margin-top':'20px'}" >
+                        <p-dropdown id="float-input" [autoDisplayFirst]="false" [options]="movies"
+                            [(ngModel)]="selectedMovie" [showClear]="true"></p-dropdown>
+                        <label for="float-input">Film</label>
+                    </span>
+
+                    <span class="ui-float-label"  [style]="{'margin-top':'20px'}" >
+                        <p-dropdown id="float-input" [autoDisplayFirst]="false" [options]="movieHouses"
+                            [(ngModel)]="selectedMovieHouse" [showClear]="true"></p-dropdown>
+                        <label for="float-input">Sinema Salonu</label>
+                    </span>
+
+                    <span class="ui-float-label"  [style]="{'margin-top':'20px'}" >
+                        <p-dropdown id="float-input" [autoDisplayFirst]="false" [options]="sessions"
+                            [(ngModel)]="selectedSession" [showClear]="true"></p-dropdown>
+                        <label for="float-input">Seans</label>
+                    </span>
+                   <div>
+                    <span class="ui-float-label"  [style]="{'margin-top':'20px'}" >
+                        <p-calendar [(ngModel)]="value" dateFormat="dd.mm.yy"> </p-calendar>
+                        <label for="float-input">Tarih</label>
+                    </span>
                     </div>
+                    <div>
+                        <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                            <input id="float-input" type="text"  pInputText [(ngModel)]="record.price">
+                            <label for="float-input">Fiyat</label>
+                        </span>
+                    </div> 
                 </ng-template>
             </app-cnm-modal>
         </p-panel>
     </div>
     <div class="col-lg-9">
-        <p-panel header="Sorgulama Sonucu" [toggleable]="true" *ngIf='sorgulandi'
+        <p-panel header="Vizyondaki Film Listesi" [toggleable]="true" *ngIf='sorgulandi'
             [style]="{'margin-bottom':'20px', 'margin-right':'20px'}">
-            <p-table [columns]="cols" [value]="VisionMovies" [autoLayout]="true" [paginator]="true" [rows]="10">
+            <p-table [columns]="cols" [value]="visionMoviesList" [autoLayout]="true" [paginator]="true" [rows]="10">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th *ngFor="let col of columns" [pSortableColumn]="col.field">
@@ -69,13 +68,15 @@
                 <ng-template pTemplate="body" let-rowData let-columns="columns">
                     <tr>
                         <td *ngFor="let col of columns">
-                            {{rowData[col.field]}}
+                            <div *ngIf="col.type == 'date'; then dateBlock else rowsBlock"></div>
+                            <ng-template #dateBlock>{{rowData[col.field] | date:'dd.MM.yyyy'}}</ng-template>
+                            <ng-template #rowsBlock>{{rowData[col.field]}}</ng-template>
                         </td>
                         <td>
                             <!-- <button class="btn btn-warning btn-icon btn-round btn-sm" (click)="openUpdateDialog(rowData, rowData.id)">
                     <i class="now-ui-icons shopping_tag-content"></i>
                   </button>
-                  <app-cnm-modal #UpdateViewComponent (onConfirm)="updateMovieHouse()">
+                  <app-cnm-modal #updateViewComponent (onConfirm)="updateMovieHouse()">
                     <ng-template #header > Salon Bilgileri</ng-template>
                     <ng-template #saveTemplate >
                       <div class="input-group form-group-no-border input-lg col-lg-12">
@@ -105,3 +106,4 @@
         </p-panel>
     </div>
 </div>
+

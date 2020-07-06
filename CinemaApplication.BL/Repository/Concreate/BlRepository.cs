@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using CinemaApplication.BL.Repository.Interface;
 using CinemaApplication.DAL.Contexts;
 using CinemaApplication.Entity.Entities;
@@ -31,6 +32,11 @@ namespace CinemaApplication.BL.Repository.Concreate
             return Table.ToList();
         }
 
+        public virtual List<TListVM> GetAllWithType<TListVM>() where TListVM : class
+        {
+            return Table.ProjectTo<TListVM>(_mappingProfile.ConfigurationProvider).ToList();
+        }
+
         public T GetSingle(Func<T, bool> method)
         {
             return Table.FirstOrDefault(method);
@@ -45,7 +51,7 @@ namespace CinemaApplication.BL.Repository.Concreate
         {
             Table.Add(_mappingProfile.Map<T>(model));
             return Save();
-        }     
+        }
 
         public virtual bool Update<TUpdateVM>(TUpdateVM model) where TUpdateVM : UpdateVMBase
         {
@@ -60,16 +66,16 @@ namespace CinemaApplication.BL.Repository.Concreate
             return Remove(Table.Find(id));
         }
 
-        protected bool Remove<TDeleteVM>(TDeleteVM model) 
+        protected bool Remove<TDeleteVM>(TDeleteVM model)
         {
             Table.Remove(_mappingProfile.Map<T>(model));
             return Save();
-        }       
+        }
 
         public bool Save()
         {
             return _context.SaveChanges() > 0;
-        }       
+        }
     }
 
 }

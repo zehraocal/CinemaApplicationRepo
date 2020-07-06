@@ -12,6 +12,7 @@ namespace CinemaApplication.BL.Repository.Interface
     {
         DbSet<T> Table { get; }
         List<T> GetAll();
+        List<TListVM> GetAllWithType<TListVM>() where TListVM : class;
         T GetSingle(Func<T, bool> method);
         List<T> GetWhere(Func<T, bool> method);
         bool Add<TAddVM>(TAddVM model) where TAddVM : class;

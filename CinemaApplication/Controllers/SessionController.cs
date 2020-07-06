@@ -27,7 +27,7 @@ namespace CinemaApplication.Controllers
         [HttpPost]
         public IActionResult GetSession(SessionGetVM model)
         {
-            var sessions = _bISessionRepository.GetAll();
+            var sessions = _bISessionRepository.GetAll().OrderBy(x => x.StartTime).ToList();
             if (!string.IsNullOrEmpty(model.StartTime))
             {
                 sessions = _bISessionRepository.GetWhere(y => y.StartTime.Contains(model.StartTime)).ToList();
@@ -53,6 +53,12 @@ namespace CinemaApplication.Controllers
         public IActionResult UpdateSession(SessionUpdateVM param)
         {
             return Ok(_bISessionRepository.Update(param));
+        }
+
+        [HttpGet]
+        public IActionResult GetDropDownList()
+        {
+            return Ok(_bISessionRepository.GetAllWithType<DropDownListVM>());
         }
     }
 }

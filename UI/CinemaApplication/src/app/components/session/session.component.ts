@@ -14,7 +14,7 @@ import { SessionGetVM } from 'app/entities/session-get-vm';
 })
 export class SessionComponent implements OnInit {
 
-  Sessions: Session[];
+  sessions: Session[];
   sorgulandi= false;
   record: any = {};
   criteria: any = {};
@@ -23,7 +23,7 @@ export class SessionComponent implements OnInit {
   cols:any[];
   
   @ViewChild(CnmConfirmDialogComponent, { static: false }) dialogComponentRef: CnmConfirmDialogComponent;
-  @ViewChild('UpdateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
+  @ViewChild('updateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
   @ViewChild('addViewComponent', { static: false }) AddViewComponentRef: CnmModalComponent;
 
   constructor(private httpService: HttpService, private modalService: NgbModal) { }
@@ -42,7 +42,7 @@ export class SessionComponent implements OnInit {
     sessionParam.startTime = this.criteria.time;
 
     this.httpService.post<SessionGetVM , any>("Session", sessionParam, "GetSession").subscribe(data => {
-      this.Sessions = data;
+      this.sessions = data;
       this.sorgulandi = true;
     });
   }

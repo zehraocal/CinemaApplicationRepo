@@ -20,16 +20,16 @@ namespace CinemaApplication.Controllers
             _blMovieRepository = movieRepository;
         }
 
+        [HttpGet]
         public IActionResult GetMovie()
         {
             return Ok(_blMovieRepository.GetAll());
         }
 
-
         [HttpPost]
         public IActionResult GetWhereMovie(MovieGetVM model)
         {
-            var movie = _blMovieRepository.GetAll();
+            var movie = _blMovieRepository.GetAll().OrderBy(x => x.Name).ToList();
 
             if (!string.IsNullOrEmpty(model.Name))
             {
@@ -49,7 +49,6 @@ namespace CinemaApplication.Controllers
             return Ok(true);
         }
         
-
         [HttpDelete("{id}")]
         public IActionResult DeleteMovie(long id)
         {
@@ -63,6 +62,11 @@ namespace CinemaApplication.Controllers
             return Ok(_blMovieRepository.Update(param));
         }
 
+        [HttpGet]
+        public IActionResult GetDropDownList()
+        {
+            return Ok(_blMovieRepository.GetAllWithType<DropDownListVM>());
+        }
 
     }
 }

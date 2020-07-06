@@ -25,7 +25,7 @@ export class MovieComponent implements OnInit {
   value: Date;
 
   @ViewChild(CnmConfirmDialogComponent, { static: false }) dialogComponentRef: CnmConfirmDialogComponent;
-  @ViewChild('UpdateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
+  @ViewChild('updateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
   @ViewChild('addViewComponent', { static: false }) AddViewComponentRef: CnmModalComponent;
 
 

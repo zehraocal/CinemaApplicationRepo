@@ -24,14 +24,18 @@ namespace CinemaApplication.Controllers
         public IActionResult GetVisionMovie(VisionMovieGetVM model)
         {
             var movies = _blVisionMovieRepository.GetAll();
-            if (!string.IsNullOrEmpty((model.Movie.Name)))
+            if (model == null)
             {
-                movies = _blVisionMovieRepository.GetWhere(y=> y.Movie.Name.Contains(model.Movie.Name)).ToList();
+                if (!string.IsNullOrEmpty((model.Movie.Name)))
+                {
+                    movies = _blVisionMovieRepository.GetWhere(y => y.Movie.Name.Contains(model.Movie.Name)).ToList();
+                }
+
             }
             return Ok(movies);
         }
         [HttpPost]
-        public IActionResult AddSession(SessionAddVM model)
+        public IActionResult AddVisionMovie(VisionMovieAddVM model)
         {
             _blVisionMovieRepository.Add(model);
             return Ok(true);
@@ -39,18 +43,24 @@ namespace CinemaApplication.Controllers
 
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteSession(long id)
+        public IActionResult DeleteVisionMovie(long id)
         {
             _blVisionMovieRepository.Remove(id);
             return Ok(true);
         }
 
         [HttpPut]
-        public IActionResult UpdateSession(SessionUpdateVM param)
+        public IActionResult UpdateVisionMovie(VisionMovieUpdateVM param)
         {
             return Ok(_blVisionMovieRepository.Update(param));
         }
 
+        [HttpGet]
+        public IActionResult GetDropDownList()
+        {
+            var movie = _blVisionMovieRepository.GetAllWithType<VisionMovieListVM>();
+            return Ok(movie);
 
+        }
     }
 }

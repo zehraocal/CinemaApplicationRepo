@@ -17,27 +17,22 @@
         <app-cnm-modal #addViewComponent (onConfirm)="addMovieHouse()">
           <ng-template #header > Salon Ekle</ng-template>
           <ng-template #saveTemplate >
-            <div class="input-group form-group-no-border input-lg col-lg-12">
-              <div class="input-group-prepend"> </div>
-              <div>
                 <span class="ui-float-label" [style]="{'margin-top':'20px'}">
-                  <input id="float-input" type="text" size="30" pInputText [(ngModel)]="record.addName">
+                  <input class="form-control"  type="text" pInputText [(ngModel)]="record.addName">
                   <label for="float-input">Salon Adı</label>
                 </span>
-              </div>
-              <div>
+
                 <span class="ui-float-label" [style]="{'margin-top':'20px'}">
-                  <input id="float-input" type="text" size="30" pInputText [(ngModel)]="record.addCapacity">
+                  <input class="form-control"  type="text" pInputText [(ngModel)]="record.addCapacity">
                   <label for="float-input">Kapasite</label>
                 </span>
-              </div>
-            </div>
+
           </ng-template>
         </app-cnm-modal>
     </p-panel>
   </div>
   <div class="col-lg-9">
-    <p-panel header="Sorgulama Sonucu" [toggleable]="true" *ngIf='sorgulandi'
+    <p-panel header="Sinema Salonu Listesi" [toggleable]="true" *ngIf='sorgulandi'
       [style]="{'margin-bottom':'20px', 'margin-right':'20px'}">
       <p-table [columns]="cols" [value]="MovieHouses" [autoLayout]="true" [paginator]="true" [rows]="10">
         <ng-template pTemplate="header" let-columns>
@@ -75,18 +70,14 @@
 <app-cnm-modal #updateViewComponent (onConfirm)="updateMovieHouse()">
   <ng-template #header > Salon Bilgileri</ng-template>
   <ng-template #saveTemplate >
-    <div class="input-group form-group-no-border input-lg col-lg-12">
-      <div class="input-group-prepend">
-      </div>
-      <div>
-        <div><span class="badge badge-neutral">Salon Adı</span> </div> 
-        <input type="text" size="30" pInputText [(ngModel)]='record.name'>
-      </div>
-      <div>
-        <div><span class="badge badge-neutral">Kapasite</span> </div> 
-        <input type="text" size="30"  pInputText [(ngModel)]='record.capacity'>
-      </div>
-    </div>
+      <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+        <input class="form-control" type="text" size="30" pInputText [(ngModel)]='record.name'>
+        <label for="float-input">Salon Adı</label>
+      </span>
+      <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+        <input class="form-control" type="text" size="30"  pInputText [(ngModel)]='record.capacity'>
+        <label for="float-input">Kapasite</label>
+      </span>
   </ng-template>
 </app-cnm-modal>
 

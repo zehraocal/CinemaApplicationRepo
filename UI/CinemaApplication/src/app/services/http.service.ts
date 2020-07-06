@@ -10,14 +10,14 @@ export class HttpService {
   constructor(private httpClient: HttpClient, @Inject("url") private url: string) { }
 
   get<ReturnType>(controller: string, action?: string, id?: number): Observable<ReturnType> {
-    return this.httpClient.get<ReturnType>(`${this.url}/${controller}/${action == null ? (id ? id : "") : `${action}/${id}`}`);
+    return this.httpClient.get<ReturnType>(`${this.url}/${controller}/${action == null ? (id ? id : "") : (id ? `${action}/${id}` : `${action}`)}`);
   }
- 
+
   post<BodyType, ReturnType>(controller: string, body: BodyType, action?: string): Observable<ReturnType> {
     return this.httpClient.post<ReturnType>(`${this.url}/${controller}${action ? `/${action}` : ""}`, body);
   }
 
-  put<BodyType, ReturnType>(controller: string, body:BodyType , action?: string): Observable<ReturnType> {
+  put<BodyType, ReturnType>(controller: string, body: BodyType, action?: string): Observable<ReturnType> {
     return this.httpClient.put<ReturnType>(`${this.url}/${controller}${action ? `/${action}` : ""}`, body);
   }
 
