@@ -21,6 +21,7 @@ import { ButtonModule } from 'primeng/button';
 import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import {CarouselModule} from 'primeng/carousel';
 import { CnmConfirmDialogComponent } from './cinema-components/cnm-confirm-dialog/cnm-confirm-dialog.component';
 import { CnmModalComponent } from './cinema-components/cnm-modal/cnm-modal.component';
 import { MovieComponent } from './movie/movie.component';
@@ -42,7 +43,8 @@ import { VisionMovieComponent } from './vision-movie/vision-movie.component';
         ButtonModule,
         CalendarModule,
         DropdownModule,
-        InputTextareaModule
+        InputTextareaModule,
+        CarouselModule
     ],
     declarations: [
         ComponentsComponent,

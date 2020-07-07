@@ -15,6 +15,7 @@ namespace CinemaApplication.BL.Repository.Interface
         List<TListVM> GetAllWithType<TListVM>() where TListVM : class;
         T GetSingle(Func<T, bool> method);
         List<T> GetWhere(Func<T, bool> method);
+        List<TListVM> GetWhereWithType<TListVM>(Func<TListVM, bool> method) where TListVM : class;
         bool Add<TAddVM>(TAddVM model) where TAddVM : class;
         bool Remove(long id);
         bool Update<TUpdateVM>(TUpdateVM model) where TUpdateVM : UpdateVMBase;

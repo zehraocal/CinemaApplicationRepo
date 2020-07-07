@@ -1,12 +1,12 @@
-﻿using CinemaApplication.Entity.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace CinemaApplication.Entity.ViewModels
 {
     public class VisionMovieGetVM
     {
-        public Movie Movie { get; set; }
+        public long? MovieId { get; set; }
+        public long? SessionId { get; set; }
+        public long? MovieHouseId { get; set; }
+        public DateTime? DisplayDate { get; set; }
     }
 }

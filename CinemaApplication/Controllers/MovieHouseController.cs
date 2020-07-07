@@ -24,12 +24,8 @@ namespace CinemaApplication.Controllers
         [HttpPost]
         public IActionResult GetWhereMovieHouse(MovieHouseGetVM model)
         {
-            var movieHouses = _blMovieHouseRepository.GetAll().OrderBy(x => x.Name).ToList();
-            if (!string.IsNullOrEmpty(model.Name))
-            {
-                movieHouses = _blMovieHouseRepository.GetWhere(y => y.Name.ToUpper().Contains(model.Name.ToUpper())).ToList();
-            }       
-            return Ok(movieHouses);
+                  
+            return Ok(_blMovieHouseRepository.GetWhereMovieHouse(model));
         }
 
         [HttpPost]

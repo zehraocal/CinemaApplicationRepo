@@ -2,11 +2,11 @@
   <div class="col-lg-3">
     <p-panel header="Sorgulama Kriteri" [toggleable]="true" [style]="{'margin-bottom':'20px', 'margin-left':'20px'}  ">
       <div class="form-group">
-        <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+        <span class="ui-float-label" [style]="{'margin-top':'25px'}">
           <input type="text" size="30" pInputText [(ngModel)]='criteria.name'>
           <label for="float-input">Film Adı</label>
         </span>
-        <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+        <span class="ui-float-label" [style]="{'margin-top':'25px'}">
           <input type="text" size="30" pInputText [(ngModel)]='criteria.genre'>
           <label for="float-input">Film Türü</label>
         </span>
@@ -20,25 +20,25 @@
         <app-cnm-modal #addViewComponent (onConfirm)="addMovie()">
           <ng-template #header> Film Ekle</ng-template>
           <ng-template #saveTemplate>
-            <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+            <span class="ui-float-label" [style]="{'margin-top':'25px'}">
               <input class="form-control" type="text" pInputText [(ngModel)]="record.addName">
               <label for="float-input">Film Adı</label>
             </span>
-            <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+            <span class="ui-float-label" [style]="{'margin-top':'25px'}">
               <input class="form-control" type="text" pInputText [(ngModel)]="record.addGenre">
               <label for="float-input">Tür</label>
             </span>
-            <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+            <span class="ui-float-label" [style]="{'margin-top':'25px'}">
               <input class="form-control" type="text" pInputText [(ngModel)]="record.addDuration">
-              <label for="float-input">Süresi-dk</label>
+              <label for="float-input">Film Süresi (dk)</label>
             </span>
            
-            <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+            <span class="ui-float-label" [style]="{'margin-top':'25px'}">
               <textarea rows="3" cols="59" autoResize="autoResize" pInputTextarea [(ngModel)]="record.addDescription"></textarea>
               <label for="float-input">Açıklama</label>
             </span>
             
-            <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+            <span class="ui-float-label" [style]="{'margin-top':'25px'}">
               <p-calendar [(ngModel)]="value" dateFormat="dd.mm.yy"></p-calendar>
               <label for="float-input">Vizyon Tarihi</label>
             </span>
@@ -49,7 +49,7 @@
   </div>
   <div class="col-lg-9">
     <p-panel header="Film Listesi" [toggleable]="true" *ngIf='sorgulandi'
-      [style]="{'margin-bottom':'20px', 'margin-right':'20px'}">
+      [style]="{'margin-bottom':'25px', 'margin-right':'20px'}">
       <p-table [columns]="cols" [value]="Movie" [autoLayout]="true" [paginator]="true" [rows]="10">
         <ng-template pTemplate="header" let-columns>
           <tr>
@@ -75,27 +75,27 @@
               <app-cnm-modal #updateViewComponent (onConfirm)="updateMovie()">
                 <ng-template #header> Salon Bilgileri</ng-template>
                 <ng-template #saveTemplate>
-                      <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                      <span class="ui-float-label" [style]="{'margin-top':'25x'}">
                       <input class="form-control" type="text" size="30" pInputText [(ngModel)]='record.name'>
                       <label for="float-input">Film Adı</label>
                       </span>
                     
-                      <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                      <span class="ui-float-label" [style]="{'margin-top':'25px'}">
                       <input class="form-control" type="text" size="30" pInputText [(ngModel)]='record.genre'>
                       <label for="float-input">Film Türü</label>
                       </span>
 
-                      <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                      <span class="ui-float-label" [style]="{'margin-top':'25px'}">
                       <input class="form-control" type="text" size="30" pInputText [(ngModel)]='record.duration'>
                       <label for="float-input">Film Süresi (dk)</label>
                       </span>
 
-                      <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                      <span class="ui-float-label" [style]="{'margin-top':'25px'}">
                       <textarea rows="3" cols="59" autoResize="autoResize" pInputTextarea [(ngModel)]='record.description'></textarea>
                       <label for="float-input">Açıklama</label>
                       </span>
 
-                      <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                      <span class="ui-float-label" [style]="{'margin-top':'25px'}">
                       <p-calendar [(ngModel)]="record.value" dateFormat="dd.mm.yy" ></p-calendar>
                       <label for="float-input">Vizyon Tarihi</label>
                       </span>

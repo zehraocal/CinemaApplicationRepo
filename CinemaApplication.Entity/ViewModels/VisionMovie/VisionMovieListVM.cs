@@ -6,6 +6,7 @@ namespace CinemaApplication.Entity.ViewModels
 {
     public class VisionMovieListVM
     {
+        public long Id { get; set; }
         public long MovieId { get; set; }
         public long SessionId { get; set; }
         public long MovieHouseId { get; set; }

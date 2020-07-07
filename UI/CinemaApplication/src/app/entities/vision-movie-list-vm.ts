@@ -1,12 +1,12 @@
 export class VisionMovieListVM {
-
-    // movieId: number;
-    // sessionId: number;
-    // movieHouseId: number;
+    id: number;
+    movieId: number;
+    sessionId: number;
+    movieHouseId: number;
     displayDate: Date;
     price: number;
 
     movieHouseName: string;
-    sessionName: string;
+    sessionStartTime: string;
     movieName: string
 }

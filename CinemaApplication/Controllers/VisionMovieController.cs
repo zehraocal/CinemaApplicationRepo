@@ -19,28 +19,18 @@ namespace CinemaApplication.Controllers
             _blVisionMovieRepository = blVisionMovieRepository;
         }
 
-
         [HttpPost]
-        public IActionResult GetVisionMovie(VisionMovieGetVM model)
+        public IActionResult GetVisionMovieList(VisionMovieGetVM model)
         {
-            var movies = _blVisionMovieRepository.GetAll();
-            if (model == null)
-            {
-                if (!string.IsNullOrEmpty((model.Movie.Name)))
-                {
-                    movies = _blVisionMovieRepository.GetWhere(y => y.Movie.Name.Contains(model.Movie.Name)).ToList();
-                }
-
-            }
-            return Ok(movies);
+            return Ok(_blVisionMovieRepository.GetVisionMovieList(model));
         }
+
         [HttpPost]
         public IActionResult AddVisionMovie(VisionMovieAddVM model)
         {
             _blVisionMovieRepository.Add(model);
             return Ok(true);
         }
-
 
         [HttpDelete("{id}")]
         public IActionResult DeleteVisionMovie(long id)
@@ -58,9 +48,7 @@ namespace CinemaApplication.Controllers
         [HttpGet]
         public IActionResult GetDropDownList()
         {
-            var movie = _blVisionMovieRepository.GetAllWithType<VisionMovieListVM>();
-            return Ok(movie);
-
+            return Ok(_blVisionMovieRepository.GetAllWithType<VisionMovieListVM>());
         }
     }
 }

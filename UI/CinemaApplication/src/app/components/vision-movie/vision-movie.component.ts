@@ -11,6 +11,7 @@ import { Session } from 'app/entities/session';
 import { VisionMovieGetVM } from 'app/entities/vision-movie-get-vm';
 import { DropDownListVM } from 'app/entities/drop-down-list-vm';
 import { VisionMovieListVM } from 'app/entities/vision-movie-list-vm';
+import { VisionMovieUpdateVM } from 'app/entities/vision-movie-update-vm';
 
 @Component({
   selector: 'app-vision-movie',
@@ -23,18 +24,27 @@ export class VisionMovieComponent implements OnInit {
   sorgulandi = false;
   record: any = {};
   cols: any[];
+  updateId: number;
+  deleteId: number;
 
 
   visionMovies: {};
   visionMoviesList: VisionMovieListVM[];
   movies: {};
   selectedMovie: number;
+  queryMovie: number;
   movieHouses: {};
   selectedMovieHouse: number;
+  queryMovieHouse: number;
   sessions: {};
   selectedSession: number;
+  guerySession:number;
   options: string;
   value: Date;
+  gueryValue: Date;
+  selectedUpdateMovie: any = {};
+  selectedUpdateMovieHouse: any = {};
+  selectedUpdateSession: any = {};
 
   @ViewChild(CnmConfirmDialogComponent, { static: false }) dialogComponentRef: CnmConfirmDialogComponent;
   @ViewChild('updateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
@@ -43,14 +53,14 @@ export class VisionMovieComponent implements OnInit {
   constructor(private httpService: HttpService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    debugger
+
     this.cols = [
-      { field: 'movieId', header: 'Film Adı' },
-      { field: 'movieHouseId', header: 'Salon Adı' },
-      { field: 'sessionId', header: 'Süre' },
-      { field: 'displayDate', header: 'Gösterim Tarihi' , type: 'date' },
+      { field: 'movieName', header: 'Film Adı' },
+      { field: 'movieHouseName', header: 'Salon Adı' },
+      { field: 'sessionStartTime', header: 'Süre' },
+      { field: 'displayDate', header: 'Gösterim Tarihi', type: 'date' },
       { field: 'price', header: 'Ücret' }
-      
+
     ];
     this.httpService.get<DropDownListVM>("Movie", "GetDropDownList").subscribe(data => {
       this.movies = data;
@@ -61,20 +71,19 @@ export class VisionMovieComponent implements OnInit {
     this.httpService.get<DropDownListVM>("Session", "GetDropDownList").subscribe(data => {
       this.sessions = data;
     })
-   
+
   }
 
 
-  getVisionMovie() { 
-  debugger
-    //  let visionMovieParam: VisionMovieGetVM = new VisionMovieGetVM();
-    //  visionMovieParam.movie= this.criteria.name;
-    // this.httpService.post<VisionMovieGetVM, any>("VisionMovie", visionMovieParam, "GetVisionMovie").subscribe(data => {
-    //   this.visionMovies = data;
-    //  this.sorgulandi = true;
-    // });
-    this.httpService.get<VisionMovieListVM>("VisionMovie", "GetDropDownList").subscribe(data => {
-      this.visionMovies = data;
+  getVisionMovie() {
+    debugger
+    let visionMovieParam: VisionMovieGetVM = new VisionMovieGetVM();
+    visionMovieParam.movieId = this.queryMovie;
+    visionMovieParam.movieHouseId=this.queryMovieHouse;
+    visionMovieParam.sessionId=this.guerySession;
+    visionMovieParam.displayDate=this.gueryValue;
+    this.httpService.post<VisionMovieGetVM, any>("VisionMovie", visionMovieParam, "GetVisionMovieList").subscribe(data => {
+      this.visionMoviesList = data;
       this.sorgulandi = true;
     });
   }
@@ -100,6 +109,47 @@ export class VisionMovieComponent implements OnInit {
     this.AddViewComponentRef.openDialog();
   }
 
+
+  updateVisionMovie() {
+    debugger
+    let updateVisionMovie: VisionMovieUpdateVM = new VisionMovieUpdateVM();
+    updateVisionMovie.id = this.updateId;
+    updateVisionMovie.movieId = this.selectedUpdateMovie;
+    updateVisionMovie.movieHouseId = this.selectedUpdateMovieHouse;
+    updateVisionMovie.sessionId = this.selectedUpdateSession;
+    updateVisionMovie.price = this.record.updatePrice;
+    updateVisionMovie.displayDate = new Date(this.record.value);
+
+    this.httpService.put<VisionMovieUpdateVM, any>("VisionMovie", updateVisionMovie, "UpdateVisionMovie").subscribe(updatedata => {
+      this.updateVisionMovie = updatedata;
+      this.getVisionMovie();
+      this.modalService.dismissAll();
+    });
+  }
+
+  openUpdateDialog(selectedVisionMovie, id: number) {
+    debugger
+    this.updateId = id;
+    this.selectedUpdateMovie = selectedVisionMovie.movieId;
+    this.selectedUpdateMovieHouse = selectedVisionMovie.movieHouseId;
+    this.selectedUpdateSession = selectedVisionMovie.sessionId;
+    this.record.updatePrice = selectedVisionMovie.price;
+    this.record.value = selectedVisionMovie.displayDate;
+    this.UpdateViewComponentRef.openDialog();
+  }
+
+  deleteVisionMovie() {
+    this.httpService.delete<any>("VisionMovie", this.deleteId, "DeleteVisionMovie").subscribe(data => {
+      this.getVisionMovie();
+      this.modalService.dismissAll();
+    })
+  }
+
+  openDeleteDialog(id: number) {
+    this.deleteId = id;
+    this.dialogComponentRef.openDeleteDialog('sm');
+  }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -110,6 +160,9 @@ export class VisionMovieComponent implements OnInit {
     }
   }
   cleanSelectedVisionMovie() {
-    this.criteria.name = "";
+    this.queryMovie = null;
+    this.queryMovieHouse = null;
+    this.guerySession=null;
+    this.gueryValue=null;
   }
 }

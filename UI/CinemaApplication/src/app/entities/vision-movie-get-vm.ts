@@ -3,8 +3,10 @@ import { MovieHouse } from './movie-house';
 import { Session } from './session';
 
 export class VisionMovieGetVM {
+    movieId: number;
+    sessionId : number;
+    movieHouseId: number;
     displayDate: Date;
-    movieHouse: MovieHouse;
-    session : Session;
-    movie: Movie;
+    price: number;
+
 }

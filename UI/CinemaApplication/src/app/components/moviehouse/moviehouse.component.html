@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-lg-3">
-    <p-panel header="Sorgulama Kriteri" [toggleable]="true" [style]="{'margin-bottom':'20px', 'margin-left':'20px'}  ">
+    <p-panel header="Sorgulama Kriteri" [toggleable]="true" [style]="{'margin-bottom':'25px', 'margin-left':'20px'}  ">
       <div class="form-group">
-        <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+        <span class="ui-float-label" [style]="{'margin-top':'25px'}">
           <input type="text" size="30" pInputText [(ngModel)]='criteria.name'>
           <label for="float-input">Salon Adı</label>
         </span>
@@ -17,12 +17,12 @@
         <app-cnm-modal #addViewComponent (onConfirm)="addMovieHouse()">
           <ng-template #header > Salon Ekle</ng-template>
           <ng-template #saveTemplate >
-                <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                <span class="ui-float-label" [style]="{'margin-top':'25px'}">
                   <input class="form-control"  type="text" pInputText [(ngModel)]="record.addName">
                   <label for="float-input">Salon Adı</label>
                 </span>
 
-                <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+                <span class="ui-float-label" [style]="{'margin-top':'25px'}">
                   <input class="form-control"  type="text" pInputText [(ngModel)]="record.addCapacity">
                   <label for="float-input">Kapasite</label>
                 </span>
@@ -33,7 +33,7 @@
   </div>
   <div class="col-lg-9">
     <p-panel header="Sinema Salonu Listesi" [toggleable]="true" *ngIf='sorgulandi'
-      [style]="{'margin-bottom':'20px', 'margin-right':'20px'}">
+      [style]="{'margin-bottom':'25px', 'margin-right':'20px'}">
       <p-table [columns]="cols" [value]="MovieHouses" [autoLayout]="true" [paginator]="true" [rows]="10">
         <ng-template pTemplate="header" let-columns>
           <tr>
@@ -70,11 +70,11 @@
 <app-cnm-modal #updateViewComponent (onConfirm)="updateMovieHouse()">
   <ng-template #header > Salon Bilgileri</ng-template>
   <ng-template #saveTemplate >
-      <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+      <span class="ui-float-label" [style]="{'margin-top':'25px'}">
         <input class="form-control" type="text" size="30" pInputText [(ngModel)]='record.name'>
         <label for="float-input">Salon Adı</label>
       </span>
-      <span class="ui-float-label" [style]="{'margin-top':'20px'}">
+      <span class="ui-float-label" [style]="{'margin-top':'25px'}">
         <input class="form-control" type="text" size="30"  pInputText [(ngModel)]='record.capacity'>
         <label for="float-input">Kapasite</label>
       </span>

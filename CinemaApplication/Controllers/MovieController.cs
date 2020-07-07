@@ -29,17 +29,7 @@ namespace CinemaApplication.Controllers
         [HttpPost]
         public IActionResult GetWhereMovie(MovieGetVM model)
         {
-            var movie = _blMovieRepository.GetAll().OrderBy(x => x.Name).ToList();
-
-            if (!string.IsNullOrEmpty(model.Name))
-            {
-                movie = _blMovieRepository.GetWhere(y => y.Name.ToUpper().Contains(model.Name.ToUpper())).ToList();
-            }
-            if(!string.IsNullOrEmpty(model.Genre))
-            {
-                movie = _blMovieRepository.GetWhere(y => y.Genre.ToUpper().Contains(model.Genre.ToUpper())).ToList();
-            }
-            return Ok(movie);
+            return Ok(_blMovieRepository.GetWhereMovie(model));
         }
 
         [HttpPost]

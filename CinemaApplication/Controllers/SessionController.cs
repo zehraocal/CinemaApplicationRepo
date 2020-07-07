@@ -19,21 +19,12 @@ namespace CinemaApplication.Controllers
             _bISessionRepository = bISessionRepository;
         }
 
-        //public IActionResult GetSession()
-        //{
-        //    return Ok(_bISessionRepository.GetAll());
-        //}
-
         [HttpPost]
         public IActionResult GetSession(SessionGetVM model)
-        {
-            var sessions = _bISessionRepository.GetAll().OrderBy(x => x.StartTime).ToList();
-            if (!string.IsNullOrEmpty(model.StartTime))
-            {
-                sessions = _bISessionRepository.GetWhere(y => y.StartTime.Contains(model.StartTime)).ToList();
-            }
-            return Ok(sessions);
+        { 
+            return Ok(_bISessionRepository.GetSession(model));
         }
+
         [HttpPost]
         public IActionResult AddSession(SessionAddVM model)
         {

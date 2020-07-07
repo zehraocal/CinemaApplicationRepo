@@ -47,6 +47,11 @@ namespace CinemaApplication.BL.Repository.Concreate
             return Table.Where(method).ToList();
         }
 
+        public List<TListVM> GetWhereWithType<TListVM>(Func<TListVM, bool> method) where TListVM : class
+        {
+            return Table.ProjectTo<TListVM>(_mappingProfile.ConfigurationProvider).Where(method).ToList();
+        }
+
         public virtual bool Add<TAddVM>(TAddVM model) where TAddVM : class
         {
             Table.Add(_mappingProfile.Map<T>(model));
