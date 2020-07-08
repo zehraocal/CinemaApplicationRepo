@@ -27,6 +27,7 @@ import { CnmModalComponent } from './cinema-components/cnm-modal/cnm-modal.compo
 import { MovieComponent } from './movie/movie.component';
 import { SessionComponent } from './session/session.component';
 import { VisionMovieComponent } from './vision-movie/vision-movie.component';
+import { MovieCarouselComponent } from './movie-carousel/movie-carousel.component';
 
 @NgModule({
     imports: [
@@ -59,7 +60,8 @@ import { VisionMovieComponent } from './vision-movie/vision-movie.component';
         CnmModalComponent,
         MovieComponent,
         SessionComponent,
-        VisionMovieComponent
+        VisionMovieComponent,
+        MovieCarouselComponent
     ],
     exports: [ComponentsComponent]
 })

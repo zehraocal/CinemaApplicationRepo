@@ -26,6 +26,7 @@ export class VisionMovieComponent implements OnInit {
   cols: any[];
   updateId: number;
   deleteId: number;
+  
 
 
   visionMovies: {};

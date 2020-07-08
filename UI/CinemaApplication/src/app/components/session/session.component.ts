@@ -30,9 +30,7 @@ export class SessionComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = [
-      { field: 'startTime', header: 'Başlama Zamanı' },
-      { field: 'endTime', header: 'Bitiş Zamanı' }
-
+      { field: 'startTime', header: 'Seanslar' }
     ];
   }
 
@@ -50,9 +48,8 @@ export class SessionComponent implements OnInit {
   addSession(){
     debugger
    let session: SessionAddVM=new SessionAddVM();
-   session.endTime=this.record.addEndTime;
-   session.startTime=this.record.addStartTime;
-
+   session=this.record.addStartTime;
+   
    this.httpService.post<SessionAddVM, any>("Session",session,"AddSession").subscribe(data => {
     if (data)
       this.getSession();
@@ -68,7 +65,6 @@ export class SessionComponent implements OnInit {
     let updateSession: SessionUpdateVM=new SessionUpdateVM();
     updateSession.id=this.updateId;
     updateSession.startTime=this.record.startTime;
-    updateSession.endTime=this.record.endTime;
 
     this.httpService.put<SessionUpdateVM, any>("Session", updateSession, "UpdateSession").subscribe(updatedata => {
       this.updateSession = updatedata;
@@ -81,8 +77,6 @@ export class SessionComponent implements OnInit {
     debugger
     this.updateId = id;
     this.record.startTime= selectedSession.startTime;
-    this.record.endTime = selectedSession.endTime;
-    
     this.UpdateViewComponentRef.openDialog();
   }
 

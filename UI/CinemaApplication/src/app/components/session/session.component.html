@@ -17,14 +17,11 @@
           <app-cnm-modal #addViewComponent (onConfirm)="addSession()">
             <ng-template #header > Seans Ekle</ng-template>
             <ng-template #saveTemplate >
-                  <span class="ui-float-label" [style]="{'margin-top':'25px'}">
+                  <!-- <span class="ui-float-label" [style]="{'margin-top':'25px'}">
                     <input class="form-control" type="text" pInputText [(ngModel)]="record.addStartTime">
-                    <label for="float-input">Seans Başlangıcı</label>
-                  </span>
-                  <span class="ui-float-label" [style]="{'margin-top':'25px'}">
-                    <input class="form-control" type="text" pInputText [(ngModel)]="record.addEndTime">
-                    <label for="float-input">Seans Bitişi</label>
-                  </span>
+                    <label for="float-input">Seanslar</label>
+                  </span> -->
+                  <ngb-timepicker [(ngModel)]="record.addStartTime"></ngb-timepicker>
             </ng-template>
           </app-cnm-modal>
       </p-panel>
@@ -57,11 +54,7 @@
                   <ng-template #saveTemplate >
                       <span class="ui-float-label" [style]="{'margin-top':'25px'}">
                         <input class="form-control" type="text"  pInputText [(ngModel)]='record.startTime'>
-                        <label for="float-input">Seans Başlama</label>
-                      </span>
-                      <span class="ui-float-label" [style]="{'margin-top':'25px'}"> 
-                        <input class="form-control" type="text"   pInputText [(ngModel)]='record.endTime'>
-                        <label for="float-input">Seans Bitişi</label>
+                        <label for="float-input">Seanslar</label>
                       </span>
                   </ng-template>
                 </app-cnm-modal>

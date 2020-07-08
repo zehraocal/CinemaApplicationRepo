@@ -1,0 +1,49 @@
+<!-- <p-carousel [value]="movies" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true"
+    [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+    <p-header>
+        <h3>Vizyondaki Filmler</h3>
+    </p-header>
+    <ng-template let-car pTemplate="item">
+        <div class="movie-details">
+            <div class="p-grid p-nogutter">
+                <div class="p-col-12">
+                    <img src="assets/img/movies/{{movies.name}}.png" />
+                </div>
+                <div class="p-col-12 car-data">
+                    <div class="movie-title">{{movies.name}}</div>
+                    <div class="movie-subtitle">{{movie.genre}}</div>
+
+                    <div class="movier-buttons">
+                        <button pButton type="button" class="ui-button-secondary" icon="pi pi-search"></button>
+                        <button pButton type="button" class="ui-button-secondary" icon="pi pi-shopping-cart"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-carousel> -->
+
+<p-carousel [value]="movies" [numVisible]="4" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+    <p-header>
+        <h3>Basic</h3>
+    </p-header>
+    <ng-template let-movie pTemplate="item">
+        <div class="car-details">
+            <div class="p-grid p-nogutter">
+                <div class="p-col-12">
+                    <img src="assets/img/movies/{{movie.jpgName}}.jpg" />
+                </div>
+                <div class="p-col-12 car-data">
+                    <div class="car-title">{{movie.header}}</div>
+                    <div class="car-subtitle">{{movie.genre}} | {{movie.duration}}</div>
+
+                    <div class="car-buttons">
+                        <button pButton type="button" class="ui-button-secondary" icon="pi pi-search"></button>
+                        <button pButton type="button" class="ui-button-secondary" icon="pi pi-star"></button>
+                        <button pButton type="button" class="ui-button-secondary" icon="pi pi-cog"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-carousel>

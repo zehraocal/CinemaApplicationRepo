@@ -11,42 +11,16 @@
               <h1 class="h1-seo">NeCinema</h1>
               <h3>Sinema biletini online al.</h3>
           </div>
-          <div>
-            <p-carousel [value]="cars" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
-                <p-header>
-                    <h3>Vizyondaki Filmler</h3>
-                </p-header>
-                <ng-template let-car pTemplate="item">
-                    <div class="car-details">
-                        <div class="p-grid p-nogutter">
-                            <div class="p-col-12">
-                                <img src="assets/img/movies/{{movies.name}}.png" />
-                            </div>
-                            <div class="p-col-12 car-data">
-                                <div class="car-title">{{movies.name}}</div>
-                                <div class="car-subtitle">{{movie.genre}} | {{car.color}}</div>
-            
-                                <div class="car-buttons">
-                                    <button pButton type="button" class="ui-button-secondary" icon="pi pi-search"></button>
-                                    <button pButton type="button" class="ui-button-secondary" icon="pi pi-shopping-cart"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </ng-template>
-            </p-carousel>
-
-          </div>
-          <h6 class="category category-absolute">Designed by
+          <!-- <h6 class="category category-absolute">Designed by
               <a href="https://invisionapp.com/" target="_blank">
                   <img src="assets/img/invision-white-slim.png" class="invision-logo" />
               </a>. Coded by
               <a href="https://www.creative-tim.com" target="_blank">
                   <img src="assets/img/creative-tim-white-slim2.png" class="creative-tim-logo" />
-              </a>.</h6>
+              </a>.</h6> -->
       </div>
   </div>
-  
+  <app-movie-carousel></app-movie-carousel>
   <div class="main">
     <!-- <div class="section section-images">
         <div class="container">
