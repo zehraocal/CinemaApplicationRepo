@@ -6,7 +6,6 @@ namespace CinemaApplication.Entity.Entities
     {
         public long Id { get; set; }
         public string StartTime { get; set; }
-        public string EndTime { get; set; }
         public ICollection<VisionMovie> VisionMovies { get; set; }
     }
 }
