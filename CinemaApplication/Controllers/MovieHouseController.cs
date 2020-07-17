@@ -22,10 +22,10 @@ namespace CinemaApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult GetWhereMovieHouse(MovieHouseGetVM model)
+        public IActionResult GetWhereMovieHouseList(MovieHouseGetVM model)
         {
                   
-            return Ok(_blMovieHouseRepository.GetWhereMovieHouse(model));
+            return Ok(_blMovieHouseRepository.GetWhereMovieHouseList(model));
         }
 
         [HttpPost]

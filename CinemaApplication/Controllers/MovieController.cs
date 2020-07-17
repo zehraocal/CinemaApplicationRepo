@@ -20,21 +20,16 @@ namespace CinemaApplication.Controllers
             _blMovieRepository = movieRepository;
         }
 
-        [HttpGet]
-        public IActionResult GetMovie()
-        {
-            return Ok(_blMovieRepository.GetAll());
-        }
-
         [HttpPost]
-        public IActionResult GetWhereMovie(MovieGetVM model)
+        public IActionResult GetWhereMovieList(MovieGetVM model)
         {
-            return Ok(_blMovieRepository.GetWhereMovie(model));
+            return Ok(_blMovieRepository.GetWhereMovieList(model));
         }
 
         [HttpPost]
         public IActionResult AddMovie(MovieAddVM model)
         {
+            DateTime.Parse(model.ReleaseDate);
             _blMovieRepository.Add(model);
             return Ok(true);
         }

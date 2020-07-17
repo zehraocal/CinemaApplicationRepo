@@ -20,18 +20,17 @@ namespace CinemaApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult GetSession(SessionGetVM model)
+        public IActionResult GetWhereSessionList(SessionGetVM model)
         { 
-            return Ok(_bISessionRepository.GetSession(model));
+            return Ok(_bISessionRepository.GetWhereSessionList(model));
         }
 
         [HttpPost]
         public IActionResult AddSession(SessionAddVM model)
-        {
+        { 
             _bISessionRepository.Add(model);
             return Ok(true);
         }
-
 
         [HttpDelete("{id}")]
         public IActionResult DeleteSession(long id)
