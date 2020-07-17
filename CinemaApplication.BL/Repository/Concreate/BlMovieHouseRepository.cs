@@ -16,7 +16,7 @@ namespace CinemaApplication.BL.Repository.Concreate
         public BlMovieHouseRepository(IMapper mappingProfile) : base(mappingProfile)
         {
         }
-        public List<MovieHouse> GetWhereMovieHouse(MovieHouseGetVM model)
+        public List<MovieHouse> GetWhereMovieHouseList(MovieHouseGetVM model)
         {
             var movieHouses = GetAll().OrderBy(x => x.Name).ToList();
             if (!string.IsNullOrEmpty(model.Name))

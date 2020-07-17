@@ -9,12 +9,13 @@ using System.Text;
 
 namespace CinemaApplication.BL.Repository.Concreate
 {
-    public class BISessionRepository: BlRepository<Session>, IBISessionRepository
+    public class BISessionRepository : BlRepository<Session>, IBISessionRepository
     {
         public BISessionRepository(IMapper mappingProfile) : base(mappingProfile)
         {
         }
-        public List<Session> GetSession(SessionGetVM model)
+
+        public List<Session> GetWhereSessionList(SessionGetVM model)
         {
             var sessions = GetAll().OrderBy(x => x.StartTime).ToList();
             if (!string.IsNullOrEmpty(model.StartTime))
@@ -23,5 +24,12 @@ namespace CinemaApplication.BL.Repository.Concreate
             }
             return sessions;
         }
+        public override bool Add<TAddVM>(TAddVM model)
+        {
+            var sessionAddParam = model as SessionAddVM;
+            sessionAddParam.StartTime = DateTime.Parse(sessionAddParam.StartDate).ToShortTimeString();
+            return base.Add(sessionAddParam);
+        }
+
     }
 }

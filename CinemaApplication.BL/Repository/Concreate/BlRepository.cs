@@ -80,6 +80,7 @@ namespace CinemaApplication.BL.Repository.Concreate
         public bool Save()
         {
             return _context.SaveChanges() > 0;
+            // ToDo if >0 boş tring başarılı < hata mesajı eğer güncelle ekle gibi mesajlar vermek istyrsan ilgili yerlerde yaz.Tüm dönüş değerlerini stringe çevir controller ve frontendse 
         }
     }
 

@@ -8,6 +8,7 @@ namespace CinemaApplication.BL.Repository.Interface
 {
     public interface IBISessionRepository: IBlRepository<Session>
     {
-        List<Session> GetSession(SessionGetVM model);
+        List<Session> GetWhereSessionList(SessionGetVM model);
+        //string SessionConvertType(SessionAddVM model);
     }
 }

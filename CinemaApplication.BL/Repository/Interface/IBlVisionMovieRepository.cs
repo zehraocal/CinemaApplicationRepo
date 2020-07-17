@@ -9,5 +9,6 @@ namespace CinemaApplication.BL.Repository.Interface
     public interface IBlVisionMovieRepository : IBlRepository<VisionMovie>
     {
         List<VisionMovieListVM> GetVisionMovieList(VisionMovieGetVM model);
+        bool VisionMovieControl(VisionMovieAddVM model);
     }    
 }

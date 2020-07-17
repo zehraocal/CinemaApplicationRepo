@@ -16,7 +16,7 @@ namespace CinemaApplication.Entity.ViewModels
         public string MovieName { get; set; }
         public string MovieHouseName { get; set; }
         public string SessionStartTime { get; set; }
-
+        public int Duration { get; set; }
 
     }
 }

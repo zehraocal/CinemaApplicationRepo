@@ -14,21 +14,20 @@ namespace CinemaApplication.BL.Repository.Concreate
         public BlMovieRepository(IMapper mappingProfile) : base(mappingProfile)
         {
         }
-        public List<Movie> GetWhereMovie(MovieGetVM model)
 
+        public List<Movie> GetWhereMovieList(MovieGetVM model)
         {
             var movie = GetAll().OrderBy(x => x.Name).ToList();
 
             if (!string.IsNullOrEmpty(model.Name))
             {
-                movie = GetWhere(y => y.Name.ToUpper().Contains(model.Name.ToUpper())).ToList();
+                movie = movie.Where(y => y.Name.ToUpper().Contains(model.Name.ToUpper())).ToList();
             }
             if (!string.IsNullOrEmpty(model.Genre))
             {
-                movie = GetWhere(y => y.Genre.ToUpper().Contains(model.Genre.ToUpper())).ToList();
+                movie = movie.Where(y => y.Genre.ToUpper().Contains(model.Genre.ToUpper())).ToList();
             }
             return movie;
-
         }
     }
 }
