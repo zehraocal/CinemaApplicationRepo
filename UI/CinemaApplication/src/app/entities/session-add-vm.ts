@@ -1,4 +1,3 @@
 export class SessionAddVM {
-    hour : string;   
-    minute : string;
+     startDate : Date;   
 }

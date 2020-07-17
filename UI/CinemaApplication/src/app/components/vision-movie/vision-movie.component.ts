@@ -12,10 +12,11 @@ import { VisionMovieGetVM } from 'app/entities/vision-movie-get-vm';
 import { DropDownListVM } from 'app/entities/drop-down-list-vm';
 import { VisionMovieListVM } from 'app/entities/vision-movie-list-vm';
 import { VisionMovieUpdateVM } from 'app/entities/vision-movie-update-vm';
-
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-vision-movie',
-  templateUrl: './vision-movie.component.html'
+  templateUrl: './vision-movie.component.html',
+  providers: [MessageService]
 })
 
 export class VisionMovieComponent implements OnInit {
@@ -26,7 +27,7 @@ export class VisionMovieComponent implements OnInit {
   cols: any[];
   updateId: number;
   deleteId: number;
-  
+
 
 
   visionMovies: {};
@@ -39,9 +40,10 @@ export class VisionMovieComponent implements OnInit {
   queryMovieHouse: number;
   sessions: {};
   selectedSession: number;
-  guerySession:number;
+  guerySession: number;
   options: string;
   value: Date;
+  updateDate: Date;
   gueryValue: Date;
   selectedUpdateMovie: any = {};
   selectedUpdateMovieHouse: any = {};
@@ -51,7 +53,7 @@ export class VisionMovieComponent implements OnInit {
   @ViewChild('updateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
   @ViewChild('addViewComponent', { static: false }) AddViewComponentRef: CnmModalComponent;
 
-  constructor(private httpService: HttpService, private modalService: NgbModal) { }
+  constructor(private httpService: HttpService, private modalService: NgbModal, private messageService: MessageService) { }
 
   ngOnInit(): void {
 
@@ -77,12 +79,11 @@ export class VisionMovieComponent implements OnInit {
 
 
   getVisionMovie() {
-    debugger
     let visionMovieParam: VisionMovieGetVM = new VisionMovieGetVM();
     visionMovieParam.movieId = this.queryMovie;
-    visionMovieParam.movieHouseId=this.queryMovieHouse;
-    visionMovieParam.sessionId=this.guerySession;
-    visionMovieParam.displayDate=this.gueryValue;
+    visionMovieParam.movieHouseId = this.queryMovieHouse;
+    visionMovieParam.sessionId = this.guerySession;
+    visionMovieParam.displayDate = this.gueryValue;
     this.httpService.post<VisionMovieGetVM, any>("VisionMovie", visionMovieParam, "GetVisionMovieList").subscribe(data => {
       this.visionMoviesList = data;
       this.sorgulandi = true;
@@ -99,9 +100,14 @@ export class VisionMovieComponent implements OnInit {
     visionMovie.displayDate = new Date(this.value);
 
     this.httpService.post<VisionMovieAddVM, any>("VisionMovie", visionMovie, "AddVisionMovie").subscribe(data => {
-      if (data)
+      debugger
+      if (data) {
+        this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'başarılı' });
         this.getVisionMovie();
-      this.modalService.dismissAll();
+        this.modalService.dismissAll();
+      }
+      else 
+        this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'başarısız' });
     });
   }
 
@@ -119,7 +125,7 @@ export class VisionMovieComponent implements OnInit {
     updateVisionMovie.movieHouseId = this.selectedUpdateMovieHouse;
     updateVisionMovie.sessionId = this.selectedUpdateSession;
     updateVisionMovie.price = this.record.updatePrice;
-    updateVisionMovie.displayDate = new Date(this.record.value);
+    updateVisionMovie.displayDate = new Date(this.updateDate);
 
     this.httpService.put<VisionMovieUpdateVM, any>("VisionMovie", updateVisionMovie, "UpdateVisionMovie").subscribe(updatedata => {
       this.updateVisionMovie = updatedata;
@@ -163,7 +169,7 @@ export class VisionMovieComponent implements OnInit {
   cleanSelectedVisionMovie() {
     this.queryMovie = null;
     this.queryMovieHouse = null;
-    this.guerySession=null;
-    this.gueryValue=null;
+    this.guerySession = null;
+    this.gueryValue = null;
   }
 }

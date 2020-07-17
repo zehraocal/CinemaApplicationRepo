@@ -22,12 +22,14 @@ import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CarouselModule} from 'primeng/carousel';
+import {ToastModule} from 'primeng/toast';
 import { CnmConfirmDialogComponent } from './cinema-components/cnm-confirm-dialog/cnm-confirm-dialog.component';
 import { CnmModalComponent } from './cinema-components/cnm-modal/cnm-modal.component';
 import { MovieComponent } from './movie/movie.component';
 import { SessionComponent } from './session/session.component';
 import { VisionMovieComponent } from './vision-movie/vision-movie.component';
 import { MovieCarouselComponent } from './movie-carousel/movie-carousel.component';
+import { MoviesComponent } from './movies/movies.component';
 
 @NgModule({
     imports: [
@@ -44,7 +46,8 @@ import { MovieCarouselComponent } from './movie-carousel/movie-carousel.componen
         ButtonModule,
         CalendarModule,
         DropdownModule,
-        InputTextareaModule,
+        ToastModule,
+        InputTextareaModule, 
         CarouselModule
     ],
     declarations: [
@@ -61,7 +64,8 @@ import { MovieCarouselComponent } from './movie-carousel/movie-carousel.componen
         MovieComponent,
         SessionComponent,
         VisionMovieComponent,
-        MovieCarouselComponent
+        MovieCarouselComponent,
+        MoviesComponent
     ],
     exports: [ComponentsComponent]
 })

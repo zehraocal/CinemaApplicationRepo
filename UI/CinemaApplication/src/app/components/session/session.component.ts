@@ -15,13 +15,13 @@ import { SessionGetVM } from 'app/entities/session-get-vm';
 export class SessionComponent implements OnInit {
 
   sessions: Session[];
-  sorgulandi= false;
+  sorgulandi = false;
   record: any = {};
   criteria: any = {};
-  updateId:number;
-  deleteId:number;
-  cols:any[];
-  
+  updateId: number;
+  deleteId: number;
+  cols: any[];
+
   @ViewChild(CnmConfirmDialogComponent, { static: false }) dialogComponentRef: CnmConfirmDialogComponent;
   @ViewChild('updateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
   @ViewChild('addViewComponent', { static: false }) AddViewComponentRef: CnmModalComponent;
@@ -30,41 +30,41 @@ export class SessionComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = [
-      { field: 'startTime', header: 'Seanslar' }
+      { field: 'startTime', header: 'Başlama Zamanı' },
     ];
   }
 
-  getSession(){
+  getSession() {
     debugger
     let sessionParam: SessionGetVM = new SessionGetVM();
     sessionParam.startTime = this.criteria.time;
 
-    this.httpService.post<SessionGetVM , any>("Session", sessionParam, "GetSession").subscribe(data => {
+    this.httpService.post<SessionGetVM, any>("Session", sessionParam, "GetWhereSessionList").subscribe(data => {
       this.sessions = data;
       this.sorgulandi = true;
     });
   }
 
-  addSession(){
+  addSession() {
     debugger
-   let session: SessionAddVM=new SessionAddVM();
-   session=this.record.addStartTime;
-   
-   this.httpService.post<SessionAddVM, any>("Session",session,"AddSession").subscribe(data => {
-    if (data)
-      this.getSession();
-    this.modalService.dismissAll();
-  });
+    let session: SessionAddVM = new SessionAddVM();
+    session.startDate = this.record.addStartTime;
+
+    this.httpService.post<SessionAddVM, any>("Session", session, "AddSession").subscribe(data => {
+      if (data)
+        this.getSession();
+      this.modalService.dismissAll();
+    });
   }
 
   openAddDialog() {
     this.AddViewComponentRef.openDialog();
   }
- 
-  updateSession(){
-    let updateSession: SessionUpdateVM=new SessionUpdateVM();
-    updateSession.id=this.updateId;
-    updateSession.startTime=this.record.startTime;
+
+  updateSession() {
+    let updateSession: SessionUpdateVM = new SessionUpdateVM();
+    updateSession.id = this.updateId;
+    updateSession.startTime = this.record.startTime;
 
     this.httpService.put<SessionUpdateVM, any>("Session", updateSession, "UpdateSession").subscribe(updatedata => {
       this.updateSession = updatedata;
@@ -73,10 +73,10 @@ export class SessionComponent implements OnInit {
     })
   }
 
-  openUpdateDialog( selectedSession, id: number) {
+  openUpdateDialog(selectedSession, id: number) {
     debugger
     this.updateId = id;
-    this.record.startTime= selectedSession.startTime;
+    this.record.startTime = selectedSession.startTime;
     this.UpdateViewComponentRef.openDialog();
   }
 
@@ -92,7 +92,7 @@ export class SessionComponent implements OnInit {
     this.dialogComponentRef.openDeleteDialog('sm');
   }
 
-  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

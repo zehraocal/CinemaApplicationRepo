@@ -36,7 +36,7 @@ export class MovieCarouselComponent implements OnInit {
 
       this.movies = [
         { genre: 'dram', header: 'Gora', duration: '30', jpgName: 'Gora' },
-        { genre: 'korku', header: 'Eltilerin Savaşı', duration: '10', jpgName: 'EltilerinSavasi'  }
+        { genre: 'korku', header: 'Eltilerin Savaşı', duration: '10', jpgName: 'EltilerinSavasi' }
       ];
   }
 

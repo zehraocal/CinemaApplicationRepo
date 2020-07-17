@@ -2,12 +2,6 @@
     <div class="col-lg-3">
         <p-panel header="Sorgulama Kriteri" [toggleable]="true"
             [style]="{'margin-bottom':'25px', 'margin-left':'20px'}  ">
-            <!-- <div class="form-group">
-                <span class="ui-float-label" [style]="{'margin-top':'25px'}">
-                    <input type="text" size="30" pInputText [(ngModel)]='criteria.name'>
-                    <label for="float-input">Film Adı</label>
-                </span> 
-            </div> -->
             <span class="ui-float-label" [style]="{'margin-top':'25px'}">
                 <p-dropdown id="float-input" [autoDisplayFirst]="false" [options]="movies" [(ngModel)]="queryMovie"
                     [showClear]="true"></p-dropdown>
@@ -24,10 +18,9 @@
                 <label for="float-input">Seans</label>
             </span>
             <span class="ui-float-label" [style]="{'margin-top':'25px'}">
-                <p-calendar [(ngModel)]="gueryValue" dateFormat="dd.mm.yy"> </p-calendar>
+                <p-calendar [(ngModel)]="gueryValue" dateFormat="dd.mm.yy" > </p-calendar>
                 <label for="float-input">Tarih</label>
             </span>
-
             <div class="row" style="margin-left: 1px;">
                 <button type="submit" class=" btn btn-info btn-round" (click)="getVisionMovie()"> Sorgula
                 </button>
@@ -62,7 +55,7 @@
                     </span>
 
                     <span class="ui-float-label" [style]="{'margin-top':'25px'}">
-                        <p-calendar [(ngModel)]="value" dateFormat="dd.mm.yy"></p-calendar>
+                        <p-calendar [(ngModel)]="value" dateFormat="dd.mm.yy" ></p-calendar>
                         <label for="float-input">Tarih</label>
                     </span>
 
@@ -119,7 +112,7 @@
                                     </span>
                                     <div>
                                         <span class="ui-float-label" [style]="{'margin-top':'25px'}">
-                                            <p-calendar [(ngModel)]="record.value" dateFormat="dd.mm.yy"> </p-calendar>
+                                            <p-calendar [(ngModel)]="updateDate" dateFormat="dd.mm.yy"> </p-calendar>
                                             <label for="float-input">Tarih</label>
                                         </span>
                                     </div>
@@ -146,3 +139,4 @@
         </p-panel>
     </div>
 </div>
+<p-toast position="top-right"></p-toast>

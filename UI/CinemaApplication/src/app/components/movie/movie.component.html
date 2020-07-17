@@ -32,16 +32,19 @@
               <input class="form-control" type="text" pInputText [(ngModel)]="record.addDuration">
               <label for="float-input">Film Süresi (dk)</label>
             </span>
-           
+
             <span class="ui-float-label" [style]="{'margin-top':'25px'}">
-              <textarea rows="3" cols="59" autoResize="autoResize" pInputTextarea [(ngModel)]="record.addDescription"></textarea>
-              <label for="float-input">Açıklama</label>
-            </span>
-            
-            <span class="ui-float-label" [style]="{'margin-top':'25px'}">
-              <p-calendar [(ngModel)]="value" dateFormat="dd.mm.yy"></p-calendar>
+              <p-calendar [(ngModel)]="value" dateFormat="dd.mm.yy" [style]="{'width':'100%'}"
+                [inputStyle]="{'width':'100%'}"></p-calendar>
               <label for="float-input">Vizyon Tarihi</label>
             </span>
+
+            <span class="ui-float-label" [style]="{'margin-top':'25px'}">
+              <textarea rows="3" cols="59" autoResize="autoResize" pInputTextarea
+                [(ngModel)]="record.addDescription"></textarea>
+              <label for="float-input">Açıklama</label>
+            </span>
+
           </ng-template>
         </app-cnm-modal>
       </div>
@@ -75,30 +78,33 @@
               <app-cnm-modal #updateViewComponent (onConfirm)="updateMovie()">
                 <ng-template #header> Salon Bilgileri</ng-template>
                 <ng-template #saveTemplate>
-                      <span class="ui-float-label" [style]="{'margin-top':'25x'}">
-                      <input class="form-control" type="text" size="30" pInputText [(ngModel)]='record.name'>
-                      <label for="float-input">Film Adı</label>
-                      </span>
-                    
-                      <span class="ui-float-label" [style]="{'margin-top':'25px'}">
-                      <input class="form-control" type="text" size="30" pInputText [(ngModel)]='record.genre'>
-                      <label for="float-input">Film Türü</label>
-                      </span>
+                  <span class="ui-float-label" [style]="{'margin-top':'25x'}">
+                    <input class="form-control" type="text" size="30" pInputText [(ngModel)]='record.name'>
+                    <label for="float-input">Film Adı</label>
+                  </span>
 
-                      <span class="ui-float-label" [style]="{'margin-top':'25px'}">
-                      <input class="form-control" type="text" size="30" pInputText [(ngModel)]='record.duration'>
-                      <label for="float-input">Film Süresi (dk)</label>
-                      </span>
+                  <span class="ui-float-label" [style]="{'margin-top':'25px'}">
+                    <input class="form-control" type="text" size="30" pInputText [(ngModel)]='record.genre'>
+                    <label for="float-input">Film Türü</label>
+                  </span>
 
-                      <span class="ui-float-label" [style]="{'margin-top':'25px'}">
-                      <textarea rows="3" cols="59" autoResize="autoResize" pInputTextarea [(ngModel)]='record.description'></textarea>
-                      <label for="float-input">Açıklama</label>
-                      </span>
+                  <span class="ui-float-label" [style]="{'margin-top':'25px'}">
+                    <input class="form-control" type="text" size="30" pInputText [(ngModel)]='record.duration'>
+                    <label for="float-input">Film Süresi (dk)</label>
+                  </span>
 
-                      <span class="ui-float-label" [style]="{'margin-top':'25px'}">
-                      <p-calendar [(ngModel)]="record.value" dateFormat="dd.mm.yy" ></p-calendar>
-                      <label for="float-input">Vizyon Tarihi</label>
-                      </span>
+                  <span class="ui-float-label" [style]="{'margin-top':'25px'}">
+                    <p-calendar [(ngModel)]="updateDate" dateFormat="dd.mm.yy"  [style]="{'width':'100%'}"
+                      [inputStyle]="{'width':'100%'}"></p-calendar>
+                    <label for="float-input">Vizyon Tarihi</label>
+                  </span>
+
+                  <span class="ui-float-label" [style]="{'margin-top':'25px'}">
+                    <textarea rows="3" cols="59" autoResize="autoResize" pInputTextarea
+                      [(ngModel)]='record.description'></textarea>
+                    <label for="float-input">Açıklama</label>
+                  </span>
+
                 </ng-template>
               </app-cnm-modal>
             </td>

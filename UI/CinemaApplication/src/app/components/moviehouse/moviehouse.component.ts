@@ -46,7 +46,7 @@ export class MoviehouseComponent implements OnInit {
     let movieHouseParam: MovieHouseGetVM = new MovieHouseGetVM();
     movieHouseParam.name = this.criteria.name;
 
-    this.httpService.post<MovieHouseGetVM, any>("MovieHouse", movieHouseParam, "GetWhereMovieHouse").subscribe(data => {
+    this.httpService.post<MovieHouseGetVM, any>("MovieHouse", movieHouseParam, "GetWhereMovieHouseList").subscribe(data => {
       this.MovieHouses = data;
       this.sorgulandi = true;
     });

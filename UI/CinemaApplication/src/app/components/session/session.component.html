@@ -1,73 +1,73 @@
 <div class="row">
-    <div class="col-lg-3">
-      <p-panel header="Sorgulama Kriteri" [toggleable]="true" [style]="{'margin-bottom':'25px', 'margin-left':'20px'}  ">
-        <div class="form-group">
+  <div class="col-lg-3">
+    <p-panel header="Sorgulama Kriteri" [toggleable]="true" [style]="{'margin-bottom':'25px', 'margin-left':'20px'}  ">
+      <div class="form-group">
+        <span class="ui-float-label" [style]="{'margin-top':'25px'}">
+          <input type="text" size="30" pInputText [(ngModel)]='criteria.time'>
+          <label for="float-input">Seans Başlangıcı</label>
+        </span>
+      </div>
+      <div class="row" style="margin-left: 1px;">
+        <button type="submit" class=" btn btn-info btn-round" (click)="getSession()"> Sorgula
+        </button>
+        <button type="button" class="btn btn-warning btn-round" (click)="cleanSelectedSession()"> Temizle
+        </button>
+        <button class="btn btn-primary btn-round" (click)="openAddDialog( )"> Ekle </button>
+      </div>
+      <app-cnm-modal #addViewComponent (onConfirm)="addSession()">
+        <ng-template #header> Seans Ekle</ng-template>
+        <ng-template #saveTemplate>
           <span class="ui-float-label" [style]="{'margin-top':'25px'}">
-            <input type="text" size="30" pInputText [(ngModel)]='criteria.time'>
-            <label for="float-input">Seans Başlangıcı</label>
+            <p-calendar [(ngModel)]="record.addStartTime" [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"
+              [timeOnly]="true"></p-calendar>
+            <label for="float-input">Seans Başlangıç Saati</label>
           </span>
-        </div> 
-        <div class="row" style="margin-left: 1px;">
-          <button type="submit" class=" btn btn-info btn-round" (click)="getSession()"> Sorgula
-          </button>
-          <button type="button" class="btn btn-warning btn-round" (click)="cleanSelectedSession()"> Temizle
-          </button> 
-          <button class="btn btn-primary btn-round" (click)="openAddDialog( )"> Ekle </button>
-        </div>
-          <app-cnm-modal #addViewComponent (onConfirm)="addSession()">
-            <ng-template #header > Seans Ekle</ng-template>
-            <ng-template #saveTemplate >
-                  <!-- <span class="ui-float-label" [style]="{'margin-top':'25px'}">
-                    <input class="form-control" type="text" pInputText [(ngModel)]="record.addStartTime">
-                    <label for="float-input">Seanslar</label>
-                  </span> -->
-                  <ngb-timepicker [(ngModel)]="record.addStartTime"></ngb-timepicker>
-            </ng-template>
-          </app-cnm-modal>
-      </p-panel>
-    </div>
-    <div class="col-lg-9">
-      <p-panel header="Seans Listesi" [toggleable]="true" *ngIf='sorgulandi'
-        [style]="{'margin-bottom':'25px', 'margin-right':'25px'}">
-        <p-table [columns]="cols" [value]="sessions" [autoLayout]="true" [paginator]="true" [rows]="10">
-          <ng-template pTemplate="header" let-columns>
-            <tr>
-              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                {{col.header}}
-                <p-sortIcon [field]="col.field"></p-sortIcon>
-              </th>
-              <th>Güncelle</th>
-              <th>Sil</th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr>
-              <td *ngFor="let col of columns">
-                {{rowData[col.field]}} 
-              </td>
-              <td>
-                <button class="btn btn-warning btn-icon btn-round btn-sm" (click)="openUpdateDialog(rowData, rowData.id)">
-                  <i class="now-ui-icons shopping_tag-content"></i>
-                </button>
-                <app-cnm-modal #updateViewComponent (onConfirm)="updateSession()">
-                  <ng-template #header > Seans Bilgileri</ng-template>
-                  <ng-template #saveTemplate >
-                      <span class="ui-float-label" [style]="{'margin-top':'25px'}">
-                        <input class="form-control" type="text"  pInputText [(ngModel)]='record.startTime'>
-                        <label for="float-input">Seanslar</label>
-                      </span>
-                  </ng-template>
-                </app-cnm-modal>
-              </td>
-              <td>
-                <button class="btn btn-danger btn-icon btn-round btn-sm" (click)="openDeleteDialog(rowData.id)">
-                  <i class="now-ui-icons ui-1_simple-remove"></i>
-                </button>
-                <app-cnm-confirm-dialog (onConfirm)="deleteSession()"></app-cnm-confirm-dialog>
-              </td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </p-panel>
-    </div>
+        </ng-template>
+      </app-cnm-modal>
+    </p-panel>
   </div>
+  <div class="col-lg-9">
+    <p-panel header="Seans Listesi" [toggleable]="true" *ngIf='sorgulandi'
+      [style]="{'margin-bottom':'25px', 'margin-right':'25px'}">
+      <p-table [columns]="cols" [value]="sessions" [autoLayout]="true" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{col.header}}
+              <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+            <th>Güncelle</th>
+            <th>Sil</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
+            </td>
+            <td>
+              <button class="btn btn-warning btn-icon btn-round btn-sm" (click)="openUpdateDialog(rowData, rowData.id)">
+                <i class="now-ui-icons shopping_tag-content"></i>
+              </button>
+              <app-cnm-modal #updateViewComponent (onConfirm)="updateSession()">
+                <ng-template #header> Seans Bilgileri</ng-template>
+                <ng-template #saveTemplate>
+                  <span class="ui-float-label" [style]="{'margin-top':'25px'}">
+                    <input class="form-control" type="text" pInputText [(ngModel)]='record.startTime'>
+                    <label for="float-input">Seanslar</label>
+                  </span>
+                </ng-template>
+              </app-cnm-modal>
+            </td>
+            <td>
+              <button class="btn btn-danger btn-icon btn-round btn-sm" (click)="openDeleteDialog(rowData.id)">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+              </button>
+              <app-cnm-confirm-dialog (onConfirm)="deleteSession()"></app-cnm-confirm-dialog>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-panel>
+  </div>
+</div>

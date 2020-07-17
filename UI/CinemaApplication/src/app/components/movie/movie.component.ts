@@ -23,6 +23,7 @@ export class MovieComponent implements OnInit {
   sorgulandi = false;
   cols: any[];
   value: Date;
+  updateDate:Date;
 
   @ViewChild(CnmConfirmDialogComponent, { static: false }) dialogComponentRef: CnmConfirmDialogComponent;
   @ViewChild('updateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
@@ -47,7 +48,7 @@ export class MovieComponent implements OnInit {
     movieParam.name  = this.criteria.name;
     movieParam.genre=this.criteria.genre;
 
-    this.httpService.post<MovieGetVM, any>("Movie", movieParam, "GetWhereMovie").subscribe(data => {
+    this.httpService.post<MovieGetVM, any>("Movie", movieParam, "GetWhereMovieList").subscribe(data => {
       this.Movie = data;
       this.sorgulandi = true;
     });
@@ -83,7 +84,7 @@ export class MovieComponent implements OnInit {
     updateMovie.genre = this.record.genre;
     updateMovie.duration = this.record.duration;
     updateMovie.description = this.record.description;
-    updateMovie.releaseDate = new Date(this.record.value);
+    updateMovie.releaseDate = new Date(this.updateDate);
 
     this.httpService.put<MovieUpdateVM, any>("Movie", updateMovie, "UpdateMovie").subscribe(updatedata => {
       this.updateMovie = updatedata;
@@ -98,7 +99,7 @@ export class MovieComponent implements OnInit {
     this.record.genre = selectedMovie.genre;
     this.record.duration = selectedMovie.duration;
     this.record.description = selectedMovie.description;
-    this.record.value = selectedMovie.releaseDate;
+    this.updateDate= selectedMovie.releaseDate;
     this.UpdateViewComponentRef.openDialog();
   }
   deleteMovie() {
