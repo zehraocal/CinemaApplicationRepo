@@ -32,6 +32,10 @@
               <input class="form-control" type="text" pInputText [(ngModel)]="record.addDuration">
               <label for="float-input">Film Süresi (dk)</label>
             </span>
+            <span class="ui-float-label" [style]="{'margin-top':'25px'}">
+              <input class="form-control" type="text" pInputText [(ngModel)]="record.addPosterName">
+              <label for="float-input">Poster Adı</label>
+            </span>
 
             <span class="ui-float-label" [style]="{'margin-top':'25px'}">
               <p-calendar [(ngModel)]="value" dateFormat="dd.mm.yy" [style]="{'width':'100%'}"
@@ -91,6 +95,11 @@
                   <span class="ui-float-label" [style]="{'margin-top':'25px'}">
                     <input class="form-control" type="text" size="30" pInputText [(ngModel)]='record.duration'>
                     <label for="float-input">Film Süresi (dk)</label>
+                  </span>
+
+                  <span class="ui-float-label" [style]="{'margin-top':'25px'}">
+                    <input class="form-control" type="text"   size="30" pInputText [(ngModel)]="record.posterName">
+                    <label for="float-input">Poster Adı</label>
                   </span>
 
                   <span class="ui-float-label" [style]="{'margin-top':'25px'}">

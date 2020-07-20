@@ -29,7 +29,7 @@
                 <button class="btn btn-primary btn-round" (click)="openAddDialog( )"> Ekle </button>
             </div>
             <app-cnm-modal #addViewComponent (onConfirm)="addVisionMovie()">
-                <ng-template #header> Vizyondaki Filmleri Ekle</ng-template>
+                <ng-template #header>Vizyondaki Filmleri Ekle</ng-template>
                 <ng-template #saveTemplate>
                     <span class="ui-float-label" [style]="{'margin-top':'25px'}">
                         <p-dropdown id="float-input" [autoDisplayFirst]="false" [options]="movies"

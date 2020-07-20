@@ -91,7 +91,6 @@ export class VisionMovieComponent implements OnInit {
   }
 
   addVisionMovie() {
-    debugger
     let visionMovie: VisionMovieAddVM = new VisionMovieAddVM();
     visionMovie.movieId = this.selectedMovie;
     visionMovie.movieHouseId = this.selectedMovieHouse;
@@ -100,14 +99,13 @@ export class VisionMovieComponent implements OnInit {
     visionMovie.displayDate = new Date(this.value);
 
     this.httpService.post<VisionMovieAddVM, any>("VisionMovie", visionMovie, "AddVisionMovie").subscribe(data => {
-      debugger
       if (data) {
-        this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'başarılı' });
+        this.messageService.add({ severity: 'success', detail: 'Başarıyla eklendi.' });
         this.getVisionMovie();
         this.modalService.dismissAll();
       }
       else 
-        this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'başarısız' });
+        this.messageService.add({ severity: 'error', detail: 'Ekleme başarısız.' });
     });
   }
 
@@ -118,7 +116,6 @@ export class VisionMovieComponent implements OnInit {
 
 
   updateVisionMovie() {
-    debugger
     let updateVisionMovie: VisionMovieUpdateVM = new VisionMovieUpdateVM();
     updateVisionMovie.id = this.updateId;
     updateVisionMovie.movieId = this.selectedUpdateMovie;
@@ -135,7 +132,6 @@ export class VisionMovieComponent implements OnInit {
   }
 
   openUpdateDialog(selectedVisionMovie, id: number) {
-    debugger
     this.updateId = id;
     this.selectedUpdateMovie = selectedVisionMovie.movieId;
     this.selectedUpdateMovieHouse = selectedVisionMovie.movieHouseId;

@@ -62,6 +62,7 @@ export class MovieComponent implements OnInit {
     movie.genre = this.record.addGenre;
     movie.duration = this.record.addDuration;
     movie.description = this.record.addDescription;
+    movie.posterName=this.record.addPosterName;
     movie.releaseDate = new Date(this.value);
 
     this.httpService.post<MovieAddVM, any>("Movie", movie, "AddMovie").subscribe(data => {
@@ -83,6 +84,7 @@ export class MovieComponent implements OnInit {
     updateMovie.name = this.record.name;
     updateMovie.genre = this.record.genre;
     updateMovie.duration = this.record.duration;
+    updateMovie.posterName=this.record.posterName;
     updateMovie.description = this.record.description;
     updateMovie.releaseDate = new Date(this.updateDate);
 
@@ -98,6 +100,7 @@ export class MovieComponent implements OnInit {
     this.record.name = selectedMovie.name;
     this.record.genre = selectedMovie.genre;
     this.record.duration = selectedMovie.duration;
+    this.record.posterName=selectedMovie.posterName;
     this.record.description = selectedMovie.description;
     this.updateDate= selectedMovie.releaseDate;
     this.UpdateViewComponentRef.openDialog();
