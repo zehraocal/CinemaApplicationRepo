@@ -29,7 +29,11 @@ import { MovieComponent } from './movie/movie.component';
 import { SessionComponent } from './session/session.component';
 import { VisionMovieComponent } from './vision-movie/vision-movie.component';
 import { MovieCarouselComponent } from './movie-carousel/movie-carousel.component';
-import { MoviesComponent } from './movies/movies.component';
+import { CnmCardComponent } from './cinema-components/cnm-card/cnm-card.component';
+import { MovieListComponent } from './movie-list/movie-list.component';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+
+
 
 @NgModule({
     imports: [
@@ -65,7 +69,10 @@ import { MoviesComponent } from './movies/movies.component';
         SessionComponent,
         VisionMovieComponent,
         MovieCarouselComponent,
-        MoviesComponent
+        CnmCardComponent,
+        MovieListComponent,
+        MovieDetailComponent
+      
     ],
     exports: [ComponentsComponent]
 })

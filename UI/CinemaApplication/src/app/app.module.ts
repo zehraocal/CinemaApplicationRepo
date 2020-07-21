@@ -15,8 +15,7 @@ import { BrowserModule } from '@angular/platform-browser';
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent,
-        
+        NavbarComponent,   
     ],
     imports: [
         BrowserAnimationsModule,

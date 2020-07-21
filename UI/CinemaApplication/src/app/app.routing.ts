@@ -12,6 +12,8 @@ import { MoviehouseComponent } from './components/moviehouse/moviehouse.componen
 import { MovieComponent } from './components/movie/movie.component';
 import { SessionComponent } from './components/session/session.component';
 import { VisionMovieComponent } from './components/vision-movie/vision-movie.component';
+import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 
 
 const routes: Routes =[
@@ -21,6 +23,8 @@ const routes: Routes =[
     { path: 'movie',                component: MovieComponent },
     { path: 'session',              component: SessionComponent },
     { path: 'visionmovie',          component: VisionMovieComponent },
+    { path: 'movie-list',           component: MovieListComponent },
+    { path: 'movie-detail/:movieId',         component: MovieDetailComponent },
     { path: 'nucleoicons',          component: NucleoiconsComponent },
     { path: 'examples/landing',     component: LandingComponent },
     { path: 'examples/login',       component: LoginComponent },

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CinemaApplication.Entity.ViewModels
 {
-    public class MovieUpdateVM : UpdateVMBase
+    public class GetVisionMovieListVM
     {
         public string Name { get; set; }
         public string Genre { get; set; }
