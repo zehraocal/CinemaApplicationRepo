@@ -47,36 +47,35 @@ namespace CinemaApplication.BL.Repository.Concreate
         }
 
         public override bool Add<TAddVM>(TAddVM model)
-        {//ToDo return string dön hata mesajı yaz çakışma gerçekleşti diye ve bu stringi returnle
+        {
+            //ToDo return string dön hata mesajı yaz çakışma gerçekleşti diye ve bu stringi returnle
             var visionMovieAddParam = model as VisionMovieAddVM;
             if (!VisionMovieControl(visionMovieAddParam))
                 return false;    
             // ToDo toaster eklendiği zaman ilgili mesaj yazdırılacak.
             return base.Add(model);
         }
+
         public bool VisionMovieControl(VisionMovieAddVM model)
         {
-            var visionMovies = GetAllWithType<VisionMovieListVM>();
-            visionMovies = visionMovies.Where(a => a.MovieHouseId == model.MovieHouseId && a.DisplayDate == DateTime.Parse(model.DisplayDate)).ToList();
+            var visionMovieList = GetWhereWithType<VisionMovieListVM>(a => a.MovieHouseId == model.MovieHouseId && a.DisplayDate == DateTime.Parse(model.DisplayDate)).ToList();
+            var modelStartTime = Convert.ToDateTime(_bISessionRepository.GetSingle(x => x.Id == model.SessionId).StartTime).TimeOfDay;
 
-            var sessions = GetAllWithType<VisionMovieListVM>();
-            var startTime = sessions.FirstOrDefault(x => x.SessionId == model.SessionId).SessionStartTime;
-            var modelStartTime = Convert.ToDateTime(startTime).TimeOfDay;
+            var duration = _bIMovieRepository.GetSingle(x => x.Id == model.MovieId).Duration;
+            var hour = duration / 60;
+            var minute = duration % 60;
+            var modelEndTime = modelStartTime + Convert.ToDateTime(hour + ":" + minute).TimeOfDay;
 
-            var movieStartTime = visionMovies.ToList().FirstOrDefault(a => Convert.ToDateTime(a.SessionStartTime).TimeOfDay == modelStartTime || Convert.ToDateTime(a.SessionStartTime).TimeOfDay < modelStartTime);
-
-            foreach (var item in visionMovies)
+            foreach (var item in visionMovieList)
             {
-                var movieDuration = item.Duration;
-                var Hour = movieDuration / 60;
-                var Minute = (movieDuration % 60);
-                string endTime = (Hour + ":" + Minute);
-                var movieEndTime = Convert.ToDateTime(endTime).TimeOfDay + Convert.ToDateTime(item.SessionStartTime).TimeOfDay;
+                hour = item.Duration / 60;
+                minute = item.Duration % 60;
+                var movieEndTime = Convert.ToDateTime(hour + ":" + minute).TimeOfDay + Convert.ToDateTime(item.SessionStartTime).TimeOfDay;
 
-                if (movieStartTime != null && modelStartTime < movieEndTime)
-                {
+                if (Convert.ToDateTime(item.SessionStartTime).TimeOfDay <= modelStartTime && modelStartTime <= movieEndTime)
                     return false;
-                }
+                if (modelEndTime >= Convert.ToDateTime(item.SessionStartTime).TimeOfDay && modelStartTime <= movieEndTime)
+                    return false;
             }
             return (true);
         }

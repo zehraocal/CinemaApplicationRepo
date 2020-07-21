@@ -58,5 +58,11 @@ namespace CinemaApplication.Controllers
         {
             return Ok(_blVisionMovieRepository.GetAllWithType<VisionMovieListVM>());
         }
+
+        [HttpGet]
+        public IActionResult GetCardVisionMovieList()
+        {
+            return Ok(_blVisionMovieRepository.GetAllWithType<GetVisionMovieListVM>());
+        }
     }
 }
