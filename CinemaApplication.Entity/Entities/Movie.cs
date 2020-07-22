@@ -13,5 +13,6 @@ namespace CinemaApplication.Entity.Entities
         public string PosterName { get; set; }
         public DateTime ReleaseDate { get; set; }
         public ICollection<VisionMovie> VisionMovies { get; set; }
+        public ICollection<MovieCasting> MovieCastings { get; set; }
     }
 }
