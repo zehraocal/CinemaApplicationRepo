@@ -10,5 +10,7 @@ namespace CinemaApplication.BL.Repository.Interface
     {
         List<VisionMovieListVM> GetVisionMovieList(VisionMovieGetVM model);
         bool VisionMovieControl(VisionMovieAddVM model);
+        List<DropDownListVM> GetDisplayDateList(long id);
+        bool ControlVisionMovieList(long id);
     }    
 }

@@ -10,7 +10,8 @@ namespace CinemaApplication.BL.Repository.Interface
     public interface IBIMovieRepository : IBlRepository<Movie>
     {
         List<Movie> GetWhereMovieList(MovieGetVM model);
-
+        List<GetMovieListVM> GetVisionMovieList(GetMovieListVM model);
+        List<GetMovieListVM> GetMovieList(GetMovieListVM model);
 
     }
 }

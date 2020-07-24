@@ -29,7 +29,7 @@ namespace CinemaApplication.Controllers
         [HttpGet("{id}")]
         public IActionResult GetSingleMovieList(long id)
         {
-            return Ok(_blMovieRepository.GetSingle(x => x.Id == id));
+            return Ok(_blMovieRepository.GetSingleWithType<DetailMovieVM>(x => x.Id == id));
         }
 
         [HttpPost]
@@ -59,11 +59,18 @@ namespace CinemaApplication.Controllers
             return Ok(_blMovieRepository.GetAllWithType<DropDownListVM>());
         }
 
-        [HttpGet]
-        public IActionResult GetMovieList()
+        [HttpPost]
+        public IActionResult GetMovieList(GetMovieListVM model)
         {
-            return Ok(_blMovieRepository.GetAllWithType<GetMovieListVM>());
+            return Ok(_blMovieRepository.GetMovieList(model));
         }
 
+        [HttpPost]
+        public IActionResult GetVisionMovieList(GetMovieListVM model)
+        {
+            return Ok(_blMovieRepository.GetVisionMovieList(model));
+        }
+
+        
     }
 }

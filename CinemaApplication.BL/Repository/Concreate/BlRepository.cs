@@ -42,6 +42,10 @@ namespace CinemaApplication.BL.Repository.Concreate
             return Table.FirstOrDefault(method);
         }
 
+        public virtual TVM GetSingleWithType <TVM>(Func<TVM, bool> method) where TVM : class
+        {
+            return Table.ProjectTo<TVM>(_mappingProfile.ConfigurationProvider).FirstOrDefault(method);
+        }
         public List<T> GetWhere(Func<T, bool> method)
         {
             return Table.Where(method).ToList();

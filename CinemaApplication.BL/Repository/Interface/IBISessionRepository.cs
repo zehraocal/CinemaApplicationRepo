@@ -9,6 +9,8 @@ namespace CinemaApplication.BL.Repository.Interface
     public interface IBISessionRepository: IBlRepository<Session>
     {
         List<Session> GetWhereSessionList(SessionGetVM model);
+        List<DropDownListVM> GetVisionMovieDropDownList(MovieTicketGetSession model);
+        
         //string SessionConvertType(SessionAddVM model);
     }
 }

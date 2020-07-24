@@ -25,10 +25,8 @@
             </h4>
           </div>
           <div class="col2">
-            <!-- <div class="watch-btn"> -->
               <ng-container *ngTemplateOutlet="detailTemplate">
               </ng-container>
-            <!-- </div> -->
           </div>
         </div>
         <!-- <div class="mr-grid actors-row">
@@ -40,9 +38,8 @@
         </div> -->
         <div class="mr-grid action-row">
           <div class="col2">
-            <div class="watch-btn">
-              <a class="nav-link" routerLink="movie-detail">BİLET AL<span class="sr-only">(current)</span></a> 
-            </div>
+            <ng-container *ngTemplateOutlet="ticketTemplate">
+            </ng-container>
           </div>
         </div>
       </div>

@@ -26,6 +26,11 @@ namespace CinemaApplication.Controllers
             return Ok(_blVisionMovieRepository.GetVisionMovieList(model));
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetSingleVisionMovieList(long id)
+        {
+            return Ok(_blVisionMovieRepository.GetSingle(x => x.MovieId == id));
+        }
 
         public IActionResult VisionMovieControl(VisionMovieAddVM model)
         {
@@ -62,7 +67,23 @@ namespace CinemaApplication.Controllers
         [HttpGet]
         public IActionResult GetCardVisionMovieList()
         {
-            return Ok(_blVisionMovieRepository.GetAllWithType<GetVisionMovieListVM>());
+            return Ok(_blVisionMovieRepository.GetAllWithType<GetVisionMovieListVM>().GroupBy(x => x.Name).Select(g => g.First()).ToList());
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetDisplayDateList(long id)
+        {
+            var a = _blVisionMovieRepository.GetDisplayDateList(id);
+            return Ok(a);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult ControlVisionMovieList(long id)
+        {
+            var movie = _blVisionMovieRepository.ControlVisionMovieList(id);
+
+            return Ok(movie);
+        }
+
     }
 }

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using CinemaApplication.BL.Repository.Interface;
+using CinemaApplication.DAL.Contexts;
 using CinemaApplication.Entity.Entities;
 using CinemaApplication.Entity.ViewModels;
+using CinemaApplication.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +13,10 @@ namespace CinemaApplication.BL.Repository.Concreate
 {
     public class BISessionRepository : BlRepository<Session>, IBISessionRepository
     {
-        public BISessionRepository(IMapper mappingProfile) : base(mappingProfile)
+        CinemaApplicationContext _context;
+        public BISessionRepository( IMapper mappingProfile) : base(mappingProfile)
         {
+            _context = DbContextService.GetDbContext();
         }
 
         public List<Session> GetWhereSessionList(SessionGetVM model)
@@ -31,5 +35,10 @@ namespace CinemaApplication.BL.Repository.Concreate
             return base.Add(sessionAddParam);
         }
 
+        public List<DropDownListVM> GetVisionMovieDropDownList(MovieTicketGetSession model)
+        {
+            var result = GetAllWithType<DropDownListVM>().Where(p => _context.Set<VisionMovie>().Where(a => a.MovieId == model.MovieId && a.DisplayDate==model.DisplayDate).ToList().Any(p2 => p2.SessionId == p.Value)).ToList();
+            return result;
+        }
     }
 }

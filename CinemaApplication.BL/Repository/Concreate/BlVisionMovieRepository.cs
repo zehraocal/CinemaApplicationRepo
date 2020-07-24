@@ -23,7 +23,6 @@ namespace CinemaApplication.BL.Repository.Concreate
 
         public List<VisionMovieListVM> GetVisionMovieList(VisionMovieGetVM model)
         {
-
             var movies = GetAllWithType<VisionMovieListVM>();
             if (model.MovieId.HasValue)
             {
@@ -78,6 +77,22 @@ namespace CinemaApplication.BL.Repository.Concreate
                     return false;
             }
             return (true);
+        }
+
+        public List<DropDownListVM> GetDisplayDateList(long id)
+        {
+            var visionMovieList = GetWhere(a => a.MovieId == id);
+            return _mappingProfile.Map<List<VisionMovie>, List<DropDownListVM>>(visionMovieList);
+        }
+
+        public bool ControlVisionMovieList(long id)
+        {
+            var visionMovieControl = GetWhere(a => a.MovieId == id).ToList();
+            if (visionMovieControl.Count()>0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

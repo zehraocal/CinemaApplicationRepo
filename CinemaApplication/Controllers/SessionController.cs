@@ -50,5 +50,12 @@ namespace CinemaApplication.Controllers
         {
             return Ok(_bISessionRepository.GetAllWithType<DropDownListVM>());
         }
+
+        [HttpPost]
+        public IActionResult GetVisionMovieDropDownList(MovieTicketGetSession model)
+        {
+            return Ok(_bISessionRepository.GetVisionMovieDropDownList(model));
+        }
+
     }
 }

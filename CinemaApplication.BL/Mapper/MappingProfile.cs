@@ -3,6 +3,7 @@ using CinemaApplication.Entity.Entities;
 using CinemaApplication.Entity.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CinemaApplication.BL.Mapper
@@ -25,6 +26,11 @@ namespace CinemaApplication.BL.Mapper
             CreateMap<Movie, DropDownListVM>()
                 .ForMember(member1 => member1.Value, member2 => member2.MapFrom(x => x.Id))
                 .ForMember(member1 => member1.Label, member2 => member2.MapFrom(x => x.Name));
+            CreateMap<VisionMovie, DisplayDateList>()
+                .ForMember(member1 => member1.DisplayDate, member2 => member2.MapFrom(x => x.DisplayDate));
+            CreateMap<Movie, DetailMovieVM>()
+                .ForMember(member1 => member1.DirectorName, member2 => member2.MapFrom(x => string.Join(", ", x.MovieCastings.Where(a => a.Casting.Type == 2).Select(a => a.Casting.Name))))
+                .ForMember(member1 => member1.ActorName, member2 => member2.MapFrom(x => string.Join(", ", x.MovieCastings.Where(a=>a.Casting.Type==1).Select(a=>a.Casting.Name))));
             CreateMap<MovieHouse, DropDownListVM>()
                .ForMember(member1 => member1.Value, member2 => member2.MapFrom(x => x.Id))
                .ForMember(member1 => member1.Label, member2 => member2.MapFrom(x => x.Name));
@@ -43,6 +49,9 @@ namespace CinemaApplication.BL.Mapper
                 .ForMember(member1 => member1.Description, member2 => member2.MapFrom(x => x.Movie.Description))
                 .ForMember(member1 => member1.PosterName, member2 => member2.MapFrom(x => x.Movie.PosterName))
                 .ForMember(member1 => member1.ReleaseDate, member2 => member2.MapFrom(x => x.Movie.ReleaseDate));
+            CreateMap<VisionMovie, DropDownListVM>()
+                   .ForMember(member1 => member1.Value, member2 => member2.MapFrom(x => x.Id))
+                   .ForMember(member1 => member1.Label, member2 => member2.MapFrom(x => x.DisplayDate.ToShortDateString()));
         }
     }
 }
