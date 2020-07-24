@@ -7,6 +7,7 @@ import { Component, OnInit, Input, ContentChild, TemplateRef } from '@angular/co
 export class CnmCardComponent implements OnInit {
   
   @ContentChild('detailTemplate', { static: false }) detailTemplate: TemplateRef<any>;
+  @ContentChild('ticketTemplate', { static: false }) ticketTemplate: TemplateRef<any>;
   @Input() movieName: string;
   @Input() duration: number;
   @Input() genre: string;

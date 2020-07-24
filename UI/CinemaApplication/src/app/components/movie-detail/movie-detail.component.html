@@ -1,19 +1,67 @@
-<div class="container" [value]="movieDetail">
-    <div class="row">
-        <div class="col-lg-4 col-md-12">
-        <div class="container">
-            <div class="cellphone-container">
-              <div class="movie">
-                <div class="movie-img">
-                  <img src="assets/img/movies/{{movieDetail.posterName}}.jpg" />
-                </div>
-              </div>
-            </div>
-        </div>
-        </div>
-        <div class="col-lg-4 col-md-12"></div>
-        <div class="movie-title">{{movieDetail.name}}</div>
-        <div class="movie-subtitle">{{movieDetail.genre}} | {{movieDetail.duration}}</div>
+<div class="movie-screen" [value]="movies">
+  <div class="row">
+    <div class="col-lg-4 col-md-12">
+      <div class="movie-img2">
+        <img src="assets/img/movies/{{movies.posterName}}.jpg" />
+      </div>
     </div>
-    <div class="movie-description">{{movieDetail.description}}</div>
+    <div class="movie-detail">
+      <div class="col-lg-8 col-md-12">
+        <h3>
+          <div class="movie-title">{{movies.name}}</div>
+        </h3>
+        <div class="movie-subtitle">Tür: {{movies.genre}} | Süre: {{movies.duration}} dk</div>
+        <div class="movie-detail-description">{{movies. description}}</div>
+        <div class="movie-detail-description">Oyuncular : {{movies.actorName}}</div>
+        <div class="movie-detail-description">Yönetmen : {{movies.directorName}}</div>
+        <button class="btn btn-primary btn-round " *ngIf='showDetail'>
+          <a [routerLink] ="['/movie-ticket', movies.id]">BİLET AL</a> </button>
+      </div>
+    </div>
+  </div>
 </div>
+<div class=row>
+  <div class="container-comment">
+    <div class="movie-title">Yorumunuz</div>
+    <p class="text-muted">
+      <textarea rows="5" cols="150" autoResize="autoResize" pInputTextarea [(ngModel)]='record.comment'></textarea>
+    </p>
+    <p-rating [(ngModel)]="rating" [cancel]="false"></p-rating>
+    <button class="btn btn-primary btn-round">Gönder</button>
+  </div>
+</div>
+
+<footer class="footer" data-background-color="black">
+  <div class="container">
+      <nav>
+          <ul>
+              <li>
+                  <a href="https://www.creative-tim.com">
+                      Creative Tim
+                  </a>
+              </li>
+              <li>
+                  <a href="https://www.creative-tim.com/about-us">
+                      About Us
+                  </a>
+              </li>
+              <li>
+                  <a href="http://blog.creative-tim.com">
+                      Blog
+                  </a>
+              </li>
+              <li>
+                  <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+                      MIT License
+                  </a>
+              </li>
+          </ul>
+      </nav>
+      <div class="copyright">
+          &copy;
+          {{data | date: 'yyyy'}}, Designed by
+          <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
+          <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+      </div>
+  </div>
+</footer>
