@@ -21,35 +21,38 @@
             </span>
         </div>
     </div>
-
     <div class="col-lg-9 col-md-12" *ngIf='getVisionMovieList'>
-        <div class="row card-group">
-            <div *ngFor="let movie of movies" cols="4">
-                <app-cnm-card [movieName]="movie.name" [imagePath]="movie.posterName" [duration]="movie.duration"
-                    [genre]="movie.genre">
-                    <ng-template #detailTemplate>
-                        <button class="btn btn-primary btn-round">
-                            <a [routerLink]="['/movie-detail', movie.id]">DETAY</a> </button>
-                    </ng-template>
-                    <ng-template #ticketTemplate>
-                        <button class="btn btn-primary btn-round">
-                            <a [routerLink]="['/movie-ticket', movies.id]">BİLET AL</a> </button>
-                    </ng-template>
-                </app-cnm-card>
+        <div class="movie-border">
+            <div class="row card-group">
+                <div *ngFor="let movie of movies" cols="4">
+                    <app-cnm-card [movieName]="movie.name" [imagePath]="movie.posterName" [duration]="movie.duration"
+                        [genre]="movie.genre">
+                        <ng-template #detailTemplate>
+                            <button class="btn btn-primary btn-round">
+                                <a [routerLink]="['/movie-detail', movie.id]">DETAY</a> </button>
+                        </ng-template>
+                        <ng-template #ticketTemplate>
+                            <button class="btn btn-primary btn-round">
+                                <a [routerLink]="['/movie-ticket', movie.id]">BİLET AL</a> </button>
+                        </ng-template>
+                    </app-cnm-card>
+                </div>
             </div>
         </div>
     </div>
     <div class="col-lg-9 col-md-12" *ngIf='getMovieList'>
-        <div class="row card-group">
-            <div *ngFor="let movie of movies" cols="4">
-                <app-cnm-card [movieName]="movie.name" [imagePath]="movie.posterName" [duration]="movie.duration"
-                    [genre]="movie.genre">
-                    <ng-template #detailTemplate>
-                        <button class="btn btn-primary btn-round">
-                            <a [routerLink]="['/movie-detail', movie.id]">DETAY</a> </button>
-                    </ng-template>
-                    <ng-template #ticketTemplate></ng-template>
-                </app-cnm-card>
+        <div class="movie-border">
+            <div class="row card-group">
+                <div *ngFor="let movie of movies" cols="4">
+                    <app-cnm-card [movieName]="movie.name" [imagePath]="movie.posterName" [duration]="movie.duration"
+                        [genre]="movie.genre">
+                        <ng-template #detailTemplate>
+                            <button class="btn btn-primary btn-round">
+                                <a [routerLink]="['/movie-detail', movie.id]">DETAY</a> </button>
+                        </ng-template>
+                        <ng-template #ticketTemplate></ng-template>
+                    </app-cnm-card>
+                </div>
             </div>
         </div>
     </div>

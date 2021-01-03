@@ -22,6 +22,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CarouselModule} from 'primeng/carousel';
+import {RatingModule} from 'primeng/rating';
 import {ToastModule} from 'primeng/toast';
 import { CnmConfirmDialogComponent } from './cinema-components/cnm-confirm-dialog/cnm-confirm-dialog.component';
 import { CnmModalComponent } from './cinema-components/cnm-modal/cnm-modal.component';
@@ -32,6 +33,7 @@ import { MovieCarouselComponent } from './movie-carousel/movie-carousel.componen
 import { CnmCardComponent } from './cinema-components/cnm-card/cnm-card.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { MovieTicketComponent } from './movie-ticket/movie-ticket.component';
 
 
 
@@ -49,6 +51,7 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
         TableModule,
         ButtonModule,
         CalendarModule,
+        RatingModule,
         DropdownModule,
         ToastModule,
         InputTextareaModule, 
@@ -71,7 +74,8 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
         MovieCarouselComponent,
         CnmCardComponent,
         MovieListComponent,
-        MovieDetailComponent
+        MovieDetailComponent,
+        MovieTicketComponent
       
     ],
     exports: [ComponentsComponent]

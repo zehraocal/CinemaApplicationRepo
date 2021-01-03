@@ -4,9 +4,9 @@ using System.Text;
 
 namespace CinemaApplication.Entity.ViewModels
 {
-   public  class MovieTicketGetSession
+    public class MovieHouseGetCapacityVM
     {
-        public long MovieId { get; set; }
-        public long VisionMovieId { get; set; }
+        public long Id { get; set; }
+        public string Name { get; set; }
     }
 }

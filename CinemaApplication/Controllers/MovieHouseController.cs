@@ -28,6 +28,13 @@ namespace CinemaApplication.Controllers
             return Ok(_blMovieHouseRepository.GetWhereMovieHouseList(model));
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetSingleMovieHouse(long id)
+        {
+            var a = _blMovieHouseRepository.GetSingle(x => x.Id == id);
+            return Ok(_blMovieHouseRepository.GetSingle(x => x.Id== id));
+        }
+
         [HttpPost]
         public IActionResult AddMovieHouse(MovieHouseAddVM model)
         {
@@ -52,6 +59,12 @@ namespace CinemaApplication.Controllers
         public IActionResult GetDropDownList()
         {
             return Ok(_blMovieHouseRepository.GetAllWithType<DropDownListVM>());
+        }
+
+        [HttpPost]
+        public IActionResult GetMovieHouseDropDownList(MovieTicketGetSession model)
+        {
+            return Ok(_blMovieHouseRepository.GetMovieHouseDropDownList(model));
         }
     }
 }

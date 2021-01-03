@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-lg-3 col-md-12">
+    <p-panel header="Sorgulama Kriteri" [toggleable]="true" [style]="{'margin-bottom':'25px', 'margin-left':'20px'}  ">
+      <!-- <button type="submit" class="btn btn-primary btn-simple btn-round" *ngIf='getDate'
+        (click)="displayDateTime()">TARİH SEÇ
+      </button>-->
+      <!-- <span class="ui-float-label" [style]="{'margin-top':'25px'}">
+        <p-dropdown id="float-input" [autoDisplayFirst]="false" [options]="displayDates" [(ngModel)]="selectedDates"
+          [showClear]="true" (onChange)="onChange($event)"> </p-dropdown>
+        <label for="float-input">Tarih</label> 
+      </span>-->
+      <!--  <span class="ui-float-label" [style]="{'margin-top':'25px'}">
+        <p-dropdown id="float-input" [autoDisplayFirst]="false" [options]="movieHouses" [(ngModel)]="queryMovieHouse"
+          [showClear]="true" (onChange)="onChange1($event)"></p-dropdown>
+        <label for="float-input">Sinema Salonu</label>  </span> -->
+      <!--  <span class="ui-float-label" [style]="{'margin-top':'25px'}">
+        <p-dropdown id="float-input" [autoDisplayFirst]="false" [options]="sessions" [(ngModel)]="guerySession"
+          [showClear]="true"></p-dropdown>
+        <label for="float-input">Seans</label>
+      </span>-->
+
+      <div class="row" *ngFor="let item of displayDates">
+        <label for="float-input">Tarih Seç Aga</label>
+        <button type="button" (click)="selectDateTime(item.value)" class="btn btn-primary btn-round"
+          style="float:left; margin-top: 25px;">{{item.label}}</button>
+      </div>
+
+      <div class="row" *ngFor="let item of movieHouses">
+        <label for="float-input">Şimdide salonu </label>
+        <button type="button" (click)="selectMovieHouse(item.value)" class="btn btn-primary btn-simple btn-round"
+          style="float:left;margin-top: 25px;">{{item.label}}</button>
+      </div>
+
+      <div class="row" *ngFor="let item of sessions">
+        <label for="float-input">seans balım </label>
+        <button type="button" (click)="selectSessions(item.value)" class="btn btn-primary btn-simple btn-round"
+          style="float:left;margin-top: 25px;">{{item.label}}</button>
+      </div>
+
+      <div class="row">
+        <button type="submit" class=" btn btn-info btn-round" (click)="getVisionMovie()"> Bilet Al
+        </button>
+      </div>
+
+    </p-panel>
+  </div>
+
+  <div class="col-lg-6 col-md-12">
+    <div class="legend">
+      <span class="glyphicon glyphicon-stop freeSeat"></span> FREE
+      <span class="glyphicon glyphicon-ban-circle reservedSeat padding-left"></span> TAKEN
+      <span class="glyphicon glyphicon-ok-sign selectedSeat padding-left"></span> SELECTED
+    </div>
+
+    <div *ngFor="let row of rows">
+      <span class="seat" *ngFor="let col of cols" (click)="seatClicked(row + col)" [ngSwitch]="getStatus(row + col)">
+        <button>seç</button>
+        <span *ngSwitchCase="'selected'" class="glyphicon glyphicon-ok-sign selectedSeat"></span>
+        <span *ngSwitchCase="'reserved'" class="glyphicon glyphicon-ban-circle reservedSeat"></span>
+        <span *ngSwitchDefault class="glyphicon glyphicon-stop freeSeat"></span>
+      </span>
+    </div>
+  </div>
+</div>
+<!-- <li *ngFor="let item of displayDates">
+  <button type="submit" class="btn btn-primary"> {{item | date: 'dd/MM/yyyy'}} </button> </li>  -->
