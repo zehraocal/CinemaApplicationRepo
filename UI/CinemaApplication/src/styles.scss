@@ -34,7 +34,6 @@ $dark-color: #1e1b26;
   border-radius: 4px;
 }
 
-
 .movie-img {
   width:100%;
   height:500px; 
@@ -51,9 +50,7 @@ $dark-color: #1e1b26;
 			color-stop(0.65,  rgba(0,0,0,1)),
 			color-stop(0.85,  rgba(0,0,0,0.6)),
       color-stop(1.00,  rgba(0,0,0,0)));
-
   position:relative;
-
 }
 
 .movie{
@@ -62,7 +59,6 @@ $dark-color: #1e1b26;
 //background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 38%,rgba(255,255,255,0.06) 39%,rgba(30,27,38,0.88) 53%,rgba(30,27,38,1) 55%); /* Chrome10-25,Safari5.1-6 */
 //background: linear-gradient(to bottom,  rgba(255,255,255,0) 38%,rgba(255,255,255,0.06) 39%,rgba(30,27,38,0.88) 53%,rgba(30,27,38,1) 55%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#1e1b26',GradientType=0 ); /* IE6-9 */
-
   position:absolute;
   background-size: contain;
   background-size: cover;
@@ -249,4 +245,137 @@ h5 {
 .col4rest { width: 72%; }
 .col5rest { width: 77%; }
 .col6rest { width: 80.3333333333%;}
+
+.movie-detail{
+  width: 600px;
+  height: 550px;
+  font-size: 18px;
+  padding-left: 50px;
+  margin: 50px;
+  margin-top: 30px;
+  padding: 20px 0px 0px 20px;
+}
+.movie-screen{
+  width: 100%;
+  height: 550px;
+  margin-top: -15px;
+    position: relative;
+    z-index: 9;
+    display: flex;
+    font-size: 1rem;
+    color: #f5efef;
+    background: rgb(37, 37, 37);
+    padding: 0px 0px 0px 100px;
+    text-rendering: optimizeLegibility;
+}
+
+.movie-img2 {
+  width:100%;
+  height:500px; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  z-index:111 !important;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  position:relative;
+  padding: 0px 0px 0px 0px;
+  background-color:#1e1b26;
+  margin : 30px auto 0 auto;
+  box-shadow:5px 5px 115px -14px black;
+  border-radius: 4px;
+}
+.movie-detail-description {
+  font-family:$paragraph-font-family;
+  font-size:$text-movie-description;
+  font-weight:$regular;
+  color:darken( $accent-color, 30% );  
+  @extend .elements-distance;
+  text-align: justify;
+  line-height: 1.3;
+  padding: 10px 0px 20px 0px;
+}
+.movie-title{
+  padding: 10px 0px 20px 0px; 
+}
+div.container-comment {
+  padding: 50px 100px 0px 100px;
+  background-color:#f8f8fa;
+  margin : 20px auto 0 auto;
+}
+div.movie-detail-query{
+  width: 300px;
+  height: 500px;
+  background-color:#f8f8fa;
+  margin : 50px auto 0 auto;
+  padding: 50px 10px 20px 30px; 
+}
+div.movie-border{
+  border-top: 1px solid rgba(225,226,227,.5);;
+  padding: 0px 10px 20px 0px;
+  margin-top: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//koltuk css
+.font14 {
+  font-size: 14px;
+}
+.font16 {
+  font-size: 16px;
+}
+.marginTop5 {
+  margin-top: 5px;
+}
+.marginTB10 {
+  margin: 10px 0px;
+}
+.wordWrap {
+  word-break: break-all;
+}
+/* End CSS Helpers */
+
+.innerContainer {
+  color: #fff;
+  text-align: center;
+}
+
+.seat {
+  padding-right: 5px;
+}
+
+.legend {
+  font-size: 14px;
+}
+.legend > .padding-left {
+  padding-left: 15px;
+}
+.screen {
+  background: hsla(216, 72%, 50%, 0.65);
+  height: 3px;
+  border-radius: 15px;
+  margin: -5px 50px 10px;
+  box-shadow: 0px 3px 6px #fff;
+}
+.reservedSeat {
+  color: #ce4844;
+}
+.selectedSeat {
+  color: #5cb85c;
+}
+.freeSeat {
+  color: #fff;
+}
 

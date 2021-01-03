@@ -82,7 +82,7 @@ namespace CinemaApplication.BL.Repository.Concreate
         public List<DropDownListVM> GetDisplayDateList(long id)
         {
             var visionMovieList = GetWhere(a => a.MovieId == id);
-            return _mappingProfile.Map<List<VisionMovie>, List<DropDownListVM>>(visionMovieList);
+            return _mappingProfile.Map<List<VisionMovie>, List<DropDownListVM>>(visionMovieList).GroupBy(x => x.Label).Select(g => g.First()).ToList();
         }
 
         public bool ControlVisionMovieList(long id)

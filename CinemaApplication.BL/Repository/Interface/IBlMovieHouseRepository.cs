@@ -8,5 +8,6 @@ namespace CinemaApplication.BL.Repository.Interface
     public interface IBlMovieHouseRepository : IBlRepository<MovieHouse>
     {
         List<MovieHouse> GetWhereMovieHouseList(MovieHouseGetVM model);
+        List<DropDownListVM> GetMovieHouseDropDownList(MovieTicketGetSession model);
     }
 }

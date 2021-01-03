@@ -12,9 +12,11 @@ using System.Linq;
 namespace CinemaApplication.BL.Repository.Concreate
 {
     public class BlMovieHouseRepository : BlRepository<MovieHouse>, IBlMovieHouseRepository
-    {     
+    {
+        CinemaApplicationContext _context;
         public BlMovieHouseRepository(IMapper mappingProfile) : base(mappingProfile)
         {
+            _context = DbContextService.GetDbContext();
         }
         public List<MovieHouse> GetWhereMovieHouseList(MovieHouseGetVM model)
         {
@@ -25,8 +27,13 @@ namespace CinemaApplication.BL.Repository.Concreate
             }
             return movieHouses;
         }
+        public List<DropDownListVM> GetMovieHouseDropDownList(MovieTicketGetSession model)
+        {
+            var visionMovie = _context.Set<VisionMovie>().FirstOrDefault(x=>x.Id == model.VisionMovieId).DisplayDate;
+            var result = GetAllWithType<DropDownListVM>().Where(p =>  _context.Set<VisionMovie>().Where(a => a.DisplayDate == visionMovie && a.MovieId == model.MovieId).ToList().Any(p2 => p2.MovieHouseId == p.Value)).ToList();
 
-
+            return result;
+        }
     }
 
 }
