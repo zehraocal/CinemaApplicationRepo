@@ -1,23 +1,28 @@
 <div class="container">
-<p-carousel [value]="movies" [numVisible]="4" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
-    <p-header>
-        <h4>Vizyondaki Filmler</h4>
-    </p-header> 
-    <ng-template let-movie pTemplate="item">
-        <div class="movie-details">
-            <div class="p-grid p-nogutter">
-                <div class="p-col-12">
-                    <img src="assets/img/movies/{{movie.posterName}}.jpg" />
-                </div>
-                <div class="p-col-12 car-data">
-                    <div class="car-title">{{movie.name}}</div>
-                    <div class="car-subtitle">{{movie.genre}} | {{movie.duration}}</div>
+    <p-carousel [value]="movies" [numVisible]="3" [numScroll]="3"  [autoplayInterval]="3000" [circular]="false" 
+        [responsiveOptions]="responsiveOptions" style="background-color: #9A9A9A ; width:100%;">
+        <p-header>
+            <h2 style="color: #9A9A9A; text-align: center;">Vizyondaki Filmler</h2>
+        </p-header>
+        <ng-template let-movie pTemplate="item">
+            <div class="movie-details">
+                <div class="p-grid p-nogutter">
+                    <div class="p-col-12">
+                        <img src="assets/img/movies/{{movie.posterName}}.jpg" />
+                    </div>
+                    <div class="p-col-12 car-data">
+                        <div class="car-title" style="text-align: center; color: #9A9A9A;">{{movie.name}}</div>
+                        <div class="car-subtitle" style="text-align: center; color: #9A9A9A;">{{movie.genre}} | {{movie.duration}}</div>
 
-                    <div class="car-buttons">
-                        <button pButton type="button" class="ui-button-secondary" icon="pi pi-search"></button>
                     </div>
                 </div>
             </div>
-        </div>
-    </ng-template>
-</p-carousel>
+        </ng-template>
+        <p-footer>
+            <h6 style="color: #9A9A9A; text-align: right;"><a [routerLink]="['/movie-list']">Vizyondaki filmleri gör</a></h6>
+            <h4 style="color: #9A9A9A; text-align: center;">Vizyondaki filmlerle sinema eğlencen son hız devam etsin... </h4>
+        </p-footer>
+         
+                
+     
+    </p-carousel>
