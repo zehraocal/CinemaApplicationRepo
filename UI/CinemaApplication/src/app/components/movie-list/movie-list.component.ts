@@ -23,12 +23,12 @@ export class MovieListComponent implements OnInit {
 
   ngOnInit(): void {
     let movieParam: GetMovieListVM = new GetMovieListVM();
-    this.httpService.post<GetMovieListVM, any>("Movie", movieParam, "GetMovieList").subscribe(data => {
+    this.httpService.post<GetMovieListVM, any>("Movie", movieParam, "GetVisionMovieList").subscribe(data => {
       debugger
       this.movies = data;
       this.gueryMovie = true;
-      this.getVisionMovieList = false;
-      this.getMovieList = true;
+      this.getVisionMovieList = true;
+      this.getMovieList = false;
     })
 
   }
