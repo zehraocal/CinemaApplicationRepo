@@ -19,24 +19,27 @@
         <label for="float-input">Seans</label>
       </span>-->
 
-      <div class="row" *ngFor="let item of displayDates">
-        <label for="float-input">Tarih Seç Aga</label>
-        <button type="button" (click)="selectDateTime(item.value)" class="btn btn-primary btn-round"
-          style="float:left; margin-top: 25px;">{{item.label}}</button>
+      <div class="row">
+        <label for="float-input">Tarih Seçiniz</label>
+        <div class=" btn-group" *ngFor="let item of displayDates">
+          <button type="button" (click)="selectDateTime(item.value)" class="btn btn-primary btn-round"
+            style="float:left; margin-top: 25px;">{{item.label}}</button>
+        </div>
       </div>
-
-      <div class="row" *ngFor="let item of movieHouses">
-        <label for="float-input">Şimdide salonu </label>
-        <button type="button" (click)="selectMovieHouse(item.value)" class="btn btn-primary btn-simple btn-round"
-          style="float:left;margin-top: 25px;">{{item.label}}</button>
+      <div class="row">
+        <label for="float-input">Salon Seçiniz </label>
+        <div class="btn-group" *ngFor="let item of movieHouses">
+          <button type="button" (click)="selectMovieHouse(item.value)" class="btn btn-primary btn-simple btn-round"
+            style="float:left;margin-top: 25px;">{{item.label}}</button>
+        </div>
       </div>
-
-      <div class="row" *ngFor="let item of sessions">
-        <label for="float-input">seans balım </label>
-        <button type="button" (click)="selectSessions(item.value)" class="btn btn-primary btn-simple btn-round"
-          style="float:left;margin-top: 25px;">{{item.label}}</button>
+      <div class="row">
+        <label for="float-input">Seans Seçiniz </label>
+        <div class="btn-group" *ngFor="let item of sessions">
+          <button type="button" (click)="selectSessions(item.value)" class="btn btn-primary btn-simple btn-round"
+            style="float:left;margin-top: 25px;">{{item.label}}</button>
+        </div>
       </div>
-
       <div class="row">
         <button type="submit" class=" btn btn-info btn-round" (click)="getVisionMovie()"> Bilet Al
         </button>
@@ -45,20 +48,26 @@
     </p-panel>
   </div>
 
-  <div class="col-lg-6 col-md-12">
+  <div class="col-lg-5 col-md-12">
     <div class="legend">
       <span class="glyphicon glyphicon-stop freeSeat"></span> FREE
       <span class="glyphicon glyphicon-ban-circle reservedSeat padding-left"></span> TAKEN
       <span class="glyphicon glyphicon-ok-sign selectedSeat padding-left"></span> SELECTED
     </div>
 
-    <div *ngFor="let row of rows">
-      <span class="seat" *ngFor="let col of cols" (click)="seatClicked(row + col)" [ngSwitch]="getStatus(row + col)">
-        <button>seç</button>
+    <div class="btn-group" *ngFor="let row of seatList">
+      <span class="seat" (click)="seatClicked(row)" [ngSwitch]="getStatus(row)">
+        <button> {{row}}</button>
         <span *ngSwitchCase="'selected'" class="glyphicon glyphicon-ok-sign selectedSeat"></span>
         <span *ngSwitchCase="'reserved'" class="glyphicon glyphicon-ban-circle reservedSeat"></span>
         <span *ngSwitchDefault class="glyphicon glyphicon-stop freeSeat"></span>
       </span>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-12">
+    <div style="float:inherit ;">
+      <img src="assets/img/movies/{{movies.posterName}}.jpg" />
     </div>
   </div>
 </div>

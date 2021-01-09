@@ -14,6 +14,7 @@ import { MovieHouse } from 'app/entities/movie-house';
 })
 export class MovieTicketComponent implements OnInit {
 
+  movies: any = [];
   movieId: number;
   ticketMovie: any = [];
   sessions: {};
@@ -25,8 +26,9 @@ export class MovieTicketComponent implements OnInit {
   MovieHousesCapacity: number;
   queryMovieHouse: number;
   showSeat: boolean = false;
-  rows: string[] = ['A', 'B', 'C', 'D', 'E'];
-  cols= [];
+  seatList = [];
+
+
   selected: string[] = [];
   reserved: string[] = ['A2', 'A3', 'F5', 'F1', 'F2', 'F6', 'F7', 'F8', 'H1', 'H2', 'H3', 'H4'];//Veritanına bunu ekle
 
@@ -44,6 +46,10 @@ export class MovieTicketComponent implements OnInit {
       this.ticketMovie = data;
       this.getDate = true;
     })
+    this.httpService.get("Movie", "GetSingleMovieList", movieId).subscribe(data => {
+     this.movies = data;
+    })
+
   }
 
 
@@ -125,21 +131,21 @@ export class MovieTicketComponent implements OnInit {
     }
   }
 
-getSeat(seatCount:number){
-  //TODO burada iki boyutlu array oluşturulacak ve html kısmı düzenlenecek
-debugger
-let alphabets = [];
-var sayi=seatCount/10;
-for (let i = 65; i <= 65+sayi;i++) {
-    alphabets.push(String.fromCharCode(i));
-}
-console.log(alphabets);
-for (var i = 1; i < seatCount+1; i++) {
-  this.cols.push(i);
-}
-
-
-}
+  getSeat(seatCount: number) {
+    let alphabets = [];
+    var sayi = seatCount / 10;
+    for (let i = 65; i <= 65 + sayi; i++) {
+      alphabets.push(String.fromCharCode(i));
+    }
+    alphabets.forEach(element => {
+      for (let i = 1; i <11; i++) {
+        this.seatList.push(element + i);
+      }
+    });
+    if(this.seatList.length>seatCount){
+     this.seatList.splice(seatCount, (this.seatList.length-seatCount));
+    }
+  }
 
 
 

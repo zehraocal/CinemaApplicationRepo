@@ -1,4 +1,4 @@
-export class GetVisionMovieListVM {
+export class GetVisionMovieListVM { 
     name: string;
     genre: string;
     duration: number;
