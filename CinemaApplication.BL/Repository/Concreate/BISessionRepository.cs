@@ -37,7 +37,7 @@ namespace CinemaApplication.BL.Repository.Concreate
 
         public List<DropDownListVM> GetVisionMovieDropDownList(MovieTicketGetSession model)
         {
-            var result = GetAllWithType<DropDownListVM>().Where(p => _context.Set<VisionMovie>().Where(a => a.MovieId == model.MovieId && a.Id== model.VisionMovieId).ToList().Any(p2 => p2.SessionId == p.Value)).ToList();
+            var result = GetAllWithType<DropDownListVM>().Where(p => _context.Set<VisionMovie>().Where(a => a.MovieId == model.MovieId && a.MovieHouseId== model.VisionMovieId).ToList().Any(p2 => p2.SessionId == p.Value)).ToList();
             return result;
         }
     }
