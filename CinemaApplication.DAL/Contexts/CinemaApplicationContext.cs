@@ -16,5 +16,6 @@ namespace CinemaApplication.DAL.Contexts
         public DbSet<VisionMovie> VisionMovies { get; set; }
         public DbSet<Casting> Castings { get; set; }
         public DbSet<MovieCasting> MovieCastings { get; set; }
+        public DbSet<MovieTicket> MovieTickets { get; set; }
     }
 }

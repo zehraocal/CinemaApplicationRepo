@@ -7,6 +7,8 @@ import { MovieTicketGetSession } from 'app/entities/movie-ticket-get-session';
 import { MovieTicketGetDisplayTime } from 'app/entities/movie-ticket-get-display-time';
 import { MovieHouseGetVM } from 'app/entities/movie-house-get-vm';
 import { MovieHouse } from 'app/entities/movie-house';
+import { MovieTicketGetVM } from 'app/entities/movie-ticket-get-vm';
+import { MovieTicketAddVM } from 'app/entities/movie-ticket-add-vm';
 
 @Component({
   selector: 'app-movie-ticket',
@@ -27,10 +29,12 @@ export class MovieTicketComponent implements OnInit {
   queryMovieHouse: number;
   showSeat: boolean = false;
   seatList = [];
-
-
+  selectMovieId: number;
+  selectMovieHouseId: number;
+  selectSessionId: number;
   selected: string[] = [];
   reserved: string[] = ['A2', 'A3', 'F5', 'F1', 'F2', 'F6', 'F7', 'F8', 'H1', 'H2', 'H3', 'H4'];//Veritanına bunu ekle
+  messageService: any;
 
   constructor(private httpService: HttpService, private route: ActivatedRoute) {
     this.httpService.get<MovieTicketGetDisplayTime>("VisionMovie", "GetDisplayDateList", this.route.snapshot.params['movieId']).subscribe(data => {
@@ -41,13 +45,14 @@ export class MovieTicketComponent implements OnInit {
 
   ngOnInit(): void {
     let movieId = this.route.snapshot.params['movieId'];
+    this.selectMovieId = movieId;
     this.httpService.get<VisionMovieGetVM>("VisionMovie", "GetSingleVisionMovieList", movieId).subscribe(data => {
       debugger
       this.ticketMovie = data;
       this.getDate = true;
     })
     this.httpService.get("Movie", "GetSingleMovieList", movieId).subscribe(data => {
-     this.movies = data;
+      this.movies = data;
     })
 
   }
@@ -88,11 +93,11 @@ export class MovieTicketComponent implements OnInit {
 
   selectMovieHouse(value) {
     debugger
-
+    this.selectMovieHouseId = value;
     let movieHouseParam: MovieHouseGetVM = new MovieHouseGetVM();
     this.httpService.get("MovieHouse", "GetSingleMovieHouse", value).subscribe(data1 => {
       this.MovieHousesCapacity = data1["capacity"];
-      this.getSeat(this.MovieHousesCapacity);
+
     });
 
     let movieTicketSession: MovieTicketGetSession = new MovieTicketGetSession();
@@ -103,6 +108,12 @@ export class MovieTicketComponent implements OnInit {
       this.sessions = data;
     });
   }
+  selectSessions(value) {
+    this.selectSessionId = value;
+    this.getSeat(this.MovieHousesCapacity);
+  }
+
+
 
   //return status of each seat
   getStatus(seatPos: string) {
@@ -119,16 +130,23 @@ export class MovieTicketComponent implements OnInit {
 
   //click handler
   seatClicked(seatPos: string) {
-    var index = this.selected.indexOf(seatPos);
+    let movieTicketVM: MovieTicketGetVM = new MovieTicketGetVM();
+    movieTicketVM.MovieHouseId = this.selectMovieHouseId;
+    movieTicketVM.MovieId = this.selectMovieId;
+    movieTicketVM.SessionId = this.selectSessionId;
+    movieTicketVM.SeatName = seatPos;
 
-    if (index !== -1) {
-      // seat already selected, remove
-      this.selected.splice(index, 1)
-    } else {
-      //push to selected array only if it is not reserved
-      if (this.reserved.indexOf(seatPos) === -1)
-        this.selected.push(seatPos);
-    }
+
+    this.httpService.post<MovieTicketGetVM, any>("MovieTicket", movieTicketVM, "GetWhereMovieTicket").subscribe(data => {
+      debugger
+      var sonuc = data;
+
+      if (data == false) {
+        this.httpService.post<MovieTicketAddVM, any>("MovieTicket", movieTicketVM, "AddMovieTicket").subscribe(data => {
+         //TODO
+        });
+      }
+    });
   }
 
   getSeat(seatCount: number) {
@@ -138,12 +156,12 @@ export class MovieTicketComponent implements OnInit {
       alphabets.push(String.fromCharCode(i));
     }
     alphabets.forEach(element => {
-      for (let i = 1; i <11; i++) {
+      for (let i = 1; i < 11; i++) {
         this.seatList.push(element + i);
       }
     });
-    if(this.seatList.length>seatCount){
-     this.seatList.splice(seatCount, (this.seatList.length-seatCount));
+    if (this.seatList.length > seatCount) {
+      this.seatList.splice(seatCount, (this.seatList.length - seatCount));
     }
   }
 

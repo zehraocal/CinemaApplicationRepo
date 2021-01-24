@@ -49,6 +49,7 @@ export class MovieComponent implements OnInit {
     movieParam.genre=this.criteria.genre;
 
     this.httpService.post<MovieGetVM, any>("Movie", movieParam, "GetWhereMovieList").subscribe(data => {
+      debugger
       this.Movie = data;
       this.sorgulandi = true;
     });

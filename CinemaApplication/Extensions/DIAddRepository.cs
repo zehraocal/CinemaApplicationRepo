@@ -13,6 +13,7 @@ namespace CinemaApplication.Extensions
             services.AddSingleton<IBISessionRepository, BISessionRepository>();
             services.AddSingleton<IBlVisionMovieRepository, BlVisionMovieRepository>();
             services.AddSingleton<IBlCastingRepository, BlCastingRepository>();
+            services.AddSingleton<IBIMovieTicketRepository, BIMovieTicketRepository>();
             return services;
         }
     }
