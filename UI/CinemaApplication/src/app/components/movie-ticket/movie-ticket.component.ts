@@ -33,27 +33,27 @@ export class MovieTicketComponent implements OnInit {
   selectMovieHouseId: number;
   selectSessionId: number;
   selected: string[] = [];
-  reserved: string[] = ['A2', 'A3', 'F5', 'F1', 'F2', 'F6', 'F7', 'F8', 'H1', 'H2', 'H3', 'H4'];//Veritanına bunu ekle
+  reserved: string[] = [];
   messageService: any;
 
   constructor(private httpService: HttpService, private route: ActivatedRoute) {
-    this.httpService.get<MovieTicketGetDisplayTime>("VisionMovie", "GetDisplayDateList", this.route.snapshot.params['movieId']).subscribe(data => {
-      debugger
-      this.displayDates = data;
-    });
+  
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    debugger
     let movieId = this.route.snapshot.params['movieId'];
     this.selectMovieId = movieId;
-    this.httpService.get<VisionMovieGetVM>("VisionMovie", "GetSingleVisionMovieList", movieId).subscribe(data => {
+    await this.httpService.get<VisionMovieGetVM>("VisionMovie", "GetSingleVisionMovieList", movieId).toPromise().then(data => {
       debugger
       this.ticketMovie = data;
       this.getDate = true;
     })
-    this.httpService.get("Movie", "GetSingleMovieList", movieId).subscribe(data => {
-      this.movies = data;
-    })
+    debugger
+    this.httpService.get<MovieTicketGetDisplayTime>("VisionMovie", "GetDisplayDateList", this.route.snapshot.params['movieId']).subscribe(async data => {
+      debugger
+      this.displayDates = data;
+    });
 
   }
 
@@ -95,7 +95,7 @@ export class MovieTicketComponent implements OnInit {
     debugger
     this.selectMovieHouseId = value;
     let movieHouseParam: MovieHouseGetVM = new MovieHouseGetVM();
-    this.httpService.get("MovieHouse", "GetSingleMovieHouse", value).subscribe(data1 => {
+    this.httpService.get("MovieHouse", "GetSingleMovieHouse", value).toPromise().then(data1 => {
       this.MovieHousesCapacity = data1["capacity"];
 
     });
@@ -104,10 +104,12 @@ export class MovieTicketComponent implements OnInit {
     movieTicketSession.movieId = this.route.snapshot.params['movieId'];
     movieTicketSession.visionMovieId = value;
     movieTicketSession.queryMovieHouse = this.queryMovieHouse;
-    this.httpService.post<MovieTicketGetSession, DropDownListVM>("Session", movieTicketSession, "GetVisionMovieDropDownList").subscribe(data => {
+    this.httpService.post<MovieTicketGetSession, DropDownListVM>("Session", movieTicketSession, "GetVisionMovieDropDownList").toPromise().then(data => {
       this.sessions = data;
     });
+    
   }
+
   selectSessions(value) {
     this.selectSessionId = value;
     this.getSeat(this.MovieHousesCapacity);
@@ -116,12 +118,15 @@ export class MovieTicketComponent implements OnInit {
 
 
   //return status of each seat
-  getStatus(seatPos: string) {
-    if (this.reserved.indexOf(seatPos) !== -1) {
-      return 'reserved';
-    } else if (this.selected.indexOf(seatPos) !== -1) {
-      return 'selected';
-    }
+  getStatusControl(movieTicketVM: any = []) {
+    debugger
+    this.httpService.post<MovieTicketGetVM, any>("MovieTicket", movieTicketVM, "GetWhereMovieTicket").toPromise().then(data => {
+     if (data !=null) {
+     this.reserved.push(
+      data );
+         // return 'reserved';  
+       }
+    });
   }
 
   clearSelected() {
@@ -130,26 +135,27 @@ export class MovieTicketComponent implements OnInit {
 
   //click handler
   seatClicked(seatPos: string) {
+    debugger
     let movieTicketVM: MovieTicketGetVM = new MovieTicketGetVM();
     movieTicketVM.MovieHouseId = this.selectMovieHouseId;
     movieTicketVM.MovieId = this.selectMovieId;
     movieTicketVM.SessionId = this.selectSessionId;
     movieTicketVM.SeatName = seatPos;
-
-
-    this.httpService.post<MovieTicketGetVM, any>("MovieTicket", movieTicketVM, "GetWhereMovieTicket").subscribe(data => {
-      debugger
-      var sonuc = data;
-
-      if (data == false) {
-        this.httpService.post<MovieTicketAddVM, any>("MovieTicket", movieTicketVM, "AddMovieTicket").subscribe(data => {
-         //TODO
-        });
-      }
-    });
+    debugger
+    var resultA=this.getStatusControl(movieTicketVM)
+   // if (resultA <1) {
+    //  this.httpService.post<MovieTicketAddVM, any>("MovieTicket", movieTicketVM, "AddMovieTicket").subscribe(async data1 => {
+     //   if (data1) {
+      //    this.messageService.add({ severity: 'success', detail: 'Başarıyla eklendi.' });
+      //  }
+      //  else
+       //   this.messageService.add({ severity: 'error', detail: 'Ekleme başarısız.' });
+     // });
+    //}
   }
 
   getSeat(seatCount: number) {
+    debugger
     let alphabets = [];
     var sayi = seatCount / 10;
     for (let i = 65; i <= 65 + sayi; i++) {

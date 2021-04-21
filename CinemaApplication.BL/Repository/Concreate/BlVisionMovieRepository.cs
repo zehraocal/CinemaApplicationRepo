@@ -2,10 +2,12 @@
 using CinemaApplication.BL.Repository.Interface;
 using CinemaApplication.DAL.Contexts;
 using CinemaApplication.Entity.Entities;
+using CinemaApplication.Entity.Helper;
 using CinemaApplication.Entity.ViewModels;
 using CinemaApplication.Service;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -15,11 +17,14 @@ namespace CinemaApplication.BL.Repository.Concreate
     {
         IBISessionRepository _bISessionRepository;
         IBIMovieRepository _bIMovieRepository;
+        private readonly CinemaApplicationContext _context;
         public BlVisionMovieRepository(IBISessionRepository bISessionRepository, IBIMovieRepository bIMovieRepository, IMapper mappingProfile) : base(mappingProfile)
         {
             _bISessionRepository = bISessionRepository;
             _bIMovieRepository = bIMovieRepository;
+            _context = DbContextService.GetDbContext();
         }
+
 
         public List<VisionMovieListVM> GetVisionMovieList(VisionMovieGetVM model)
         {
@@ -45,10 +50,30 @@ namespace CinemaApplication.BL.Repository.Concreate
             return movies;
         }
 
+        //public GetVisionMovieListVM GetCardVisionMovieList() {
+
+        //    //var result = from vm in _context.Set<VisionMovie>()
+        //    //             join m in _context.Set<Movie>() on vm.MovieId equals m.Id
+        //    //             select new
+        //    //             {
+        //    //                 m.Name,
+        //    //                 m.Genre,
+        //    //                 m.Duration,
+        //    //                 m.Description,
+        //    //                 m.PosterName,
+        //    //                 m.ReleaseDate,
+        //    //                 m.PngBase64
+        //    //             };
+                
+        //    return result;
+        //}
+
+
         public override bool Add<TAddVM>(TAddVM model)
         {
             //ToDo return string dön hata mesajı yaz çakışma gerçekleşti diye ve bu stringi returnle
             var visionMovieAddParam = model as VisionMovieAddVM;
+
             if (!VisionMovieControl(visionMovieAddParam))
                 return false;    
             // ToDo toaster eklendiği zaman ilgili mesaj yazdırılacak.
@@ -81,7 +106,7 @@ namespace CinemaApplication.BL.Repository.Concreate
 
         public List<DropDownListVM> GetDisplayDateList(long id)
         {
-            var visionMovieList = GetWhere(a => a.MovieId == id);
+            var visionMovieList = GetWhere(a => a.MovieId == id).ToList();
             return _mappingProfile.Map<List<VisionMovie>, List<DropDownListVM>>(visionMovieList).GroupBy(x => x.Label).Select(g => g.First()).ToList();
         }
 

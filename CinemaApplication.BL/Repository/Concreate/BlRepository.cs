@@ -16,7 +16,7 @@ namespace CinemaApplication.BL.Repository.Concreate
 {
     public class BlRepository<T> : IBlRepository<T> where T : BaseEntity
     {
-        CinemaApplicationContext _context;
+        private readonly CinemaApplicationContext _context;
         protected IMapper _mappingProfile;
 
         public BlRepository(IMapper mappingProfile)

@@ -38,6 +38,7 @@ export class MovieListComponent implements OnInit {
     movieParam.name = this.criteria.name;
     movieParam.genre = this.criteria.genre;
     this.httpService.post<GetMovieListVM, any>("Movie", movieParam, "GetVisionMovieList").subscribe(data => {
+      debugger
       this.movies = data;
       this.gueryVisionMovie = true;
       this.gueryMovie = false;

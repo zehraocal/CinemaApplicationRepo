@@ -16,5 +16,8 @@ export class CnmCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    debugger
+    // var a;
+    // this.imagePath=a;
   }
 }

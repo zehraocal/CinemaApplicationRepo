@@ -55,12 +55,11 @@
       <span class="glyphicon glyphicon-ok-sign selectedSeat padding-left"></span> SELECTED
     </div>
 
-    <div class="btn-group" *ngFor="let row of seatList">
+    <div class="btn-group" *ngFor="let row of seatList" [ngSwitch]="getStatus(row)">
       <span class="seat" (click)="seatClicked(row)" [ngSwitch]="getStatus(row)">
         <button (click)="seatClicked(row)" [ngSwitch]="getStatus(row)">{{row}}</button>
         <span *ngSwitchCase="'selected'" style="background-color: yellow;"></span>
         <span *ngSwitchCase="'reserved'" style="background-color: red;"></span>
-        <span *ngSwitchDefault class="freeSeat"></span>
       </span>
     </div>
   </div>

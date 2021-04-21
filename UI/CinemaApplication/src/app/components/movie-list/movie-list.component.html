@@ -25,7 +25,7 @@
         <div class="movie-border">
             <div class="row card-group">
                 <div *ngFor="let movie of movies" cols="4">
-                    <app-cnm-card [movieName]="movie.name" [imagePath]="movie.posterName" [duration]="movie.duration"
+                    <app-cnm-card [movieName]="movie.name" [imagePath]="movie.pngBase64" [duration]="movie.duration"
                         [genre]="movie.genre">
                         <ng-template #detailTemplate>
                             <button class="btn btn-primary btn-round">
@@ -44,7 +44,7 @@
         <div class="movie-border">
             <div class="row card-group">
                 <div *ngFor="let movie of movies" cols="4">
-                    <app-cnm-card [movieName]="movie.name" [imagePath]="movie.posterName" [duration]="movie.duration"
+                    <app-cnm-card [movieName]="movie.name" [imagePath]="movie.pngBase64" [duration]="movie.duration"
                         [genre]="movie.genre">
                         <ng-template #detailTemplate>
                             <button class="btn btn-primary btn-round">

@@ -1,7 +1,3 @@
-import { MovieHouse } from './movie-house';
-import { Session } from './session';
-import { Movie } from './movie';
-
 
 export class VisionMovieAddVM {
     movieId: number;
@@ -9,5 +5,4 @@ export class VisionMovieAddVM {
     movieHouseId: number;
     displayDate: Date;
     price: number;
-
 }

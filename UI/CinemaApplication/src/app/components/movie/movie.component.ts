@@ -24,6 +24,7 @@ export class MovieComponent implements OnInit {
   cols: any[];
   value: Date;
   updateDate:Date;
+  ImageBaseData: string | ArrayBuffer = null;
 
   @ViewChild(CnmConfirmDialogComponent, { static: false }) dialogComponentRef: CnmConfirmDialogComponent;
   @ViewChild('updateViewComponent', { static: false }) UpdateViewComponentRef: CnmModalComponent;
@@ -65,6 +66,7 @@ export class MovieComponent implements OnInit {
     movie.description = this.record.addDescription;
     movie.posterName=this.record.addPosterName;
     movie.releaseDate = new Date(this.value);
+    movie.PngBase64=this.ImageBaseData.toString();
 
     this.httpService.post<MovieAddVM, any>("Movie", movie, "AddMovie").subscribe(data => {
       if (data)
@@ -72,7 +74,21 @@ export class MovieComponent implements OnInit {
       this.modalService.dismissAll();
     });
   }
+  pictureSelect(files: FileList) {
+    debugger
+    this.ImageBaseData = null;
+    let me = this;
+    let file = files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      me.ImageBaseData = reader.result;
+    };
 
+    reader.onerror = function (error) {
+      alert("Dosya seçimi sırasında bir hata oluştu. Lütfen tekrar deneyiniz.");
+    };
+  }
   openAddDialog() {
     debugger
     this.AddViewComponentRef.openDialog();

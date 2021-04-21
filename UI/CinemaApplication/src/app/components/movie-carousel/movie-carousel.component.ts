@@ -36,7 +36,7 @@ export class MovieCarouselComponent implements OnInit {
         numScroll: 1
       }];
     
-    this.httpService.get<GetVisionMovieListVM>("VisionMovie", "GetCardVisionMovieList").subscribe(data => {
+    this.httpService.get<GetVisionMovieListVM>("Movie", "GetCardVisionMovieList").subscribe(data => {
       debugger
       this.movies = data;
     })

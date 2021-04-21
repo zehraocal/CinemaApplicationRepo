@@ -6,4 +6,5 @@ export class GetMovieListVM {
     description: string;
     posterName: string;
     releaseDate: Date;
+    pngBase64: string;
 }

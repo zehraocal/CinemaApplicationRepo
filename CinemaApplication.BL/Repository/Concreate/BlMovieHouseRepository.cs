@@ -13,7 +13,7 @@ namespace CinemaApplication.BL.Repository.Concreate
 {
     public class BlMovieHouseRepository : BlRepository<MovieHouse>, IBlMovieHouseRepository
     {
-        CinemaApplicationContext _context;
+        private readonly CinemaApplicationContext _context;
         public BlMovieHouseRepository(IMapper mappingProfile) : base(mappingProfile)
         {
             _context = DbContextService.GetDbContext();

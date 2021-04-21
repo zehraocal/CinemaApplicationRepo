@@ -29,7 +29,7 @@ import { BrowserModule } from '@angular/platform-browser';
         HttpClientModule,
         ReactiveFormsModule
     ],
-    providers: [HttpService, { provide: "url", useValue: "https://localhost:5001/api" }],
+    providers: [HttpService, { provide: "url", useValue: "http://localhost:5001/api" }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,7 +14,7 @@ namespace CinemaApplication.Service
 
         // This ile IServise classına eklenti yapabiliriz böylelikle startupta tekrardan yapmamıza gerek kalmaz
         {
-            services.AddDbContext<CinemaApplicationContext>(option => option.UseSqlServer("Server=.;Database=CinemaDb;Trusted_Connection=True;"), ServiceLifetime.Transient);
+            services.AddDbContext<CinemaApplicationContext>(option => option.UseSqlServer("Server=.;Database=CinemaDb;Trusted_Connection=True;"), ServiceLifetime.Scoped);
             return services;
         }
 

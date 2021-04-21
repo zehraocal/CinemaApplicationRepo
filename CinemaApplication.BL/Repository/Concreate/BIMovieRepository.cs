@@ -2,10 +2,12 @@
 using CinemaApplication.BL.Repository.Interface;
 using CinemaApplication.DAL.Contexts;
 using CinemaApplication.Entity.Entities;
+using CinemaApplication.Entity.Helper;
 using CinemaApplication.Entity.ViewModels;
 using CinemaApplication.Service;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -13,11 +15,50 @@ namespace CinemaApplication.BL.Repository.Concreate
 {
     public class BlMovieRepository : BlRepository<Movie>, IBIMovieRepository
     {
-        CinemaApplicationContext _context;
+        private readonly CinemaApplicationContext _context;
         public BlMovieRepository(IMapper mappingProfile) : base(mappingProfile)
         {  //VisionMoviede movie çağrığımız için tekrardan movie visionmovieyi çağırınca hata aldık.
             _context = DbContextService.GetDbContext();
         }
+
+
+        public override bool Add<TAddVM>(TAddVM model)
+        {
+            var movieAddParam = model as MovieAddVM;
+            var spl = movieAddParam.PngBase64.Split('/')[1];
+            var format = spl.Split(';')[0];
+            var stringConvert = movieAddParam.PngBase64.Replace($"data:image/{format};base64,", String.Empty).Replace($"data:application/{format};base64,", String.Empty);
+
+            var bytes = Convert.FromBase64String(stringConvert);
+            var folderName = Path.Combine("assets", "img", "movies");
+            string filedir = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+            if (!Directory.Exists(filedir))
+            {
+                Directory.CreateDirectory(filedir);
+            }
+
+            var fileName = movieAddParam.PosterName + "." + format;
+            string file = Path.Combine(filedir, fileName);
+
+            if (bytes.Length > 0)
+            {
+                using (var stream = new FileStream(file, FileMode.Create))
+                {
+                    stream.Write(bytes, 0, bytes.Length);
+                    stream.Flush();
+                }
+            }
+
+            var fileFullPath = "assets/img/movies/" + fileName;
+            movieAddParam.PngBase64 = fileFullPath;
+            return base.Add(model);
+        }
+
+
+
+
+
 
         public List<Movie> GetWhereMovieList(MovieGetVM model)
         {

@@ -12,6 +12,7 @@ namespace CinemaApplication.Entity.ViewModels
         public int Duration { get; set; }
         public string Description { get; set; }
         public string PosterName { get; set; }
+        public string PngBase64 { get; set; }
         public DateTime ReleaseDate { get; set; }
     }
 }

@@ -5,4 +5,5 @@ export class GetVisionMovieListVM {
     description: string;
     posterName: string;
     releaseDate: Date;
+    pngBase64: string;
 }

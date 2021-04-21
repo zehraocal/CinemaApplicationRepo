@@ -27,7 +27,7 @@ export class VisionMovieComponent implements OnInit {
   cols: any[];
   updateId: number;
   deleteId: number;
-
+  
 
 
   visionMovies: {};
@@ -97,7 +97,7 @@ export class VisionMovieComponent implements OnInit {
     visionMovie.sessionId = this.selectedSession;
     visionMovie.price = this.record.price;
     visionMovie.displayDate = new Date(this.value);
-
+    
     this.httpService.post<VisionMovieAddVM, any>("VisionMovie", visionMovie, "AddVisionMovie").subscribe(data => {
       if (data) {
         this.messageService.add({ severity: 'success', detail: 'Başarıyla eklendi.' });
@@ -109,6 +109,7 @@ export class VisionMovieComponent implements OnInit {
     });
   }
 
+ 
   openAddDialog() {
 
     this.AddViewComponentRef.openDialog();

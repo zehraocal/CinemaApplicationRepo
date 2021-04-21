@@ -13,7 +13,7 @@ namespace CinemaApplication.BL.Repository.Concreate
 {
     public class BISessionRepository : BlRepository<Session>, IBISessionRepository
     {
-        CinemaApplicationContext _context;
+        private readonly CinemaApplicationContext _context;
         public BISessionRepository( IMapper mappingProfile) : base(mappingProfile)
         {
             _context = DbContextService.GetDbContext();

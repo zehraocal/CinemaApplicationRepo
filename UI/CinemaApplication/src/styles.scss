@@ -311,17 +311,44 @@ div.movie-detail-query{
   padding: 50px 10px 20px 30px; 
 }
 div.movie-border{
-  border-top: 1px solid rgba(225,226,227,.5);;
+  border-top: 1px solid rgba(225,226,227,.5);
   padding: 0px 10px 20px 0px;
   margin-top: 50px;
+
 }
 
 
+div.moviep-nogutter{
+  width: 300px;
+  height: 500px;
+  background-color:#ca2e2ed7;
+  margin : 30px auto 0 auto;
+  padding: 10px 3px 3px 5px; 
+  border-top: 5px solid rgba(225,226,227,.5);
+  border-radius: 20px;
+}
 
+div.ui-carousel{
 
+  background-color:white;
 
-
-
+}
+ div.pimg{
+  margin : 0px;
+  padding: 0px;
+  border-radius: 20px;
+ }
+div.pmovie-subtitle{
+ 
+  text-align: center;
+  color:black;
+}
+div.pmovie-title{
+  font-size: 18px;
+  text-align: center;
+  color:black;
+  font-weight:bold;
+}
 
 
 
@@ -379,3 +406,29 @@ div.movie-border{
   color: #fff;
 }
 
+.btn-group button {
+  background-color:#f8f9fa; /* Green background */
+  border: 1px solid #f96332; /* Green border */
+  color: black; /* White text */
+  padding: 10px 22px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+  border-radius:30px !important;
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  /* Prevent double borders border-right: none;*/
+  margin:2px;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #f96332;
+}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CinemaApplication.BL.Repository.Interface;
+using CinemaApplication.Entity.Entities;
 using CinemaApplication.Entity.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -64,11 +65,6 @@ namespace CinemaApplication.Controllers
             return Ok(_blVisionMovieRepository.GetAllWithType<VisionMovieListVM>());
         }
 
-        [HttpGet]
-        public IActionResult GetCardVisionMovieList()
-        {
-            return Ok(_blVisionMovieRepository.GetAllWithType<GetVisionMovieListVM>().GroupBy(x => x.Name).Select(g => g.First()).ToList());
-        }
 
         [HttpGet("{id}")]
         public IActionResult GetDisplayDateList(long id)

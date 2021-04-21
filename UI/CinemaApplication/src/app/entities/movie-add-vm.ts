@@ -5,4 +5,5 @@ export class MovieAddVM {
     description: string;
     posterName: string;
     releaseDate: Date;
+    PngBase64: string;
 }

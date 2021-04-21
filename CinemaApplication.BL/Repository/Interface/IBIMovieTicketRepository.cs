@@ -1,4 +1,5 @@
 ﻿using CinemaApplication.Entity.Entities;
+using CinemaApplication.Entity.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;

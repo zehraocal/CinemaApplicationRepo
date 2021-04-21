@@ -62,6 +62,7 @@ namespace CinemaApplication.Controllers
         [HttpPost]
         public IActionResult GetMovieList(GetMovieListVM model)
         {
+            var a = _blMovieRepository.GetMovieList(model);
             return Ok(_blMovieRepository.GetMovieList(model));
         }
 
@@ -71,6 +72,11 @@ namespace CinemaApplication.Controllers
             return Ok(_blMovieRepository.GetVisionMovieList(model));
         }
 
-        
+        [HttpGet]
+        public IActionResult GetCardVisionMovieList()
+        {
+
+            return Ok(_blMovieRepository.GetAllWithType<GetVisionMovieListVM>().GroupBy(x => x.Name).Select(g => g.First()).ToList());
+        }
     }
 }
