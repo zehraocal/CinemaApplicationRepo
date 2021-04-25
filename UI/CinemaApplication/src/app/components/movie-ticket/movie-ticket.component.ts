@@ -9,6 +9,7 @@ import { MovieHouseGetVM } from 'app/entities/movie-house-get-vm';
 import { MovieHouse } from 'app/entities/movie-house';
 import { MovieTicketGetVM } from 'app/entities/movie-ticket-get-vm';
 import { MovieTicketAddVM } from 'app/entities/movie-ticket-add-vm';
+import { MovieTicketGetByVM } from 'app/entities/movie-ticket-get-by-vm';
 
 @Component({
   selector: 'app-movie-ticket',
@@ -37,21 +38,19 @@ export class MovieTicketComponent implements OnInit {
   messageService: any;
 
   constructor(private httpService: HttpService, private route: ActivatedRoute) {
-  
+
   }
 
   async ngOnInit(): Promise<void> {
-    debugger
     let movieId = this.route.snapshot.params['movieId'];
     this.selectMovieId = movieId;
     await this.httpService.get<VisionMovieGetVM>("VisionMovie", "GetSingleVisionMovieList", movieId).toPromise().then(data => {
-      debugger
+
       this.ticketMovie = data;
       this.getDate = true;
     })
-    debugger
+
     this.httpService.get<MovieTicketGetDisplayTime>("VisionMovie", "GetDisplayDateList", this.route.snapshot.params['movieId']).subscribe(async data => {
-      debugger
       this.displayDates = data;
     });
 
@@ -59,25 +58,21 @@ export class MovieTicketComponent implements OnInit {
 
 
   onChange(event) {
-    debugger
     let movieTicketSession: MovieTicketGetSession = new MovieTicketGetSession();
     movieTicketSession.movieId = this.route.snapshot.params['movieId'];
     movieTicketSession.visionMovieId = event.value;
 
     this.httpService.post<MovieTicketGetSession, DropDownListVM>("MovieHouse", movieTicketSession, "GetMovieHouseDropDownList").subscribe(data => {
-      debugger
       this.movieHouses = data;
     });
   }
 
   onChange1(event) {
-    debugger
     let movieTicketSession: MovieTicketGetSession = new MovieTicketGetSession();
     movieTicketSession.movieId = this.route.snapshot.params['movieId'];
     movieTicketSession.visionMovieId = event.value;
     movieTicketSession.queryMovieHouse = this.queryMovieHouse;
     this.httpService.post<MovieTicketGetSession, DropDownListVM>("Session", movieTicketSession, "GetVisionMovieDropDownList").subscribe(data => {
-      debugger
       this.sessions = data;
     });
   }
@@ -92,12 +87,10 @@ export class MovieTicketComponent implements OnInit {
   }
 
   selectMovieHouse(value) {
-    debugger
     this.selectMovieHouseId = value;
     let movieHouseParam: MovieHouseGetVM = new MovieHouseGetVM();
     this.httpService.get("MovieHouse", "GetSingleMovieHouse", value).toPromise().then(data1 => {
       this.MovieHousesCapacity = data1["capacity"];
-
     });
 
     let movieTicketSession: MovieTicketGetSession = new MovieTicketGetSession();
@@ -107,26 +100,36 @@ export class MovieTicketComponent implements OnInit {
     this.httpService.post<MovieTicketGetSession, DropDownListVM>("Session", movieTicketSession, "GetVisionMovieDropDownList").toPromise().then(data => {
       this.sessions = data;
     });
-    
   }
 
   selectSessions(value) {
     this.selectSessionId = value;
-    this.getSeat(this.MovieHousesCapacity);
+    let movieTicketVM: MovieTicketGetVM = new MovieTicketGetVM();
+    movieTicketVM.MovieHouseId = this.selectMovieHouseId;
+    movieTicketVM.MovieId = this.selectMovieId;
+    movieTicketVM.SessionId = this.selectSessionId;
+    var resultA = this.getStatusControl(movieTicketVM);
   }
-
-
 
   //return status of each seat
   getStatusControl(movieTicketVM: any = []) {
-    debugger
     this.httpService.post<MovieTicketGetVM, any>("MovieTicket", movieTicketVM, "GetWhereMovieTicket").toPromise().then(data => {
-     if (data !=null) {
-     this.reserved.push(
-      data );
-         // return 'reserved';  
-       }
+      debugger
+      if (data != null) {
+        for (let i = 0; i < data.length; i++) {
+          this.reserved.push(data[i]);
+        }
+        this.getSeat(this.MovieHousesCapacity);
+      }      
     });
+  }
+
+  getStatus(row) {
+    for (let i = 0; i < this.reserved.length; i++) {
+      if (this.reserved[i] == row) {
+        return 'reserved';
+      }
+    }
   }
 
   clearSelected() {
@@ -136,22 +139,27 @@ export class MovieTicketComponent implements OnInit {
   //click handler
   seatClicked(seatPos: string) {
     debugger
-    let movieTicketVM: MovieTicketGetVM = new MovieTicketGetVM();
-    movieTicketVM.MovieHouseId = this.selectMovieHouseId;
-    movieTicketVM.MovieId = this.selectMovieId;
-    movieTicketVM.SessionId = this.selectSessionId;
-    movieTicketVM.SeatName = seatPos;
-    debugger
-    var resultA=this.getStatusControl(movieTicketVM)
-   // if (resultA <1) {
-    //  this.httpService.post<MovieTicketAddVM, any>("MovieTicket", movieTicketVM, "AddMovieTicket").subscribe(async data1 => {
-     //   if (data1) {
-      //    this.messageService.add({ severity: 'success', detail: 'Başarıyla eklendi.' });
-      //  }
-      //  else
-       //   this.messageService.add({ severity: 'error', detail: 'Ekleme başarısız.' });
-     // });
-    //}
+    let movieTicketByVM: MovieTicketGetByVM = new MovieTicketGetByVM();
+    movieTicketByVM.MovieHouseId = this.selectMovieHouseId;
+    movieTicketByVM.MovieId = this.selectMovieId;
+    movieTicketByVM.SessionId = this.selectSessionId;
+    movieTicketByVM.SeatName = seatPos;
+
+    this.httpService.post<MovieTicketGetByVM, any>("MovieTicket", movieTicketByVM, "GetWhereByMovieTicket").toPromise().then(data => {
+      if (data > 0) {
+         alert("Bu koltuk daha önce alındı");        
+         }
+      else {
+        this.httpService.post<MovieTicketAddVM, any>("MovieTicket", movieTicketByVM, "AddMovieTicket").subscribe(async data1 => {
+          if (data1) { 
+            alert("İşlem başarıyla gerçekleşti");
+            window.location.reload(); 
+          }
+          else { alert("İşlem başarısız."); }
+        });
+      }
+    });
+
   }
 
   getSeat(seatCount: number) {
@@ -163,7 +171,12 @@ export class MovieTicketComponent implements OnInit {
     }
     alphabets.forEach(element => {
       for (let i = 1; i < 11; i++) {
-        this.seatList.push(element + i);
+        let seatItem;
+        if(this.reserved.includes(element + i))
+          seatItem = { seat: element + i, status: 'reserved'};
+        else
+          seatItem = { seat: element + i, status: 'selected'};
+        this.seatList.push(seatItem);
       }
     });
     if (this.seatList.length > seatCount) {

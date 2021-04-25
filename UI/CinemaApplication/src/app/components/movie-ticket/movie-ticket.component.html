@@ -49,24 +49,22 @@
   </div>
 
   <div class="col-lg-5 col-md-12">
-    <div class="legend">
-      <span class="glyphicon glyphicon-stop freeSeat"></span> FREE
-      <span class="glyphicon glyphicon-ban-circle reservedSeat padding-left"></span> TAKEN
-      <span class="glyphicon glyphicon-ok-sign selectedSeat padding-left"></span> SELECTED
-    </div>
-
-    <div class="btn-group" *ngFor="let row of seatList" [ngSwitch]="getStatus(row)">
-      <span class="seat" (click)="seatClicked(row)" [ngSwitch]="getStatus(row)">
-        <button (click)="seatClicked(row)" [ngSwitch]="getStatus(row)">{{row}}</button>
-        <span *ngSwitchCase="'selected'" style="background-color: yellow;"></span>
-        <span *ngSwitchCase="'reserved'" style="background-color: red;"></span>
+    <div style=" display: inline-block; margin: 5px;" *ngFor="let seatItem of seatList">
+      <span class="seat">
+        <button (click)="seatClicked(seatItem.seat)"
+          [ngStyle]="{'background-color': seatItem.status == 'selected' ? 'yellow' : 'red' }">
+          {{seatItem.seat}}</button>
       </span>
     </div>
   </div>
 
   <div class="col-lg-3 col-md-12">
     <div style="float:inherit ;">
-      <img src="assets/img/movies/{{movies.posterName}}.jpg" />
+      <div class="content-center brand" style="background-image:url(../assets/img/sinema-salon.jpg);height: 240px; width: 400px; text-align:center;">
+        <img class="n-logo" style="height: 100px; width: 100px;" src="assets/img/now-logo.png" alt="">
+        <h1 class="h1-seo">NeCinema</h1>
+        <h4>Sinema biletini online al.</h4>
+    </div>
     </div>
   </div>
 </div>

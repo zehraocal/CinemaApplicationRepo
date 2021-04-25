@@ -122,6 +122,15 @@
                       [(ngModel)]='record.description'></textarea>
                     <label for="float-input">Açıklama</label>
                   </span>
+                  <div>
+
+                    <label for="file-upload" class="custom-file-upload">
+                        <i class="fa fa-upload fa-1x iconup" aria-hidden="true"></i><span>Poster Yükle</span>
+                    </label>
+      
+                    <input id="file-upload" type="file" (change)="pictureSelect($event.target.files)"
+                        accept="image/x-png,image/jpg,image/jpeg" /><br>
+                  </div>
                 </ng-template>
               </app-cnm-modal>
             </td>

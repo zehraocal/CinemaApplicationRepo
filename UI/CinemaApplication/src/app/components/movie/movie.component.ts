@@ -104,6 +104,7 @@ export class MovieComponent implements OnInit {
     updateMovie.posterName=this.record.posterName;
     updateMovie.description = this.record.description;
     updateMovie.releaseDate = new Date(this.updateDate);
+    updateMovie.PngBase64=this.ImageBaseData.toString();
 
     this.httpService.put<MovieUpdateVM, any>("Movie", updateMovie, "UpdateMovie").subscribe(updatedata => {
       this.updateMovie = updatedata;

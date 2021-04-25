@@ -51,6 +51,7 @@ namespace CinemaApplication.BL.Mapper
             CreateMap<MovieHouse, DropDownListVM>()
                   .ForMember(member1 => member1.Value, member2 => member2.MapFrom(x => x.Id))
                   .ForMember(member1 => member1.Label, member2 => member2.MapFrom(x => x.Name));
+            CreateMap<MovieTicketAddVM, MovieTicket>();
         }
     }
 }

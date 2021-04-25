@@ -30,7 +30,7 @@ namespace CinemaApplication.BL.Repository.Concreate
             var stringConvert = movieAddParam.PngBase64.Replace($"data:image/{format};base64,", String.Empty).Replace($"data:application/{format};base64,", String.Empty);
 
             var bytes = Convert.FromBase64String(stringConvert);
-            var folderName = Path.Combine("assets", "img", "movies");
+            var folderName = Path.Combine("wwwroot", "img", "movies");
             string filedir = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
             if (!Directory.Exists(filedir))
@@ -50,12 +50,43 @@ namespace CinemaApplication.BL.Repository.Concreate
                 }
             }
 
-            var fileFullPath = "assets/img/movies/" + fileName;
+            var fileFullPath = "wwwroot/img/movies/" + fileName;
             movieAddParam.PngBase64 = fileFullPath;
             return base.Add(model);
         }
 
+        public override bool Update<TAddVM>(TAddVM model)
+        {
+            var movieAddParam = model as MovieUpdateVM;
+            var spl = movieAddParam.PngBase64.Split('/')[1];
+            var format = spl.Split(';')[0];
+            var stringConvert = movieAddParam.PngBase64.Replace($"data:image/{format};base64,", String.Empty).Replace($"data:application/{format};base64,", String.Empty);
 
+            var bytes = Convert.FromBase64String(stringConvert);
+            var folderName = Path.Combine( "wwwroot", "img", "movies");
+            string filedir = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+            if (!Directory.Exists(filedir))
+            {
+                Directory.CreateDirectory(filedir);
+            }
+
+            var fileName = movieAddParam.PosterName + "." + format;
+            string file = Path.Combine(filedir, fileName);
+
+            if (bytes.Length > 0)
+            {
+                using (var stream = new FileStream(file, FileMode.Create))
+                {
+                    stream.Write(bytes, 0, bytes.Length);
+                    stream.Flush();
+                }
+            }
+
+            var fileFullPath = "wwwroot/img/movies/" + fileName;
+            movieAddParam.PngBase64 = fileFullPath;
+            return base.Update(model);
+        }
 
 
 

@@ -6,4 +6,5 @@ export class MovieUpdateVM {
     description: string;
     posterName: string;
     releaseDate: Date;
+    PngBase64: string;
 }

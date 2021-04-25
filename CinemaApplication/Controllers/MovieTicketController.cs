@@ -23,8 +23,26 @@ namespace CinemaApplication.Controllers
         [HttpPost]
         public IActionResult GetWhereMovieTicket(MovieTicketGetVM model)
         {
-            var Ticket = _blMovieTicketRepository.GetWhere(a => a.MovieHouseId == model.MovieHouseId && a.MovieId == model.MovieId && a.SessionId == model.SessionId && a.SeatName == model.SeatName).ToList();
-            return Ok(Ticket);
+            var Ticket = _blMovieTicketRepository.GetWhere(a => a.MovieHouseId == model.MovieHouseId && a.MovieId == model.MovieId && a.SessionId == model.SessionId).ToList();
+            List<string> movieTicketResponse = new List<string>();
+            for (int i = 0; i < Ticket.Count; i++)
+            {
+                movieTicketResponse.Add(Ticket[i].SeatName);
+
+            }
+            return Ok(movieTicketResponse);
+        }
+
+        [HttpPost]
+        public IActionResult GetWhereByMovieTicket(MovieTicketGetByVM model)
+        {
+            var ticket = _blMovieTicketRepository.GetWhere(a => a.MovieHouseId == model.MovieHouseId && a.MovieId == model.MovieId && a.SessionId == model.SessionId && a.SeatName == model.SeatName).ToList();
+            int a = 0;
+            if(ticket.Count != 0)
+            {
+                a++;
+            }
+            return Ok(a);
         }
 
         [HttpPost]
