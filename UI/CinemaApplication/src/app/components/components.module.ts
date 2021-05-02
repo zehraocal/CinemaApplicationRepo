@@ -34,6 +34,8 @@ import { CnmCardComponent } from './cinema-components/cnm-card/cnm-card.componen
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { MovieTicketComponent } from './movie-ticket/movie-ticket.component';
+import { LoginComponent } from './login/login.component';
+import { RecordComponent } from './record/record.component';
 
 
 
@@ -75,7 +77,9 @@ import { MovieTicketComponent } from './movie-ticket/movie-ticket.component';
         CnmCardComponent,
         MovieListComponent,
         MovieDetailComponent,
-        MovieTicketComponent
+        MovieTicketComponent,
+        LoginComponent,
+        RecordComponent
       
     ],
     exports: [ComponentsComponent]

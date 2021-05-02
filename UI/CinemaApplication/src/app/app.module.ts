@@ -12,10 +12,12 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent,   
+        NavbarComponent,
+       
     ],
     imports: [
         BrowserAnimationsModule,

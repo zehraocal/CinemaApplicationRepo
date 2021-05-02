@@ -3,14 +3,7 @@
         <div class="movie-detail-query">
             <button class="btn btn-primary btn-round btn-lg" (click)="visionMovieGetList()">Vizyondaki Filmler</button>
             <button class="btn btn-primary btn-round btn-lg" (click)="MovieGetList()">Tüm Filmler</button>
-            <button type="submit" class="btn btn-primary btn-round btn-lg" *ngIf='gueryVisionMovie'
-                (click)="visionMovieGetList()"> SONUÇLARI
-                LİSTELE
-            </button>
-            <button type="submit" class="btn btn-primary btn-round btn-lg" *ngIf='gueryMovie' (click)="MovieGetList()">
-                SONUÇLARI
-                LİSTELE
-            </button>
+
             <span class="ui-float-label" [style]="{'margin-top':'25px'}">
                 <input type="text" size="30" pInputText [(ngModel)]='criteria.name'>
                 <label for="float-input">Film Adı</label>
@@ -19,10 +12,24 @@
                 <input type="text" size="30" pInputText [(ngModel)]='criteria.genre'>
                 <label for="float-input">Film Türü</label>
             </span>
+
+            <button type="submit" class="btn btn-primary btn-round btn-lg" style="margin-top: 30px;" *ngIf='gueryVisionMovie'
+                (click)="visionMovieGetList()"> SONUÇLARI
+                LİSTELE
+            </button>
+            <button type="submit" class="btn btn-primary btn-round btn-lg" style="margin-top: 30px;" *ngIf='gueryMovie' (click)="MovieGetList()">
+                SONUÇLARI
+                LİSTELE
+            </button>
         </div>
     </div>
     <div class="col-lg-9 col-md-12" *ngIf='getVisionMovieList'>
+     
+      <div *ngIf='gueryVisionMovie'>
+        <h4>Vizyondaki Filmler</h4>
+      </div> 
         <div class="movie-border">
+           
             <div class="row card-group">
                 <div *ngFor="let movie of movies" cols="4">
                     <app-cnm-card [movieName]="movie.name" [imagePath]="movie.pngBase64" [duration]="movie.duration"
